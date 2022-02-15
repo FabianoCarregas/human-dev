@@ -1,6 +1,5 @@
 package entities;
 
-import enums.CourseStatus;
 import validations.Validation;
 
 public class Course {
@@ -8,26 +7,23 @@ public class Course {
     public String name;
     private String codeUrl;
     private int courseTimeHours;
-    private CourseStatus status;
+    private boolean status;
     private String targetMarket;
     private String instructor;
     private String courseDescription;
     private String developedSkills;
-    private Section curseSection;  //onetomany
 
-    public Course(Long id,
-                  String name,
+    public Course(String name,
                   String codeUrl,
                   int courseTimeHours,
-                  CourseStatus status,
+                  boolean status,
                   String targetMarket,
                   String instructor,
                   String courseDescription,
                   String developedSkills) {
         Validation.notNull("name", "The field name can not be null");
         Validation.isValidNumberHours(courseTimeHours, "The video can not be greater than 20 or less than 0");
-        Validation.isValidUrl(codeUrl, "This url is not in the correct formatation");
-        this.id = id;
+        //Validation.isValidUrl(codeUrl);
         this.name = name;
         this.codeUrl = codeUrl;
         this.courseTimeHours = courseTimeHours;
@@ -48,10 +44,6 @@ public class Course {
         this.instructor = instructor;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
@@ -64,7 +56,7 @@ public class Course {
         return courseTimeHours;
     }
 
-    public CourseStatus getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
@@ -84,14 +76,9 @@ public class Course {
         return developedSkills;
     }
 
-    public Section getCurseSection() {
-        return curseSection;
-    }
-
     @Override
     public String toString() {
         return "Course{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", codeUrl='" + codeUrl + '\'' +
                 ", courseTime=" + courseTimeHours +

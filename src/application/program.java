@@ -1,24 +1,43 @@
 package application;
 
 import entities.*;
+import entities.activities.Activity;
+import entities.activities.Explanation;
+import entities.activities.Question;
+import entities.activities.Video;
 import enums.*;
 
 public class program {
 
     public static void main(String[] args) {
 
-        Course course1 = new Course(1L, "Java", "TeSdTfH9756WSSa", 20, CourseStatus.STATUS_PRIVATE, "Developers",
-                "João", "Object orientation fundamentals", "Object orientation Programming");
-        MultipleChoices multChoices1 = new MultipleChoices(1L, "The question should be right here", 1, "The answer is two",
-                "Two i even", "The answer is two");
-        Question questions1 = new Question(1L, "This Questions atend to test your skills", "Who James Gosling ?",
-                DoubleChoiceQuestion.YES, multChoices1);
-        Video video1 = new Video(1L, "http//--09io", 19, "Developments skills explanations");
-        Type type1= new Type(1L, "The questions must be answered by the time you watch the videos", questions1, video1);
-        Section section1 = new Section(1L, "Java OO", "http//--oi09", 1, SectionStatus.SECTION_ACTIVE, TestStatus.IS_NOT_TEST, course1);
-        Activity activity1 = new Activity(1L, "Creating variables", "http//--00oi", ActivityStatus.STATUS_PUBLIC, 1, type1, questions1, section1);
+         Course course = new Course("Java", "cod3ac428", 20, true, "Developers",
+         "Maria", "Object orientation fundamentals", "Object orientation Programming");
 
-        System.out.println("\n"+ course1);
+         Category category1 = new Category("Backend", "jhujfh77--kk", "development in backend and some tricks", "guide is just here",
+                 true, 1, null, "FFF");
+
+         Subcategory subcategory1 = new Subcategory("Variables", "jhf88hhd--d", "This subcategory is a class about variables",
+                 "This guide will help you find a path to become a legend", true, 1, category1 );
+
+         Section section1 = new Section("Study Section", "co9d3-aq", 1, true, false, course);
+
+         Video video1 = new Video("Title", "co-d3e", section1, "http-00", 12, "video about coding stuff");
+
+         Question question = new Question("Question Title", "co-od3", section1, "Description about the question");
+
+         Alternative alternative = new Alternative("Question explanation", 1, "Question answer", true, "justification", "Right answer", question);
+
+        Explanation explanation = new Explanation("Explanation title", "cod3-", section1, "Activity explanation huge text");
+
+        //System.out.println(course);
+        //System.out.println(category1);
+        //System.out.println(subcategory1);
+        //System.out.println(section1);
+        //System.out.println(video1);
+        //System.out.println(question);
+        //System.out.println(alternative);
+        //System.out.println(explanation);
 
     }
 }

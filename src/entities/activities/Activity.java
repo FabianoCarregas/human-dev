@@ -1,40 +1,30 @@
-package entities;
+package entities.activities;
+import entities.Section;
 
-import enums.ActivityStatus;
-import validations.Validation;
-
-public class Activity {
+public abstract class Activity {
     private Long id;
-    private String ActivityName;
+    private String title;
     private String code;
-    private ActivityStatus activityStatus;
+    private boolean activityStatus;
     private int ordination;
-    private Type type;
-    private Question question;
     private Section section;
 
-    public Activity(Long id,
-                    String ActivityName,
+    public Activity(String title,
                     String code,
-                    ActivityStatus activityStatus,
-                    int ordination, Type type,
-                    Question question,
+                    boolean activityStatus,
+                    int ordination,
                     Section section) {
-        Validation.notNull("name", "The field name can not be null");
-        this.id = id;
-        this.ActivityName = ActivityName;
+        this.title = title;
         this.code = code;
         this.activityStatus = activityStatus;
         this.ordination = ordination;
-        this.type = type;
-        this.question = question;
         this.section = section;
     }
 
-    public Activity(String activityName,
+    public Activity(String title,
                     String code,
                     Section section) {
-        ActivityName = activityName;
+        this.title = title;
         this.code = code;
         this.section = section;
     }
@@ -43,28 +33,20 @@ public class Activity {
         return id;
     }
 
-    public String getActivityName() {
-        return ActivityName;
+    public String getTitle() {
+        return title;
     }
 
     public String getCode() {
         return code;
     }
 
-    public ActivityStatus getActivityStatus() {
+    public boolean isActivityStatus() {
         return activityStatus;
     }
 
     public int getOrdination() {
         return ordination;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public Question getQuestion() {
-        return question;
     }
 
     public Section getSection() {
@@ -74,14 +56,11 @@ public class Activity {
     @Override
     public String toString() {
         return "Activity{" +
-                "id=" + id +
-                ", name='" + ActivityName + '\'' +
+                ", title='" + title + '\'' +
                 ", code='" + code + '\'' +
                 ", activityStatus=" + activityStatus +
                 ", ordination=" + ordination +
-                ",  \ntype=" + type +
-                ",    \nquestion=" + question +
-                ",      \nsection=" + section +
+                ", section=" + section +
                 '}';
     }
 }

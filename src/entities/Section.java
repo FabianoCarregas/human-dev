@@ -1,7 +1,5 @@
 package entities;
 
-import enums.SectionStatus;
-import enums.TestStatus;
 import validations.Validation;
 
 public class Section {
@@ -10,19 +8,17 @@ public class Section {
     private String name;
     private String code;
     private int SectionOrdination;
-    private SectionStatus sectionStatus;
-    private TestStatus testStatus;
-    private Course course;      // manytoone
+    private boolean sectionStatus;
+    private boolean testStatus;
+    private Course course;
 
-    public Section(Long id,
-                   String name,
+    public Section(String name,
                    String code,
                    int sectionOrdination,
-                   SectionStatus sectionStatus,
-                   TestStatus testStatus,
+                   boolean sectionStatus,
+                   boolean testStatus,
                    Course course) {
         Validation.notNull("name", "The field name can not be null");
-        this.id = id;
         this.name = name;
         this.code = code;
         SectionOrdination = sectionOrdination;
@@ -39,10 +35,6 @@ public class Section {
         this.course = course;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
@@ -55,11 +47,11 @@ public class Section {
         return SectionOrdination;
     }
 
-    public SectionStatus getSectionStatus() {
+    public boolean isSectionStatus() {
         return sectionStatus;
     }
 
-    public TestStatus getTestStatus() {
+    public boolean isTestStatus() {
         return testStatus;
     }
 
@@ -70,7 +62,6 @@ public class Section {
     @Override
     public String toString() {
         return "Section{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 ", SectionOrdination=" + SectionOrdination +

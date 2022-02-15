@@ -1,6 +1,5 @@
 package entities;
 
-import enums.CategoryStatus;
 import validations.Validation;
 
 import java.io.File;
@@ -12,22 +11,20 @@ public class Category {
     private String code;
     private String categoryDescription;
     private String studyGuide;
-    private CategoryStatus categoryStatus;
+    private boolean categoryStatus;
     private int order;
     private File icon;
     private String hexaColor;
 
-    public Category(Long id,
-                    String name,
+    public Category(String name,
                     String code,
                     String categoryDescription,
                     String studyGuide,
-                    CategoryStatus categoryStatus,
+                    boolean categoryStatus,
                     int order,
                     File icon,
                     String hexaColor) {
         Validation.notNull("name", "The field name can not be null");
-        this.id = id;
         this.name = name;
         this.code = code;
         this.categoryDescription = categoryDescription;
@@ -64,7 +61,7 @@ public class Category {
         return studyGuide;
     }
 
-    public CategoryStatus getCategoryStatus() {
+    public boolean isCategoryStatus() {
         return categoryStatus;
     }
 
@@ -83,7 +80,6 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 ", categoryDescription='" + categoryDescription + '\'' +

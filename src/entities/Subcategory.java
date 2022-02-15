@@ -1,6 +1,5 @@
 package entities;
 
-import enums.CategoryStatus;
 import validations.Validation;
 
 public class Subcategory {
@@ -9,20 +8,18 @@ public class Subcategory {
     private String code;
     private String subcategoryDescription;
     private String studyGuide;
-    private CategoryStatus subcategoryStatus;
+    private boolean subcategoryStatus;
     private int ordination;
     private Category category;
 
-    public Subcategory(Long id,
-                       String name,
+    public Subcategory(String name,
                        String code,
                        String subcategoryDescription,
                        String studyGuide,
-                       CategoryStatus subcategoryStatus,
+                       boolean subcategoryStatus,
                        int ordination,
                        Category category) {
         Validation.notNull("name", "The field name can not be null");
-        this.id = id;
         this.name = name;
         this.code = code;
         this.subcategoryDescription = subcategoryDescription;
@@ -32,7 +29,9 @@ public class Subcategory {
         this.category = category;
     }
 
-    public Subcategory(String name, String code, Category category) {
+    public Subcategory(String name,
+                       String code,
+                       Category category) {
         this.name = name;
         this.code = code;
         this.category = category;
@@ -58,7 +57,7 @@ public class Subcategory {
         return studyGuide;
     }
 
-    public CategoryStatus getSubcategoryStatus() {
+    public boolean isSubcategoryStatus() {
         return subcategoryStatus;
     }
 
@@ -73,7 +72,6 @@ public class Subcategory {
     @Override
     public String toString() {
         return "Subcategory{" +
-                "id=" + id +
                 ", code='" + code + '\'' +
                 ", subcategoryDescription='" + subcategoryDescription + '\'' +
                 ", studyGuide='" + studyGuide + '\'' +

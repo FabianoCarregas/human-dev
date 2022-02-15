@@ -1,30 +1,37 @@
-package entities;
+package entities.activities;
 
-import validations.Validation;
+import entities.Section;
 
-public class Video {
+public class Video extends Activity{
     private Long id;
     private String videoUrl;
     private int videoTime;
     private String videoDescription;
 
-    public Video(Long id,
+    public Video(String title,
+                 String code,
+                 Section section,
                  String videoUrl,
                  int videoTime,
                  String videoDescription) {
-        Validation.notNull("name", "The field name can not be null");
-        this.id = id;
+        super(title, code, section);
         this.videoUrl = videoUrl;
         this.videoTime = videoTime;
         this.videoDescription = videoDescription;
     }
 
-    public Video(String videoUrl) {
+    public Video(String title,
+                 String code,
+                 boolean activityStatus,
+                 int ordination,
+                 Section section,
+                 String videoUrl,
+                 int videoTime,
+                 String videoDescription) {
+        super(title, code, activityStatus, ordination,section);
         this.videoUrl = videoUrl;
-    }
-
-    public Long getId() {
-        return id;
+        this.videoTime = videoTime;
+        this.videoDescription = videoDescription;
     }
 
     public String getVideoUrl() {
@@ -42,8 +49,7 @@ public class Video {
     @Override
     public String toString() {
         return "Video{" +
-                "id=" + id +
-                ", videoUrl='" + videoUrl + '\'' +
+                "videoUrl='" + videoUrl + '\'' +
                 ", videoTime=" + videoTime +
                 ", videoDescription='" + videoDescription + '\'' +
                 '}';

@@ -1,37 +1,36 @@
 package entities;
 
-import enums.answerCheck;
+import entities.activities.Question;
 
-public class MultipleChoices {
+public class Alternative {
 
     private Long id;
     private String questionExplanation;
     private int ordination;
     private String answer;
-    private answerCheck answerCheck;
+    private boolean answerCheck;
     private String answerJustification;
-    private String answerValidator;
+    private String rightAnswer;
 
-    public MultipleChoices(Long id,
-                           String questionExplanation,
-                           int ordination,
-                           String answer,
-                           String answerJustification,
-                           String answerValidator) {
-        this.id = id;
+    public Alternative(String questionExplanation,
+                       int ordination,
+                       String answer,
+                       boolean answerCheck,
+                       String answerJustification,
+                       String rightAnswer,
+                       Question question) {
         this.questionExplanation = questionExplanation;
         this.ordination = ordination;
         this.answer = answer;
         this.answerCheck = answerCheck;
         this.answerJustification = answerJustification;
-        this.answerValidator = answerValidator;
+        this.rightAnswer = rightAnswer;
     }
 
-    public MultipleChoices(String questionExplanation,
-                           String answer,
-                           enums.answerCheck answerCheck) {
+    public Alternative(String questionExplanation,
+                       boolean answerCheck,
+                       Question question) {
         this.questionExplanation = questionExplanation;
-        this.answer = answer;
         this.answerCheck = answerCheck;
     }
 
@@ -51,7 +50,7 @@ public class MultipleChoices {
         return answer;
     }
 
-    public enums.answerCheck getAnswerCheck() {
+    public boolean isAnswerCheck() {
         return answerCheck;
     }
 
@@ -59,20 +58,19 @@ public class MultipleChoices {
         return answerJustification;
     }
 
-    public String getAnswerValidator() {
-        return answerValidator;
+    public String getRightAnswer() {
+        return rightAnswer;
     }
 
     @Override
     public String toString() {
         return "MultipleChoices{" +
-                "id=" + id +
-                ", questionExplanation='" + questionExplanation + '\'' +
+                "questionExplanation='" + questionExplanation + '\'' +
                 ", ordination=" + ordination +
                 ", answer='" + answer + '\'' +
-                ", checkAnswer=" + answerCheck +
+                ", answerCheck=" + answerCheck +
                 ", answerJustification='" + answerJustification + '\'' +
-                ", answerValidator='" + answerValidator + '\'' +
+                ", rightAnswer='" + rightAnswer + '\'' +
                 '}';
     }
 }
