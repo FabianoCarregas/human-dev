@@ -29,13 +29,13 @@ public class program {
          Explanation explanation = new Explanation("Explanation title", "cod3-", section1, "Activity explanation huge text");
 
         System.out.println(course);
-        System.out.println(category1);
-        System.out.println(subcategory1);
-        System.out.println(section1);
-        System.out.println(video1);
-        System.out.println(question);
-        System.out.println(alternative);
-        System.out.println(explanation);
+    //    System.out.println(category1);
+    //    System.out.println(subcategory1);
+    //    System.out.println(section1);
+    //    System.out.println(video1);
+    //    System.out.println(question);
+    //    System.out.println(alternative);
+    //   System.out.println(explanation);
 
     }
 }
