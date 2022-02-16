@@ -4,7 +4,7 @@ import validations.CodePatternValidation;
 import validations.Validation;
 
 public class Subcategory {
-    private Long id;
+
     private String name;
     private String code;
     private String subcategoryDescription;
@@ -15,36 +15,13 @@ public class Subcategory {
 
     public Subcategory(String name,
                        String code,
-                       String subcategoryDescription,
-                       String studyGuide,
-                       boolean subcategoryStatus,
-                       int ordination,
                        Category category) {
-        Validation.notNull(name, "The field name can not be null");
-        Validation.notBlank(name, "The field name can not be empty");
+        Validation.notNull(name);
+        Validation.notBlank(name);
         this.name = name;
-        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
-        this.code = code;
-        this.subcategoryDescription = subcategoryDescription;
-        this.studyGuide = studyGuide;
-        this.subcategoryStatus = subcategoryStatus;
-        this.ordination = ordination;
-        this.category = category;
-    }
-
-    public Subcategory(String name,
-                       String code,
-                       Category category) {
-        Validation.notNull(name, "The field name can not be null");
-        Validation.notBlank(name, "The field name can not be empty");
-        this.name = name;
-        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
+        CodePatternValidation.validUrl(code);
         this.code = code;
         this.category = category;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {
@@ -78,12 +55,13 @@ public class Subcategory {
     @Override
     public String toString() {
         return "Subcategory{" +
+                "name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 ", subcategoryDescription='" + subcategoryDescription + '\'' +
                 ", studyGuide='" + studyGuide + '\'' +
                 ", subcategoryStatus=" + subcategoryStatus +
                 ", ordination=" + ordination +
-                ",  \ncategory=" + category +
+                ", category=" + category +
                 '}';
     }
 }

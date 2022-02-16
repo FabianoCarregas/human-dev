@@ -5,7 +5,6 @@ import validations.Validation;
 
 public class Explanation extends Activity {
 
-    private Long id;
     private String activityExplanation;
 
     public Explanation(String title,
@@ -13,8 +12,8 @@ public class Explanation extends Activity {
                        Section section,
                        String activityExplanation) {
         super(title, code, section);
-        Validation.notNull(activityExplanation, "The field name can not be null");
-        Validation.notBlank(activityExplanation, "The field name can not be empty");
+        Validation.notNull(activityExplanation);
+        Validation.notBlank(activityExplanation);
         this.activityExplanation = activityExplanation;
     }
 

@@ -6,7 +6,6 @@ import validations.Validation;
 
 public class Question extends Activity {
 
-   private Long id;
    private String questionDescription;
    private QuestionType questionType;
 
@@ -15,8 +14,8 @@ public class Question extends Activity {
                     Section section,
                     String questionDescription) {
         super(title, code, section);
-        Validation.notNull(questionDescription, "The field name can not be null");
-        Validation.notBlank(questionDescription, "The field name can not be empty");
+        Validation.notNull(questionDescription);
+        Validation.notBlank(questionDescription);
         this.questionDescription = questionDescription;
     }
 
@@ -28,6 +27,7 @@ public class Question extends Activity {
     public String toString() {
         return "Question{" +
                 "questionDescription='" + questionDescription + '\'' +
+                ", questionType=" + questionType +
                 '}';
     }
 }

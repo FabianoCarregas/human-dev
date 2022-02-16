@@ -2,9 +2,10 @@ package entities.activities;
 
 import entities.Section;
 import validations.CodePatternValidation;
+import validations.Validation;
 
 public class Video extends Activity{
-    private Long id;
+
     private String videoUrl;
     private int videoTime;
     private String videoDescription;
@@ -13,28 +14,12 @@ public class Video extends Activity{
                  String code,
                  Section section,
                  String videoUrl,
-                 int videoTime,
-                 String videoDescription) {
+                 int videoTime) {
         super(title, code, section);
-        CodePatternValidation.isValidUrl(videoUrl, "The code pattern accept only low case characters, numbers and hyphen");
+        CodePatternValidation.validUrl(videoUrl);
         this.videoUrl = videoUrl;
+        Validation.validNumberHours(videoTime);
         this.videoTime = videoTime;
-        this.videoDescription = videoDescription;
-    }
-
-    public Video(String title,
-                 String code,
-                 boolean activityStatus,
-                 int ordination,
-                 Section section,
-                 String videoUrl,
-                 int videoTime,
-                 String videoDescription) {
-        super(title, code, activityStatus, ordination,section);
-        CodePatternValidation.isValidUrl(videoUrl, "The code pattern accept only low case characters, numbers and hyphen");
-        this.videoUrl = videoUrl;
-        this.videoTime = videoTime;
-        this.videoDescription = videoDescription;
     }
 
     public String getVideoUrl() {
@@ -43,10 +28,6 @@ public class Video extends Activity{
 
     public int getVideoTime() {
         return videoTime;
-    }
-
-    public String getVideoDescription() {
-        return videoDescription;
     }
 
     @Override

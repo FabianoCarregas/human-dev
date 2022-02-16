@@ -2,17 +2,15 @@ package validations;
 
 public class CodePatternValidation {
 
-    public static void isValidUrl(String url, String error) {
-
+    public static void validUrl(String url) {
         if (!url.matches("^[a-z0-9-]+$")) {
-            throw new IllegalArgumentException(error);
+            throw new IllegalArgumentException("The code pattern accept only low case characters, numbers and hyphen");
         }
     }
 
-    public static void isValidColor(String color, String error) {
-
+    public static void validColor(String color) {
         if (!color.matches("^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$")) {
-            throw new IllegalArgumentException(error);
+            throw new IllegalArgumentException();
         }
     }
 }

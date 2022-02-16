@@ -5,7 +5,6 @@ import validations.Validation;
 
 public class Section {
 
-    private Long id;
     private String name;
     private String code;
     private int SectionOrdination;
@@ -15,28 +14,11 @@ public class Section {
 
     public Section(String name,
                    String code,
-                   int sectionOrdination,
-                   boolean sectionStatus,
-                   boolean testStatus,
                    Course course) {
-        Validation.notNull(name, "The field name can not be null");
-        Validation.notBlank(name, "The field name can not be empty");
+        Validation.notNull(name);
+        Validation.notBlank(name);
         this.name = name;
-        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
-        this.code = code;
-        SectionOrdination = sectionOrdination;
-        this.sectionStatus = sectionStatus;
-        this.testStatus = testStatus;
-        this.course = course;
-    }
-
-    public Section(String name,
-                   String code,
-                   Course course) {
-        Validation.notNull(name, "The field name can not be null");
-        Validation.notBlank(name, "The field name can not be empty");
-        this.name = name;
-        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
+        CodePatternValidation.validUrl(code);
         this.code = code;
         this.course = course;
     }
@@ -68,12 +50,12 @@ public class Section {
     @Override
     public String toString() {
         return "Section{" +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 ", SectionOrdination=" + SectionOrdination +
                 ", sectionStatus=" + sectionStatus +
                 ", testStatus=" + testStatus +
-                ",  \ncourse=" + course +
+                ", course=" + course +
                 '}';
     }
 }

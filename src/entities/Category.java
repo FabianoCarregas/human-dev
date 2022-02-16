@@ -7,7 +7,6 @@ import java.io.File;
 
 public class Category {
 
-    private Long id;
     private String name;
     private String code;
     private String categoryDescription;
@@ -18,37 +17,12 @@ public class Category {
     private String hexaColor;
 
     public Category(String name,
-                    String code,
-                    String categoryDescription,
-                    String studyGuide,
-                    boolean categoryStatus,
-                    int order,
-                    File icon,
-                    String hexaColor) {
-        Validation.notNull(name, "The field name can not be null");
-        Validation.notBlank(name, "The field name can not be empty");
-        this.name = name;
-        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
-        this.code = code;
-        this.categoryDescription = categoryDescription;
-        this.studyGuide = studyGuide;
-        this.categoryStatus = categoryStatus;
-        this.order = order;
-        this.icon = icon;
-        this.hexaColor = hexaColor;
-    }
-
-    public Category(String name,
                     String code) {
-        Validation.notNull(name, "The field name can not be null");
-        Validation.notBlank(name, "The field name can not be empty");
+        Validation.notNull(name);
+        Validation.notBlank(name);
         this.name = name;
-        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
+        CodePatternValidation.validUrl(code);
         this.code = code;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {
@@ -86,13 +60,13 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 ", categoryDescription='" + categoryDescription + '\'' +
                 ", studyGuide='" + studyGuide + '\'' +
                 ", categoryStatus=" + categoryStatus +
                 ", order=" + order +
-                ", icon='" + icon + '\'' +
+                ", icon=" + icon +
                 ", hexaColor='" + hexaColor + '\'' +
                 '}';
     }
