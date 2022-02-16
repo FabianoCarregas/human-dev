@@ -1,7 +1,8 @@
 package entities;
 
-import validations.CodePatternValidation;
-import validations.Validation;
+import static validations.Validation.notNull;
+import static validations.Validation.notBlank;
+import static validations.CodePatternValidation.validUrl;
 
 public class Subcategory {
 
@@ -16,40 +17,12 @@ public class Subcategory {
     public Subcategory(String name,
                        String code,
                        Category category) {
-        Validation.notNull(name);
-        Validation.notBlank(name);
+        notNull(name);
+        notBlank(name);
         this.name = name;
-        CodePatternValidation.validUrl(code);
+        validUrl(code);
         this.code = code;
         this.category = category;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getSubcategoryDescription() {
-        return subcategoryDescription;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public boolean isSubcategoryStatus() {
-        return subcategoryStatus;
-    }
-
-    public int getOrdination() {
-        return ordination;
-    }
-
-    public Category getCategory() {
-        return category;
     }
 
     @Override

@@ -9,7 +9,7 @@ public class Program {
 
     public static void main(String[] args) {
 
-         Course course = new Course("Java", "cod3c2",10,  "mario");
+         Course course = new Course("Java", "cod3c2",22,  "mario");
 
          Category category1 = new Category("Backend", "jhujfh77--kk");
 

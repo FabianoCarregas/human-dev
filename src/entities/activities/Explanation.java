@@ -1,7 +1,9 @@
 package entities.activities;
 
 import entities.Section;
-import validations.Validation;
+import static validations.Validation.notNull;
+import static validations.Validation.notBlank;
+
 
 public class Explanation extends Activity {
 
@@ -12,13 +14,9 @@ public class Explanation extends Activity {
                        Section section,
                        String activityExplanation) {
         super(title, code, section);
-        Validation.notNull(activityExplanation);
-        Validation.notBlank(activityExplanation);
+        notNull(activityExplanation);
+        notBlank(activityExplanation);
         this.activityExplanation = activityExplanation;
-    }
-
-    public String getActivityExplanation() {
-        return activityExplanation;
     }
 
     @Override

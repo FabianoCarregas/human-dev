@@ -2,7 +2,8 @@ package entities.activities;
 
 import entities.Section;
 import enums.QuestionType;
-import validations.Validation;
+import static validations.Validation.notNull;
+import static validations.Validation.notBlank;
 
 public class Question extends Activity {
 
@@ -14,13 +15,9 @@ public class Question extends Activity {
                     Section section,
                     String questionDescription) {
         super(title, code, section);
-        Validation.notNull(questionDescription);
-        Validation.notBlank(questionDescription);
+        notNull(questionDescription);
+        notBlank(questionDescription);
         this.questionDescription = questionDescription;
-    }
-
-    public String getQuestionDescription() {
-        return questionDescription;
     }
 
     @Override

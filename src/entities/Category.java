@@ -1,7 +1,8 @@
 package entities;
 
-import validations.CodePatternValidation;
-import validations.Validation;
+import static validations.Validation.notNull;
+import static validations.Validation.notBlank;
+import static validations.CodePatternValidation.validUrl;
 
 import java.io.File;
 
@@ -18,43 +19,11 @@ public class Category {
 
     public Category(String name,
                     String code) {
-        Validation.notNull(name);
-        Validation.notBlank(name);
+        notNull(name);
+        notBlank(name);
         this.name = name;
-        CodePatternValidation.validUrl(code);
+        validUrl(code);
         this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getCategoryDescription() {
-        return categoryDescription;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public boolean isCategoryStatus() {
-        return categoryStatus;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public File getIcon() {
-        return icon;
-    }
-
-    public String getHexaColor() {
-        return hexaColor;
     }
 
     @Override

@@ -1,8 +1,8 @@
 package entities.activities;
 
 import entities.Section;
-import validations.CodePatternValidation;
 import validations.Validation;
+import static validations.CodePatternValidation.validUrl;
 
 public class Video extends Activity{
 
@@ -16,18 +16,10 @@ public class Video extends Activity{
                  String videoUrl,
                  int videoTime) {
         super(title, code, section);
-        CodePatternValidation.validUrl(videoUrl);
+        validUrl(videoUrl);
         this.videoUrl = videoUrl;
         Validation.validNumberHours(videoTime);
         this.videoTime = videoTime;
-    }
-
-    public String getVideoUrl() {
-        return videoUrl;
-    }
-
-    public int getVideoTime() {
-        return videoTime;
     }
 
     @Override

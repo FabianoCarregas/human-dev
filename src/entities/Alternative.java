@@ -1,7 +1,8 @@
 package entities;
 
-import entities.activities.Question;
-import validations.Validation;
+import static validations.Validation.notNull;
+import static validations.Validation.notBlank;
+
 
 public class Alternative {
 
@@ -15,15 +16,11 @@ public class Alternative {
     public Alternative(String questionExplanation,
                        boolean answerCheck,
                        String rightAnswer) {
-        Validation.notNull(questionExplanation);
-        Validation.notBlank(questionExplanation);
+        notNull(questionExplanation);
+        notBlank(questionExplanation);
         this.questionExplanation = questionExplanation;
         this.answerCheck = answerCheck;
         this.rightAnswer = rightAnswer;
-    }
-
-    public String getQuestionExplanation() {
-        return questionExplanation;
     }
 
     @Override

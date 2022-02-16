@@ -1,7 +1,8 @@
 package entities.activities;
 import entities.Section;
-import validations.CodePatternValidation;
-import validations.Validation;
+import static validations.Validation.notNull;
+import static validations.Validation.notBlank;
+import static validations.CodePatternValidation.validUrl;
 
 public abstract class Activity {
 
@@ -14,32 +15,12 @@ public abstract class Activity {
     public Activity(String title,
                     String code,
                     Section section) {
-        Validation.notNull(title);
-        Validation.notBlank(title);
+        notNull(title);
+        notBlank(title);
         this.title = title;
-        CodePatternValidation.validUrl(code);
+        validUrl(code);
         this.code = code;
         this.section = section;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public boolean isActivityStatus() {
-        return activityStatus;
-    }
-
-    public int getOrdination() {
-        return ordination;
-    }
-
-    public Section getSection() {
-        return section;
     }
 
     @Override

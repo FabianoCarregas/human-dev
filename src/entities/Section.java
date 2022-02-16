@@ -1,7 +1,8 @@
 package entities;
 
-import validations.CodePatternValidation;
-import validations.Validation;
+import static validations.Validation.notNull;
+import static validations.Validation.notBlank;
+import static validations.CodePatternValidation.validUrl;
 
 public class Section {
 
@@ -15,36 +16,12 @@ public class Section {
     public Section(String name,
                    String code,
                    Course course) {
-        Validation.notNull(name);
-        Validation.notBlank(name);
+        notNull(name);
+        notBlank(name);
         this.name = name;
-        CodePatternValidation.validUrl(code);
+        validUrl(code);
         this.code = code;
         this.course = course;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public int getSectionOrdination() {
-        return SectionOrdination;
-    }
-
-    public boolean isSectionStatus() {
-        return sectionStatus;
-    }
-
-    public boolean isTestStatus() {
-        return testStatus;
-    }
-
-    public Course getCourse() {
-        return course;
     }
 
     @Override

@@ -1,6 +1,9 @@
 package entities;
 
 import validations.Validation;
+import static validations.Validation.notNull;
+import static validations.Validation.notBlank;
+import static validations.Validation.validNumberHours;
 
 public class Course {
 
@@ -17,47 +20,15 @@ public class Course {
                   String codeUrl,
                   int courseTime,
                   String instructor) {
-        Validation.notNull(name);
-        Validation.notBlank(name);
+        notNull(name);
+        notBlank(name);
         this.name = name;
         this.codeUrl= codeUrl;
-        Validation.validNumberHours(courseTimeHours);
+        validNumberHours(courseTimeHours);
         this.courseTimeHours = courseTime;
-        Validation.notNull(instructor);
-        Validation.notBlank(instructor);
+        notNull(instructor);
+        notBlank(instructor);
         this.instructor = instructor;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCodeUrl() {
-        return codeUrl;
-    }
-
-    public int getCourseTimeHours() {
-        return courseTimeHours;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public String getTargetAudience() {
-        return targetAudience;
-    }
-
-    public String getInstructor() {
-        return instructor;
-    }
-
-    public String getCourseDescription() {
-        return courseDescription;
-    }
-
-    public String getDevelopedSkills() {
-        return developedSkills;
     }
 
     @Override
