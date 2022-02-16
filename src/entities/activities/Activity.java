@@ -1,5 +1,7 @@
 package entities.activities;
 import entities.Section;
+import validations.CodePatternValidation;
+import validations.Validation;
 
 public abstract class Activity {
     private Long id;
@@ -14,7 +16,10 @@ public abstract class Activity {
                     boolean activityStatus,
                     int ordination,
                     Section section) {
+        Validation.notNull(title, "The field name can not be null");
+        Validation.notBlank(title, "The field name can not be empty");
         this.title = title;
+        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
         this.code = code;
         this.activityStatus = activityStatus;
         this.ordination = ordination;
@@ -24,7 +29,10 @@ public abstract class Activity {
     public Activity(String title,
                     String code,
                     Section section) {
+        Validation.notNull(title, "The field name can not be null");
+        Validation.notBlank(title, "The field name can not be empty");
         this.title = title;
+        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
         this.code = code;
         this.section = section;
     }

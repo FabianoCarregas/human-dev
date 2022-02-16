@@ -1,6 +1,7 @@
 package entities.activities;
 
 import entities.Section;
+import validations.CodePatternValidation;
 
 public class Video extends Activity{
     private Long id;
@@ -15,6 +16,7 @@ public class Video extends Activity{
                  int videoTime,
                  String videoDescription) {
         super(title, code, section);
+        CodePatternValidation.isValidUrl(videoUrl, "The code pattern accept only low case characters, numbers and hyphen");
         this.videoUrl = videoUrl;
         this.videoTime = videoTime;
         this.videoDescription = videoDescription;
@@ -29,6 +31,7 @@ public class Video extends Activity{
                  int videoTime,
                  String videoDescription) {
         super(title, code, activityStatus, ordination,section);
+        CodePatternValidation.isValidUrl(videoUrl, "The code pattern accept only low case characters, numbers and hyphen");
         this.videoUrl = videoUrl;
         this.videoTime = videoTime;
         this.videoDescription = videoDescription;

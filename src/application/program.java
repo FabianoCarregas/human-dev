@@ -1,17 +1,15 @@
 package application;
 
 import entities.*;
-import entities.activities.Activity;
 import entities.activities.Explanation;
 import entities.activities.Question;
 import entities.activities.Video;
-import enums.*;
 
 public class program {
 
     public static void main(String[] args) {
 
-         Course course = new Course("Java", "cod3ac428", 20, true, "Developers",
+         Course course = new Course("Java", "cod3ac28", 20, true, "Developers",
          "Maria", "Object orientation fundamentals", "Object orientation Programming");
 
          Category category1 = new Category("Backend", "jhujfh77--kk", "development in backend and some tricks", "guide is just here",
@@ -28,16 +26,16 @@ public class program {
 
          Alternative alternative = new Alternative("Question explanation", 1, "Question answer", true, "justification", "Right answer", question);
 
-        Explanation explanation = new Explanation("Explanation title", "cod3-", section1, "Activity explanation huge text");
+         Explanation explanation = new Explanation("Explanation title", "cod3-", section1, "Activity explanation huge text");
 
-        //System.out.println(course);
-        //System.out.println(category1);
-        //System.out.println(subcategory1);
-        //System.out.println(section1);
-        //System.out.println(video1);
-        //System.out.println(question);
-        //System.out.println(alternative);
-        //System.out.println(explanation);
+        System.out.println(course);
+        System.out.println(category1);
+        System.out.println(subcategory1);
+        System.out.println(section1);
+        System.out.println(video1);
+        System.out.println(question);
+        System.out.println(alternative);
+        System.out.println(explanation);
 
     }
 }

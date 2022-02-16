@@ -1,5 +1,6 @@
 package entities;
 
+import validations.CodePatternValidation;
 import validations.Validation;
 
 import java.io.File;
@@ -24,8 +25,10 @@ public class Category {
                     int order,
                     File icon,
                     String hexaColor) {
-        Validation.notNull("name", "The field name can not be null");
+        Validation.notNull(name, "The field name can not be null");
+        Validation.notBlank(name, "The field name can not be empty");
         this.name = name;
+        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
         this.code = code;
         this.categoryDescription = categoryDescription;
         this.studyGuide = studyGuide;
@@ -37,7 +40,10 @@ public class Category {
 
     public Category(String name,
                     String code) {
+        Validation.notNull(name, "The field name can not be null");
+        Validation.notBlank(name, "The field name can not be empty");
         this.name = name;
+        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
         this.code = code;
     }
 

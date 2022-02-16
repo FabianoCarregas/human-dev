@@ -1,5 +1,6 @@
 package entities;
 
+import validations.CodePatternValidation;
 import validations.Validation;
 
 public class Subcategory {
@@ -19,8 +20,10 @@ public class Subcategory {
                        boolean subcategoryStatus,
                        int ordination,
                        Category category) {
-        Validation.notNull("name", "The field name can not be null");
+        Validation.notNull(name, "The field name can not be null");
+        Validation.notBlank(name, "The field name can not be empty");
         this.name = name;
+        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
         this.code = code;
         this.subcategoryDescription = subcategoryDescription;
         this.studyGuide = studyGuide;
@@ -32,7 +35,10 @@ public class Subcategory {
     public Subcategory(String name,
                        String code,
                        Category category) {
+        Validation.notNull(name, "The field name can not be null");
+        Validation.notBlank(name, "The field name can not be empty");
         this.name = name;
+        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
         this.code = code;
         this.category = category;
     }

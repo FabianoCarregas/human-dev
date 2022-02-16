@@ -2,6 +2,7 @@ package entities.activities;
 
 import entities.Section;
 import enums.QuestionType;
+import validations.Validation;
 
 public class Question extends Activity {
 
@@ -14,6 +15,8 @@ public class Question extends Activity {
                     Section section,
                     String questionDescription) {
         super(title, code, section);
+        Validation.notNull(questionDescription, "The field name can not be null");
+        Validation.notBlank(questionDescription, "The field name can not be empty");
         this.questionDescription = questionDescription;
     }
 

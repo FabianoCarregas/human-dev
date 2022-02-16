@@ -1,6 +1,7 @@
 package entities;
 
 import entities.activities.Question;
+import validations.Validation;
 
 public class Alternative {
 
@@ -19,6 +20,8 @@ public class Alternative {
                        String answerJustification,
                        String rightAnswer,
                        Question question) {
+        Validation.notNull(questionExplanation, "The field name can not be null");
+        Validation.notBlank(questionExplanation, "The field name can not be empty");
         this.questionExplanation = questionExplanation;
         this.ordination = ordination;
         this.answer = answer;
@@ -30,6 +33,8 @@ public class Alternative {
     public Alternative(String questionExplanation,
                        boolean answerCheck,
                        Question question) {
+        Validation.notNull(questionExplanation, "The field name can not be null");
+        Validation.notBlank(questionExplanation, "The field name can not be empty");
         this.questionExplanation = questionExplanation;
         this.answerCheck = answerCheck;
     }

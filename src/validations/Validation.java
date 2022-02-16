@@ -13,7 +13,7 @@ public class Validation {
     }
 
     public static void isValidNumberHours(int number, String error) {
-        if (number <= 0 || number > 20)
+        if (number <= 1 || number > 20)
             throw new IllegalArgumentException(error);
     }
 

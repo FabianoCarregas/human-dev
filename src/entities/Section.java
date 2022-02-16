@@ -1,5 +1,6 @@
 package entities;
 
+import validations.CodePatternValidation;
 import validations.Validation;
 
 public class Section {
@@ -18,8 +19,10 @@ public class Section {
                    boolean sectionStatus,
                    boolean testStatus,
                    Course course) {
-        Validation.notNull("name", "The field name can not be null");
+        Validation.notNull(name, "The field name can not be null");
+        Validation.notBlank(name, "The field name can not be empty");
         this.name = name;
+        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
         this.code = code;
         SectionOrdination = sectionOrdination;
         this.sectionStatus = sectionStatus;
@@ -30,7 +33,10 @@ public class Section {
     public Section(String name,
                    String code,
                    Course course) {
+        Validation.notNull(name, "The field name can not be null");
+        Validation.notBlank(name, "The field name can not be empty");
         this.name = name;
+        CodePatternValidation.isValidUrl(code, "The code pattern accept only low case characters, numbers and hyphen");
         this.code = code;
         this.course = course;
     }
