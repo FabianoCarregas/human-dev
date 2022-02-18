@@ -1,10 +1,9 @@
-package entities;
-
-import static validations.Validation.notNull;
-import static validations.Validation.notBlank;
-import static validations.CodePatternValidation.validUrl;
+package br.com.alura.humanDev.entities;
 
 import java.io.File;
+
+import static br.com.alura.humanDev.validations.Validation.notBlank;
+import static br.com.alura.humanDev.validations.Validation.notNull;
 
 public class Category {
 
@@ -22,7 +21,7 @@ public class Category {
         notNull(name);
         notBlank(name);
         this.name = name;
-        validUrl(code);
+
         this.code = code;
     }
 

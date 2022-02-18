@@ -1,8 +1,8 @@
-package entities.activities;
+package br.com.alura.humanDev.entities.activities;
 
-import entities.Section;
-import static validations.Validation.notNull;
-import static validations.Validation.notBlank;
+import br.com.alura.humanDev.entities.Section;
+import static br.com.alura.humanDev.validations.Validation.notNull;
+import static br.com.alura.humanDev.validations.Validation.notBlank;
 
 
 public class Explanation extends Activity {

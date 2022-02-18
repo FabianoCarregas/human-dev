@@ -1,9 +1,6 @@
-package entities;
+package br.com.alura.humanDev.entities;
 
-import validations.Validation;
-import static validations.Validation.notNull;
-import static validations.Validation.notBlank;
-import static validations.Validation.validNumberHours;
+import static br.com.alura.humanDev.validations.Validation.*;
 
 public class Course {
 
@@ -18,14 +15,14 @@ public class Course {
 
     public Course(String name,
                   String codeUrl,
-                  int courseTime,
+                  int courseTimeHours,
                   String instructor) {
         notNull(name);
         notBlank(name);
         this.name = name;
         this.codeUrl= codeUrl;
         validNumberHours(courseTimeHours);
-        this.courseTimeHours = courseTime;
+        this.courseTimeHours = courseTimeHours;
         notNull(instructor);
         notBlank(instructor);
         this.instructor = instructor;

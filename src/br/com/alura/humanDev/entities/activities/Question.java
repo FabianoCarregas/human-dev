@@ -1,9 +1,10 @@
-package entities.activities;
+package br.com.alura.humanDev.entities.activities;
 
-import entities.Section;
-import enums.QuestionType;
-import static validations.Validation.notNull;
-import static validations.Validation.notBlank;
+import br.com.alura.humanDev.entities.Section;
+import br.com.alura.humanDev.enums.QuestionType;
+
+import static br.com.alura.humanDev.validations.Validation.notBlank;
+import static br.com.alura.humanDev.validations.Validation.notNull;
 
 public class Question extends Activity {
 

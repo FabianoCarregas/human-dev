@@ -1,8 +1,9 @@
-package entities.activities;
+package br.com.alura.humanDev.entities.activities;
 
-import entities.Section;
-import validations.Validation;
-import static validations.CodePatternValidation.validUrl;
+import br.com.alura.humanDev.entities.Section;
+
+import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
+import static br.com.alura.humanDev.validations.Validation.validNumberHours;
 
 public class Video extends Activity{
 
@@ -18,7 +19,7 @@ public class Video extends Activity{
         super(title, code, section);
         validUrl(videoUrl);
         this.videoUrl = videoUrl;
-        Validation.validNumberHours(videoTime);
+        validNumberHours(videoTime);
         this.videoTime = videoTime;
     }
 
