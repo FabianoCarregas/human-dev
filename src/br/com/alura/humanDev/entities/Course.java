@@ -1,8 +1,11 @@
 package br.com.alura.humanDev.entities;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import static br.com.alura.humanDev.validations.Validation.*;
 
-public class Course {
+public class Course implements Comparable<Course> {
 
     public String name;
     private String codeUrl;
@@ -28,7 +31,6 @@ public class Course {
         this.instructor = instructor;
     }
 
-    @Override
     public String toString() {
         return "Course{" +
                 "name='" + name + '\'' +
@@ -40,5 +42,10 @@ public class Course {
                 ", courseDescription='" + courseDescription + '\'' +
                 ", developedSkills='" + developedSkills + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Course o) {
+        return this.name.compareTo(o.name);
     }
 }
