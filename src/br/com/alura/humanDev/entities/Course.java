@@ -1,8 +1,5 @@
 package br.com.alura.humanDev.entities;
 
-import java.util.Collection;
-import java.util.Collections;
-
 import static br.com.alura.humanDev.validations.Validation.*;
 
 public class Course implements Comparable<Course> {
@@ -13,6 +10,7 @@ public class Course implements Comparable<Course> {
     private boolean status;
     private String targetAudience;
     private String instructor;
+
     private String courseDescription;
     private String developedSkills;
 

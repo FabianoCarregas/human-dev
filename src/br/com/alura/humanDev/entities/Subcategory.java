@@ -11,8 +11,8 @@ public class Subcategory {
     private String subcategoryDescription;
     private String studyGuide;
     private boolean subcategoryStatus;
-    private int ordination;
-    private Category category;
+    private Integer ordination;
+    private String category;
 
     public Subcategory(String name,
                        String code,
@@ -22,19 +22,36 @@ public class Subcategory {
         this.name = name;
         validUrl(code);
         this.code = code;
+        this.category = String.valueOf(category);
+    }
+
+    public Subcategory(String name,
+                       String code,
+                       Integer ordination,
+                       String subcategoryDescription,
+                       boolean subcategoryStatus,
+                       String category) {
+        notNull(name);
+        notBlank(name);
+        this.name = name;
+        validUrl(code);
+        this.code = code;
+        this.subcategoryDescription = subcategoryDescription;
+        this.subcategoryStatus = subcategoryStatus;
+        this.ordination = ordination;
         this.category = category;
     }
 
     @Override
     public String toString() {
-        return "Subcategory{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", subcategoryDescription='" + subcategoryDescription + '\'' +
-                ", studyGuide='" + studyGuide + '\'' +
-                ", subcategoryStatus=" + subcategoryStatus +
-                ", ordination=" + ordination +
-                ", category=" + category +
+        return "Subcategory {\n" +
+                "   \"name\" = \"" + name + "\", \n" +
+                "   \"code\" = \"" + code + "\", \n" +
+                "   \"subcategoryDescription\" = \"" + subcategoryDescription + "\", \n" +
+                "   \"studyGuide\" = \"" + studyGuide + "\", \n" +
+                "   \"subcategoryStatus\" = " + subcategoryStatus + ", \n" +
+                "   \"ordination\" = " + ordination + ", \n" +
+                "   \"category\" = \"" + category + "; \n" +
                 '}';
     }
 }

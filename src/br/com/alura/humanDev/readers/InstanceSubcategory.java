@@ -1,37 +1,37 @@
 package br.com.alura.humanDev.readers;
 
-import br.com.alura.humanDev.entities.Category;
+import br.com.alura.humanDev.entities.Subcategory;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class InstanceCategory {
+public class InstanceSubcategory {
 
     private static Scanner input;
-    private static ArrayList<Category> categories = new ArrayList<>();
+    private static ArrayList<Subcategory> subcategories = new ArrayList<>();
 
-    public ArrayList<Category> loadCategory(String file) {
+    public ArrayList<Subcategory> loader(String file) {
 
         try {
             input = new Scanner(Paths.get(file));
             input.nextLine();
             while (input.hasNext()) {
-                String[] vect = input.nextLine().split(",");
+                String[] vect =input.nextLine().split(",");
 
-                Category category = new Category(
+                Subcategory subcategory = new Subcategory(
                         vect[0],
                         vect[1],
                         vect[2].equals("")?0:Integer.parseInt(vect[2]),
                         vect[3],
                         Boolean.parseBoolean(vect[4]),
-                        vect[5],
-                        vect[6]);
-                categories.add(category);
+                        vect[5]);
+                subcategories.add(subcategory);
             }
-            System.out.println("CATEGORIES: ");
-            for (Category c: categories) {
-                System.out.println(c);
+            System.out.println("SUBCATEGORIES: ");
+            for (Subcategory s: subcategories) {
+                System.out.println(s);
             }
 
         }catch (Exception e) {
@@ -42,4 +42,3 @@ public class InstanceCategory {
     }
 
 }
-

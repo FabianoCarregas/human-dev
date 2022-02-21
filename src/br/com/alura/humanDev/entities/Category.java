@@ -1,5 +1,6 @@
 package br.com.alura.humanDev.entities;
 
+import static br.com.alura.humanDev.validations.CodePatternValidation.validColor;
 import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
 import static br.com.alura.humanDev.validations.Validation.notBlank;
 import static br.com.alura.humanDev.validations.Validation.notNull;
@@ -24,26 +25,36 @@ public class Category {
         this.code = code;
     }
 
-    public Category(String name, String code, Integer order, String categoryDescription, boolean categoryStatus, String icon, String hexaColor) {
+    public Category(String name,
+                    String code,
+                    Integer order,
+                    String categoryDescription,
+                    boolean categoryStatus,
+                    String icon,
+                    String hexaColor) {
+        notNull(name);
+        notBlank(name);
         this.name = name;
-        this.code = code;
+        validUrl(code);
+        this.code = code;      //exceptions
         this.categoryDescription = categoryDescription;
         this.categoryStatus = categoryStatus;
         this.order = order;
         this.icon = icon;
+        validColor(hexaColor);
         this.hexaColor = hexaColor;
     }
 
     @Override
     public String toString() {
         return  "Categories {\n" +
-                "    \"name\" = " + name + ",\n" +
-                "    \"code\" = " + code + ",\n" +
-                "    \"categoryDescription\" = " + categoryDescription + ",\n" +
+                "    \"name\" = \""+ name + "\",\n" +
+                "    \"code\" = \"" + code + "\",\n" +
+                "    \"categoryDescription\" = \"" + categoryDescription + "\",\n" +
                 "    \"categoryStatus \"= " + categoryStatus + ",\n" +
                 "    \"order\" = " + order + ",\n" +
-                "    \"icon\" = " + icon + ",\n" +
-                "    \"hexaColor\" = " + hexaColor + '\'' + ";\n" +
+                "    \"icon\" = \"" + icon + "\",\n" +
+                "    \"hexaColor\" = \"" + hexaColor + "\"" + ";\n" +
                 '}';
     }
 }
