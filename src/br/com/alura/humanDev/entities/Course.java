@@ -1,32 +1,63 @@
 package br.com.alura.humanDev.entities;
 
+import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
 import static br.com.alura.humanDev.validations.Validation.*;
 
 public class Course implements Comparable<Course> {
 
     public String name;
     private String codeUrl;
-    private int courseTimeHours;
+    private Integer courseTimeHours;
     private boolean status;
     private String targetAudience;
     private String instructor;
-
     private String courseDescription;
     private String developedSkills;
+    private Subcategory subcategory;
 
     public Course(String name,
                   String codeUrl,
-                  int courseTimeHours,
-                  String instructor) {
+                  Integer courseTimeHours,
+                  boolean status,
+                  String targetAudience,
+                  String instructor,
+                  String courseDescription,
+                  String developedSkills,
+                  Subcategory subcategory) {
         notNull(name);
         notBlank(name);
         this.name = name;
-        this.codeUrl= codeUrl;
+        validUrl(codeUrl);
+        this.codeUrl = codeUrl;
         validNumberHours(courseTimeHours);
         this.courseTimeHours = courseTimeHours;
+        this.status = status;
+        this.targetAudience = targetAudience;
         notNull(instructor);
         notBlank(instructor);
         this.instructor = instructor;
+        this.courseDescription = courseDescription;
+        this.developedSkills = developedSkills;
+        notNull(String.valueOf(subcategory));
+        notBlank(String.valueOf(subcategory));
+        this.subcategory = subcategory;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getCourseTimeHours() {
+        return courseTimeHours;
+    }
+
+     public Subcategory getSubcategory() {
+        return subcategory;
+    }
+
+    @Override
+    public int compareTo(Course o) {
+        return this.name.compareTo(o.name);
     }
 
     public String toString() {
@@ -40,10 +71,5 @@ public class Course implements Comparable<Course> {
                 ", courseDescription='" + courseDescription + '\'' +
                 ", developedSkills='" + developedSkills + '\'' +
                 '}';
-    }
-
-    @Override
-    public int compareTo(Course o) {
-        return this.name.compareTo(o.name);
     }
 }

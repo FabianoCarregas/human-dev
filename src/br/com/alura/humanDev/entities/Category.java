@@ -17,15 +17,6 @@ public class Category {
     private String hexaColor;
 
     public Category(String name,
-                    String code) {
-        notNull(name);
-        notBlank(name);
-        this.name = name;
-        validUrl(code);
-        this.code = code;
-    }
-
-    public Category(String name,
                     String code,
                     Integer order,
                     String categoryDescription,
@@ -45,6 +36,26 @@ public class Category {
         this.hexaColor = hexaColor;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCategoryDescription() {
+        return categoryDescription;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public String getHexaColor() {
+        return hexaColor;
+    }
+
     @Override
     public String toString() {
         return  "Categories {\n" +
@@ -57,4 +68,6 @@ public class Category {
                 "    \"hexaColor\" = \"" + hexaColor + "\"" + ";\n" +
                 '}';
     }
+
+
 }

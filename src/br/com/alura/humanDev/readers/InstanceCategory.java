@@ -16,7 +16,8 @@ public class InstanceCategory {
         try {
             input = new Scanner(Paths.get(file));
             input.nextLine();
-            while (input.hasNext()) {
+            while (input.hasNextLine()) {
+
                 String[] vect = input.nextLine().split(",");
 
                 Category category = new Category(
@@ -33,13 +34,12 @@ public class InstanceCategory {
             for (Category c: categories) {
                 System.out.println(c);
             }
-
+            input.close();
         }catch (Exception e) {
             System.out.println("err: " + e.getMessage());
         }
-        return null;
+        return categories;
 
     }
 
 }
-
