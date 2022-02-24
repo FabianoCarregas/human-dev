@@ -27,7 +27,7 @@ public class Category {
         notBlank(name);
         this.name = name;
         validUrl(code);
-        this.code = code;      //exceptions
+        this.code = code;
         this.categoryDescription = categoryDescription;
         this.categoryStatus = categoryStatus;
         this.order = order;
@@ -68,6 +68,5 @@ public class Category {
                 "    \"hexaColor\" = \"" + hexaColor + "\"" + ";\n" +
                 '}';
     }
-
 
 }

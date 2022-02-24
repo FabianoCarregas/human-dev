@@ -51,7 +51,7 @@ public class Course implements Comparable<Course> {
         return courseTimeHours;
     }
 
-     public Subcategory getSubcategory() {
+    public Subcategory getSubcategory() {
         return subcategory;
     }
 
@@ -72,4 +72,5 @@ public class Course implements Comparable<Course> {
                 ", developedSkills='" + developedSkills + '\'' +
                 '}';
     }
+
 }

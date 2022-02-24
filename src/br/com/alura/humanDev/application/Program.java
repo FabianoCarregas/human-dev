@@ -1,25 +1,26 @@
 package br.com.alura.humanDev.application;
 
-import br.com.alura.humanDev.readers.InstanceCategory;
-import br.com.alura.humanDev.readers.InstanceCourse;
-import br.com.alura.humanDev.readers.InstanceSubcategory;
+import br.com.alura.humanDev.entities.Category;
+import br.com.alura.humanDev.entities.Course;
+import br.com.alura.humanDev.entities.Subcategory;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static br.com.alura.humanDev.readers.InstanceCategory.loadCategory;
+import static br.com.alura.humanDev.readers.InstanceCourse.loadCourses;
+import static br.com.alura.humanDev.readers.InstanceSubcategory.loadSubcategory;
 import static br.com.alura.humanDev.writers.Writer.writerHtml;
 
 public class Program {
 
     public static void main(String[] args) throws IOException {
 
-        ArrayList categories1 = new InstanceCategory().loadCategory("/home/fabiano/Desktop/csv/Categoria.csv");
+        ArrayList<Category> categories1 = loadCategory("/home/fabiano/Desktop/csv/Categoria.csv");
 
-        ArrayList subcategories1 = new InstanceSubcategory().loadSubcategory(categories1, "/home/fabiano/Desktop/csv/Subcategoria.csv");
+        ArrayList<Subcategory> subcategories1 = loadSubcategory(categories1, "/home/fabiano/Desktop/csv/Subcategoria.csv");
 
-        ArrayList courses1 = new InstanceCourse().loadCourses(subcategories1, "/home/fabiano/Desktop/csv/Curso.csv");
-
-        //ArrayList<Course> courses = new InstanceCourse().loadCourses("/home/fabiano/Desktop/csv/Curso.csv")
+        ArrayList<Course> courses1 = loadCourses(subcategories1, "/home/fabiano/Desktop/csv/Curso.csv" );
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
 
