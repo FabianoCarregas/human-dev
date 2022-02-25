@@ -2,7 +2,6 @@ package br.com.alura.humanDev.readers;
 
 import br.com.alura.humanDev.entities.Course;
 import br.com.alura.humanDev.entities.Subcategory;
-
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;

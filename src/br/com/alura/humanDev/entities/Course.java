@@ -3,7 +3,7 @@ package br.com.alura.humanDev.entities;
 import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
 import static br.com.alura.humanDev.validations.Validation.*;
 
-public class Course implements Comparable<Course> {
+public class Course {
 
     public String name;
     private String codeUrl;
@@ -53,11 +53,6 @@ public class Course implements Comparable<Course> {
 
     public Subcategory getSubcategory() {
         return subcategory;
-    }
-
-    @Override
-    public int compareTo(Course o) {
-        return this.name.compareTo(o.name);
     }
 
     public String toString() {

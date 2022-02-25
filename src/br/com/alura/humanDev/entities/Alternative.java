@@ -3,7 +3,6 @@ package br.com.alura.humanDev.entities;
 import static br.com.alura.humanDev.validations.Validation.notBlank;
 import static br.com.alura.humanDev.validations.Validation.notNull;
 
-
 public class Alternative {
 
     private String questionExplanation;
