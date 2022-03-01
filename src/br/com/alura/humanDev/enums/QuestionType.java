@@ -1,4 +1,4 @@
-package enums;
+package br.com.alura.humanDev.enums;
 
 public enum QuestionType {
 

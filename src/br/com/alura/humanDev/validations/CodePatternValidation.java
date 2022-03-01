@@ -1,4 +1,4 @@
-package validations;
+package br.com.alura.humanDev.validations;
 
 public class CodePatternValidation {
 
@@ -10,7 +10,7 @@ public class CodePatternValidation {
 
     public static void validColor(String color) {
         if (!color.matches("^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("The code pattern accept only Hexadecimal colour characters");
         }
     }
 }

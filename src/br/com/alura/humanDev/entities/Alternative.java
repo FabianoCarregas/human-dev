@@ -1,8 +1,7 @@
-package entities;
+package br.com.alura.humanDev.entities;
 
-import static validations.Validation.notNull;
-import static validations.Validation.notBlank;
-
+import static br.com.alura.humanDev.validations.Validation.notBlank;
+import static br.com.alura.humanDev.validations.Validation.notNull;
 
 public class Alternative {
 

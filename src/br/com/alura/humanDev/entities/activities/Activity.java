@@ -1,8 +1,8 @@
-package entities.activities;
-import entities.Section;
-import static validations.Validation.notNull;
-import static validations.Validation.notBlank;
-import static validations.CodePatternValidation.validUrl;
+package br.com.alura.humanDev.entities.activities;
+import br.com.alura.humanDev.entities.Section;
+import static br.com.alura.humanDev.validations.Validation.notNull;
+import static br.com.alura.humanDev.validations.Validation.notBlank;
+import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
 
 public abstract class Activity {
 
