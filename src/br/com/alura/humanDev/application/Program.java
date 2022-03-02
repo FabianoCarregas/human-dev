@@ -23,7 +23,7 @@ public class Program {
         List<Course> courses1 = loadCourses(subcategories1, "/home/fabiano/Desktop/csv/Curso.csv");
 
         //writerHtml(categories1, subcategories1, courses1);
-        System.out.println("----------------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------");
         System.out.println("-------------------------------------------Third Week-----------------------------------------");
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<List Of Active Categories>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         showActiveCategories(categories1);  //ok
