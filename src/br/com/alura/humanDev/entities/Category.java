@@ -2,8 +2,7 @@ package br.com.alura.humanDev.entities;
 
 import static br.com.alura.humanDev.validations.CodePatternValidation.validColor;
 import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
-import static br.com.alura.humanDev.validations.Validation.notBlank;
-import static br.com.alura.humanDev.validations.Validation.notNull;
+import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public class Category {
 
@@ -11,7 +10,7 @@ public class Category {
     private String code;
     private String categoryDescription;
     private String studyGuide;
-    private boolean categoryStatus;
+    private boolean status;
     private Integer order;
     private String icon;
     private String hexaColor;
@@ -23,16 +22,15 @@ public class Category {
                     boolean categoryStatus,
                     String icon,
                     String hexaColor) {
-        notNull(name);
-        notBlank(name);
-        this.name = name;
+        notBlankOrNull(name);
         validUrl(code);
+        validColor(hexaColor);
+        this.name = name;
         this.code = code;
         this.categoryDescription = categoryDescription;
-        this.categoryStatus = categoryStatus;
+        this.status = categoryStatus;
         this.order = order;
         this.icon = icon;
-        validColor(hexaColor);
         this.hexaColor = hexaColor;
     }
 
@@ -44,8 +42,8 @@ public class Category {
         return name;
     }
 
-    public boolean isCategoryStatus() {
-        return categoryStatus;
+    public boolean isStatus() {
+        return status;
     }
 
     public String getCategoryDescription() {
@@ -66,7 +64,7 @@ public class Category {
                 "    \"name\" = \""+ name + "\",\n" +
                 "    \"code\" = \"" + code + "\",\n" +
                 "    \"categoryDescription\" = \"" + categoryDescription + "\",\n" +
-                "    \"categoryStatus \"= " + categoryStatus + ",\n" +
+                "    \"categoryStatus \"= " + status + ",\n" +
                 "    \"order\" = " + order + ",\n" +
                 "    \"icon\" = \"" + icon + "\",\n" +
                 "    \"hexaColor\" = \"" + hexaColor + "\"" + ";\n" +

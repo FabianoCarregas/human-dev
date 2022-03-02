@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class InstanceCategory {
+public class CategoryReader {
 
     private static Scanner input;
     private static ArrayList<Category> categories = new ArrayList<>();
@@ -42,9 +42,9 @@ public class InstanceCategory {
         return categories;
 
     }
-    public static void activeCategories(List<Category> categories) {
+    public static void showActiveCategories(List<Category> categories) {
         List<Category> cat = categories.stream()
-                .filter(c -> c.isCategoryStatus() == true)
+                .filter(c -> c.isStatus() == true)
                 .collect(Collectors.toList());
                 System.out.println(cat);
     }

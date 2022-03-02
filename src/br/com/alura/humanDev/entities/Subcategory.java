@@ -1,8 +1,7 @@
 package br.com.alura.humanDev.entities;
 
 import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
-import static br.com.alura.humanDev.validations.Validation.notBlank;
-import static br.com.alura.humanDev.validations.Validation.notNull;
+import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public class Subcategory {
 
@@ -10,7 +9,7 @@ public class Subcategory {
     private String code;
     private String subcategoryDescription;
     private String studyGuide;
-    private boolean subcategoryStatus;
+    private boolean status;
     private Integer ordination;
     private Category category;
 
@@ -20,16 +19,14 @@ public class Subcategory {
                        String subcategoryDescription,
                        boolean subcategoryStatus,
                        Category category) {
-        notNull(name);
-        notBlank(name);
-        this.name = name;
+        notBlankOrNull(name);
         validUrl(code);
+        notBlankOrNull(String.valueOf(category));
+        this.name = name;
         this.code = code;
         this.subcategoryDescription = subcategoryDescription;
-        this.subcategoryStatus = subcategoryStatus;
+        this.status = subcategoryStatus;
         this.ordination = ordination;
-        notNull(String.valueOf(category));
-        notBlank(String.valueOf(category));
         this.category = category;
     }
 
@@ -45,8 +42,8 @@ public class Subcategory {
         return subcategoryDescription;
     }
 
-    public boolean isSubcategoryStatus() {
-        return subcategoryStatus;
+    public boolean isStatus() {
+        return status;
     }
 
     public Integer getOrdination() {
@@ -64,7 +61,7 @@ public class Subcategory {
                 "   \"code\" = \"" + code + "\", \n" +
                 "   \"subcategoryDescription\" = \"" + subcategoryDescription + "\", \n" +
                 "   \"studyGuide\" = \"" + studyGuide + "\", \n" +
-                "   \"subcategoryStatus\" = " + subcategoryStatus + ", \n" +
+                "   \"subcategoryStatus\" = " + status + ", \n" +
                 "   \"ordination\" = " + ordination + ", \n" +
                 "         \"category\" = \"" + category + "; \n" +
                 '}';

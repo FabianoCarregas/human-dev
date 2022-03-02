@@ -1,8 +1,7 @@
 package br.com.alura.humanDev.entities;
 
 import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
-import static br.com.alura.humanDev.validations.Validation.notBlank;
-import static br.com.alura.humanDev.validations.Validation.notNull;
+import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public class Section {
 
@@ -16,10 +15,9 @@ public class Section {
     public Section(String name,
                    String code,
                    Course course) {
-        notNull(name);
-        notBlank(name);
-        this.name = name;
+        notBlankOrNull(name);
         validUrl(code);
+        this.name = name;
         this.code = code;
         this.course = course;
     }

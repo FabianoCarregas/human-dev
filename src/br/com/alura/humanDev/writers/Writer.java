@@ -16,7 +16,7 @@ public class Writer {
 
     public static void writerHtml(List <Category> categories, List <Subcategory> subcategories, List <Course> courses) throws IOException {
         List<Subcategory> activeCategory = subcategories.stream()
-               .filter(Subcategory::isSubcategoryStatus).sorted(Comparator.comparing(Subcategory::getOrdination)).toList();
+               .filter(Subcategory::isStatus).sorted(Comparator.comparing(Subcategory::getOrdination)).toList();
 
         String reader = "";
         for (Category c : categories) {

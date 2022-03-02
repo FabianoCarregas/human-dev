@@ -1,7 +1,6 @@
 package br.com.alura.humanDev.entities;
 
-import static br.com.alura.humanDev.validations.Validation.notBlank;
-import static br.com.alura.humanDev.validations.Validation.notNull;
+import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public class Alternative {
 
@@ -15,8 +14,7 @@ public class Alternative {
     public Alternative(String questionExplanation,
                        boolean answerCheck,
                        String rightAnswer) {
-        notNull(questionExplanation);
-        notBlank(questionExplanation);
+        notBlankOrNull(questionExplanation);
         this.questionExplanation = questionExplanation;
         this.answerCheck = answerCheck;
         this.rightAnswer = rightAnswer;

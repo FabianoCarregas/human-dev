@@ -10,7 +10,7 @@ public class WriterFilters {
 
     public static int numberOfCoursesInCategory(List<Course> courses, String categoryCode) {
         return (int) courses.stream()
-                .filter(course -> course.getSubcategory().getCategory().equals(categoryCode)).count();
+                .filter(course -> course.getSubcategory().getCategory().getCode().equals(categoryCode)).count();
     }
 
     public static int totalHours(List<Course> courses, String categoryCode) {

@@ -6,12 +6,12 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class InstanceCourse {
+public class CourseReader {
 
     private static Scanner input;
     private static ArrayList<Course> courses = new ArrayList<>();
 
-    public static ArrayList<Course> loadCourses(ArrayList<Subcategory> subcategories, String file) {
+    public static ArrayList<Course> loadCourses(List<Subcategory> subcategories, String file) {
 
         try {
             input = new Scanner(Paths.get(file));
@@ -49,7 +49,7 @@ public class InstanceCourse {
                 .findFirst().orElse(null);
     }
 
-    public static void isThereAnyPrivateCourses(List<Course> courses) {
+    public static void hasThereAnyPrivateCourses(List<Course> courses) {
         List<Course> course = courses.stream()
                 .filter(c -> c.isStatus() == true)
                 .collect(Collectors.toList());
@@ -60,15 +60,16 @@ public class InstanceCourse {
         courses.stream()
                 .filter(c -> c.getInstructor() != "")
                 .map(s -> s.getInstructor()).distinct()
-                .forEach(System.out::println);
+                .forEach(System.out::println); //true or false
     }
 
     public static void findInstructorsWithCourses(List<Course> courses) {
-        courses.stream()
-                .filter(c -> c.getInstructor() != "")
-                .collect(Collectors.toMap(
-                        i -> i.getInstructor(),
-                        q -> q.getName()))
-                .forEach((name, coursename) -> System.out.println(name + "has" + coursename));
+        courses.stream().map(c -> c.getInstructor()).distinct()
+                .forEach(i -> {
+                            Long number = courses.stream().filter(c -> c.getInstructor().equals(i)).count();
+                            System.out.println("instructor: "+ i + " has " + number + " course");
+                        }
+                );
+
     }
 }

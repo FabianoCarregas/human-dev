@@ -3,8 +3,7 @@ package br.com.alura.humanDev.entities.activities;
 import br.com.alura.humanDev.entities.Section;
 import br.com.alura.humanDev.enums.QuestionType;
 
-import static br.com.alura.humanDev.validations.Validation.notBlank;
-import static br.com.alura.humanDev.validations.Validation.notNull;
+import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public class Question extends Activity {
 
@@ -16,8 +15,7 @@ public class Question extends Activity {
                     Section section,
                     String questionDescription) {
         super(title, code, section);
-        notNull(questionDescription);
-        notBlank(questionDescription);
+        notBlankOrNull(questionDescription);
         this.questionDescription = questionDescription;
     }
 

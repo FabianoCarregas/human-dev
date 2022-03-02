@@ -6,7 +6,8 @@ public class Validation {
         if (field == null) throw new IllegalArgumentException("The field name can not be null.");
     }
 
-    public static void notBlank(String field) {
+    public static void notBlankOrNull(String field) {
+        notNull(field);
         if (field.isEmpty() || field.isBlank()) throw new IllegalArgumentException("The field name can not be empty or blank.");
     }
 

@@ -1,8 +1,8 @@
 package br.com.alura.humanDev.entities.activities;
 
 import br.com.alura.humanDev.entities.Section;
-import static br.com.alura.humanDev.validations.Validation.notNull;
-import static br.com.alura.humanDev.validations.Validation.notBlank;
+
+import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 
 public class Explanation extends Activity {
@@ -14,8 +14,7 @@ public class Explanation extends Activity {
                        Section section,
                        String activityExplanation) {
         super(title, code, section);
-        notNull(activityExplanation);
-        notBlank(activityExplanation);
+        notBlankOrNull(activityExplanation);
         this.activityExplanation = activityExplanation;
     }
 
