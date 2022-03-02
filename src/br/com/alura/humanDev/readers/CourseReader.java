@@ -60,7 +60,7 @@ public class CourseReader {
         courses.stream()
                 .filter(c -> c.getInstructor() != "")
                 .map(s -> s.getInstructor()).distinct()
-                .forEach(System.out::println); //true or false
+                .forEach(System.out::println);
     }
 
     public static void showInstructorsWithCourses(List<Course> courses) {

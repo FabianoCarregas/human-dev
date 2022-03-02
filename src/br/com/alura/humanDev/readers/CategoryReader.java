@@ -46,7 +46,7 @@ public class CategoryReader {
         List<Category> cat = categories.stream()
                 .filter(c -> c.isActive() == true)
                 .collect(Collectors.toList());
-                System.out.println(cat);
+        System.out.println(cat);
     }
 
 }
