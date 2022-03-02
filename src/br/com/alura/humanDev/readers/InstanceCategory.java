@@ -4,7 +4,9 @@ import br.com.alura.humanDev.entities.Category;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InstanceCategory {
 
@@ -24,7 +26,7 @@ public class InstanceCategory {
                         vect[1],
                         vect[2].equals("") ? 0 : Integer.parseInt(vect[2]),
                         vect[3],
-                        Boolean.parseBoolean(vect[4]),
+                        vect[4].equals("ATIVA"),
                         vect[5],
                         vect[6]);
                 categories.add(category);
@@ -39,6 +41,12 @@ public class InstanceCategory {
         }
         return categories;
 
+    }
+    public static void activeCategories(List<Category> categories) {
+        List<Category> cat = categories.stream()
+                .filter(c -> c.isCategoryStatus() == true)
+                .collect(Collectors.toList());
+                System.out.println(cat);
     }
 
 }

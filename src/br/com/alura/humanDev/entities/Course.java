@@ -55,6 +55,14 @@ public class Course {
         return subcategory;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public String getInstructor() {
+        return instructor;
+    }
+
     public String toString() {
         return "Course{" +
                 "name='" + name + '\'' +

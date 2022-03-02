@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class InstanceSubcategory {
 
@@ -42,10 +43,24 @@ public class InstanceSubcategory {
 
     }
 
+    public static void getCategoriesBySubWithNoDescription(List<Subcategory> subcategories) {
+         subcategories.stream()
+                .filter(sub -> sub.getCategory().getCategoryDescription().equals(""))
+                 .collect(Collectors.toList())
+                .forEach(System.out::println);
+    }
+
     static Category findCategoryByCode(List<Category> categories, String code) {
         return categories.stream()
                .filter(category -> category.getCode().equalsIgnoreCase(code))
                .findFirst().orElse(null);
+    }
+
+    public static Long subcategoriesActiveWithDescription(List<Subcategory> subcat) {
+        return subcat.stream()
+                .filter(s -> s.isSubcategoryStatus() == true)
+                .filter(s -> s.getSubcategoryDescription() != "")
+                .count();
     }
 
 }

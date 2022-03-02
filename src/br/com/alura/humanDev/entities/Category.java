@@ -44,6 +44,10 @@ public class Category {
         return name;
     }
 
+    public boolean isCategoryStatus() {
+        return categoryStatus;
+    }
+
     public String getCategoryDescription() {
         return categoryDescription;
     }
