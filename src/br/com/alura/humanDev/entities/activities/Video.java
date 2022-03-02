@@ -18,8 +18,8 @@ public class Video extends Activity{
                  int videoTime) {
         super(title, code, section);
         validUrl(videoUrl);
-        this.videoUrl = videoUrl;
         validNumberHours(videoTime);
+        this.videoUrl = videoUrl;
         this.videoTime = videoTime;
     }
 

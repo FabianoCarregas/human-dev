@@ -24,22 +24,19 @@ public class Course {
                   String courseDescription,
                   String developedSkills,
                   Subcategory subcategory) {
-        notNull(name);
-        notBlank(name);
-        this.name = name;
+        notBlankOrNull(name);
         validUrl(codeUrl);
-        this.codeUrl = codeUrl;
         validNumberHours(courseTimeHours);
+        notBlankOrNull(instructor);
+        notBlankOrNull(String.valueOf(subcategory));
+        this.name = name;
+        this.codeUrl = codeUrl;
         this.courseTimeHours = courseTimeHours;
         this.status = status;
         this.targetAudience = targetAudience;
-        notNull(instructor);
-        notBlank(instructor);
         this.instructor = instructor;
         this.courseDescription = courseDescription;
         this.developedSkills = developedSkills;
-        notNull(String.valueOf(subcategory));
-        notBlank(String.valueOf(subcategory));
         this.subcategory = subcategory;
     }
 
@@ -53,6 +50,14 @@ public class Course {
 
     public Subcategory getSubcategory() {
         return subcategory;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public String getInstructor() {
+        return instructor;
     }
 
     public String toString() {

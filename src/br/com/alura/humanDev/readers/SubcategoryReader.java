@@ -7,13 +7,14 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
-public class InstanceSubcategory {
+public class SubcategoryReader {
 
     private static Scanner input;
     private static ArrayList<Subcategory> subcategories = new ArrayList<>();
 
-    public static ArrayList<Subcategory> loadSubcategory(ArrayList<Category> category, String file) {
+    public static List<Subcategory> loadSubcategory(List<Category> category, String file) {
 
         try {
             input = new Scanner(Paths.get(file));
@@ -42,10 +43,24 @@ public class InstanceSubcategory {
 
     }
 
+    public static void showSubcategoriesWithoutDescription(List<Subcategory> subcategories) {
+        List<Subcategory> sub =  subcategories.stream()
+                .filter(s -> s.getSubcategoryDescription().equals(""))
+                .collect(Collectors.toList());
+        System.out.println(sub);
+    }
+
     static Category findCategoryByCode(List<Category> categories, String code) {
         return categories.stream()
                .filter(category -> category.getCode().equalsIgnoreCase(code))
                .findFirst().orElse(null);
+    }
+
+    public static Long showSubcategoriesActiveWithDescription(List<Subcategory> subcat) {
+        return subcat.stream()
+                .filter(s -> s.isActive() == true)
+                .filter(s -> s.getSubcategoryDescription() != "")
+                .count();
     }
 
 }

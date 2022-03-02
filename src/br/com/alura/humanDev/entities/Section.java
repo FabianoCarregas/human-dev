@@ -1,25 +1,23 @@
 package br.com.alura.humanDev.entities;
 
 import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
-import static br.com.alura.humanDev.validations.Validation.notBlank;
-import static br.com.alura.humanDev.validations.Validation.notNull;
+import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public class Section {
 
     private String name;
     private String code;
     private int SectionOrdination;
-    private boolean sectionStatus;
+    private boolean active;
     private boolean testStatus;
     private Course course;
 
     public Section(String name,
                    String code,
                    Course course) {
-        notNull(name);
-        notBlank(name);
-        this.name = name;
+        notBlankOrNull(name);
         validUrl(code);
+        this.name = name;
         this.code = code;
         this.course = course;
     }
@@ -30,7 +28,7 @@ public class Section {
                 "name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 ", SectionOrdination=" + SectionOrdination +
-                ", sectionStatus=" + sectionStatus +
+                ", sectionStatus=" + active +
                 ", testStatus=" + testStatus +
                 ", course=" + course +
                 '}';

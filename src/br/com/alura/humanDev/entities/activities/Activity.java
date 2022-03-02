@@ -1,24 +1,24 @@
 package br.com.alura.humanDev.entities.activities;
+
 import br.com.alura.humanDev.entities.Section;
-import static br.com.alura.humanDev.validations.Validation.notNull;
-import static br.com.alura.humanDev.validations.Validation.notBlank;
+
 import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
+import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public abstract class Activity {
 
     private String title;
     private String code;
-    private boolean activityStatus;
+    private boolean status;
     private int ordination;
     private Section section;
 
     public Activity(String title,
                     String code,
                     Section section) {
-        notNull(title);
-        notBlank(title);
-        this.title = title;
+        notBlankOrNull(title);
         validUrl(code);
+        this.title = title;
         this.code = code;
         this.section = section;
     }
@@ -28,7 +28,7 @@ public abstract class Activity {
         return "Activity{" +
                 "title='" + title + '\'' +
                 ", code='" + code + '\'' +
-                ", activityStatus=" + activityStatus +
+                ", activityStatus=" + status +
                 ", ordination=" + ordination +
                 ", section=" + section +
                 '}';
