@@ -10,7 +10,7 @@ public class Category {
     private String code;
     private String categoryDescription;
     private String studyGuide;
-    private boolean status;
+    private boolean active;
     private Integer order;
     private String icon;
     private String hexaColor;
@@ -28,7 +28,7 @@ public class Category {
         this.name = name;
         this.code = code;
         this.categoryDescription = categoryDescription;
-        this.status = categoryStatus;
+        this.active = categoryStatus;
         this.order = order;
         this.icon = icon;
         this.hexaColor = hexaColor;
@@ -42,8 +42,8 @@ public class Category {
         return name;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isActive() {
+        return active;
     }
 
     public String getCategoryDescription() {
@@ -64,7 +64,7 @@ public class Category {
                 "    \"name\" = \""+ name + "\",\n" +
                 "    \"code\" = \"" + code + "\",\n" +
                 "    \"categoryDescription\" = \"" + categoryDescription + "\",\n" +
-                "    \"categoryStatus \"= " + status + ",\n" +
+                "    \"categoryStatus \"= " + active + ",\n" +
                 "    \"order\" = " + order + ",\n" +
                 "    \"icon\" = \"" + icon + "\",\n" +
                 "    \"hexaColor\" = \"" + hexaColor + "\"" + ";\n" +

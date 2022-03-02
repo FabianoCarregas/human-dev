@@ -5,11 +5,10 @@ import br.com.alura.humanDev.entities.Course;
 import br.com.alura.humanDev.entities.Subcategory;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-import static br.com.alura.humanDev.readers.CategoryReader.showActiveCategories;
 import static br.com.alura.humanDev.readers.CategoryReader.loadCategory;
+import static br.com.alura.humanDev.readers.CategoryReader.showActiveCategories;
 import static br.com.alura.humanDev.readers.CourseReader.*;
 import static br.com.alura.humanDev.readers.SubcategoryReader.*;
 
@@ -17,11 +16,11 @@ public class Program {
 
     public static void main(String[] args) throws IOException {
 
-        List<Category> categories1 = new ArrayList<>(loadCategory("/home/fabiano/Desktop/csv/Categoria.csv"));
+        List<Category> categories1 = loadCategory("/home/fabiano/Desktop/csv/Categoria.csv");
 
-        List<Subcategory> subcategories1 = new ArrayList<>(loadSubcategory(categories1, "/home/fabiano/Desktop/csv/Subcategoria.csv"));
+        List<Subcategory> subcategories1 = loadSubcategory(categories1, "/home/fabiano/Desktop/csv/Subcategoria.csv");
 
-        List<Course> courses1 = new ArrayList<>(loadCourses(subcategories1, "/home/fabiano/Desktop/csv/Curso.csv" ));
+        List<Course> courses1 = loadCourses(subcategories1, "/home/fabiano/Desktop/csv/Curso.csv");
 
         //writerHtml(categories1, subcategories1, courses1);
         System.out.println("----------------------------------------------------------------------------------------------");
@@ -33,16 +32,16 @@ public class Program {
         showSubcategoriesWithoutDescription(subcategories1); //ok?
 
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Private Courses >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        hasThereAnyPrivateCourses(courses1); //ok?
+        showAnyPrivateCourses(courses1); //ok?
 
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Find all Instructors whith no reps >>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        findAllInstructors(courses1); //ok
+        showAllInstructors(courses1); //ok
 
         System.out.println("<<<<<<<<<<<<<<<<<<<<<< Count Active Subcategories with description >>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         System.out.println(showSubcategoriesActiveWithDescription(subcategories1)); //ok
 
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<< Instructor with quantity of Courses >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        findInstructorsWithCourses(courses1);
+        showInstructorsWithCourses(courses1);
 
     }
 }

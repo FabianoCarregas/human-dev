@@ -8,7 +8,7 @@ public class Section {
     private String name;
     private String code;
     private int SectionOrdination;
-    private boolean sectionStatus;
+    private boolean active;
     private boolean testStatus;
     private Course course;
 
@@ -28,7 +28,7 @@ public class Section {
                 "name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 ", SectionOrdination=" + SectionOrdination +
-                ", sectionStatus=" + sectionStatus +
+                ", sectionStatus=" + active +
                 ", testStatus=" + testStatus +
                 ", course=" + course +
                 '}';

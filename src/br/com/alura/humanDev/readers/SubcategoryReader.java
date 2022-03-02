@@ -14,7 +14,7 @@ public class SubcategoryReader {
     private static Scanner input;
     private static ArrayList<Subcategory> subcategories = new ArrayList<>();
 
-    public static ArrayList<Subcategory> loadSubcategory(List<Category> category, String file) {
+    public static List<Subcategory> loadSubcategory(List<Category> category, String file) {
 
         try {
             input = new Scanner(Paths.get(file));
@@ -58,7 +58,7 @@ public class SubcategoryReader {
 
     public static Long showSubcategoriesActiveWithDescription(List<Subcategory> subcat) {
         return subcat.stream()
-                .filter(s -> s.isStatus() == true)
+                .filter(s -> s.isActive() == true)
                 .filter(s -> s.getSubcategoryDescription() != "")
                 .count();
     }

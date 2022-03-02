@@ -9,7 +9,7 @@ public class Subcategory {
     private String code;
     private String subcategoryDescription;
     private String studyGuide;
-    private boolean status;
+    private boolean active;
     private Integer ordination;
     private Category category;
 
@@ -25,7 +25,7 @@ public class Subcategory {
         this.name = name;
         this.code = code;
         this.subcategoryDescription = subcategoryDescription;
-        this.status = subcategoryStatus;
+        this.active = subcategoryStatus;
         this.ordination = ordination;
         this.category = category;
     }
@@ -42,8 +42,8 @@ public class Subcategory {
         return subcategoryDescription;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isActive() {
+        return active;
     }
 
     public Integer getOrdination() {
@@ -61,7 +61,7 @@ public class Subcategory {
                 "   \"code\" = \"" + code + "\", \n" +
                 "   \"subcategoryDescription\" = \"" + subcategoryDescription + "\", \n" +
                 "   \"studyGuide\" = \"" + studyGuide + "\", \n" +
-                "   \"subcategoryStatus\" = " + status + ", \n" +
+                "   \"subcategoryStatus\" = " + active + ", \n" +
                 "   \"ordination\" = " + ordination + ", \n" +
                 "         \"category\" = \"" + category + "; \n" +
                 '}';

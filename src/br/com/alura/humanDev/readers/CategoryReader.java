@@ -13,7 +13,7 @@ public class CategoryReader {
     private static Scanner input;
     private static ArrayList<Category> categories = new ArrayList<>();
 
-    public static ArrayList<Category> loadCategory(String file) {
+    public static List<Category> loadCategory(String file) {
 
         try {
             input = new Scanner(Paths.get(file));
@@ -44,7 +44,7 @@ public class CategoryReader {
     }
     public static void showActiveCategories(List<Category> categories) {
         List<Category> cat = categories.stream()
-                .filter(c -> c.isStatus() == true)
+                .filter(c -> c.isActive() == true)
                 .collect(Collectors.toList());
                 System.out.println(cat);
     }
