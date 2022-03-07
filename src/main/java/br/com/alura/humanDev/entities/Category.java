@@ -6,6 +6,7 @@ import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public class Category {
 
+    private Long id;
     private String name;
     private String code;
     private String categoryDescription;
@@ -33,6 +34,7 @@ public class Category {
         this.icon = icon;
         this.hexaColor = hexaColor;
     }
+
 
     public String getCode() {
         return code;

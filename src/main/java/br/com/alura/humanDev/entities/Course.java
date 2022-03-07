@@ -5,7 +5,8 @@ import static br.com.alura.humanDev.validations.Validation.*;
 
 public class Course {
 
-    public String name;
+    private Long id;
+    private String name;
     private String codeUrl;
     private Integer courseTimeHours;
     private boolean status;

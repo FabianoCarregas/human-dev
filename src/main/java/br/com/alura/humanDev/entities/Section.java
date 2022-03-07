@@ -5,9 +5,10 @@ import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public class Section {
 
+    private Long id;
     private String name;
     private String code;
-    private int SectionOrdination;
+    private int ordination;
     private boolean active;
     private boolean testStatus;
     private Course course;
@@ -27,7 +28,7 @@ public class Section {
         return "Section{" +
                 "name='" + name + '\'' +
                 ", code='" + code + '\'' +
-                ", SectionOrdination=" + SectionOrdination +
+                ", SectionOrdination=" + ordination +
                 ", sectionStatus=" + active +
                 ", testStatus=" + testStatus +
                 ", course=" + course +

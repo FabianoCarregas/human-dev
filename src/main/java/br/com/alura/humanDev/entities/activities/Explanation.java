@@ -7,6 +7,7 @@ import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public class Explanation extends Activity {
 
+    private Long id;
     private String activityExplanation;
 
     public Explanation(String title,

@@ -1,23 +1,28 @@
 package br.com.alura.humanDev.entities;
 
+import br.com.alura.humanDev.entities.activities.Question;
+
 import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public class Alternative {
 
+    private Long id;
     private String questionExplanation;
     private int ordination;
     private String answer;
     private boolean answerCheck;
     private String answerJustification;
-    private String rightAnswer;
+    private Question question;
 
     public Alternative(String questionExplanation,
+                       String answer,
                        boolean answerCheck,
-                       String rightAnswer) {
+                       Question question) {
         notBlankOrNull(questionExplanation);
         this.questionExplanation = questionExplanation;
+        this.answer = answer;
         this.answerCheck = answerCheck;
-        this.rightAnswer = rightAnswer;
+        this.question = question;
     }
 
     @Override
@@ -28,7 +33,7 @@ public class Alternative {
                 ", answer='" + answer + '\'' +
                 ", answerCheck=" + answerCheck +
                 ", answerJustification='" + answerJustification + '\'' +
-                ", rightAnswer='" + rightAnswer + '\'' +
+                ", rightAnswer='" + answerCheck + '\'' +
                 '}';
     }
 }

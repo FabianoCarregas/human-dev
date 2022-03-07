@@ -7,6 +7,7 @@ import static br.com.alura.humanDev.validations.Validation.validNumberHours;
 
 public class Video extends Activity{
 
+    private Long id;
     private String videoUrl;
     private int videoTime;
     private String videoDescription;

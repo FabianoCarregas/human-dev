@@ -7,6 +7,7 @@ import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public abstract class Activity {
 
+    private Long id;
     private String title;
     private String code;
     private boolean status;

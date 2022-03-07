@@ -5,6 +5,7 @@ import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 public class Subcategory {
 
+    private Long id;
     private String name;
     private String code;
     private String subcategoryDescription;
