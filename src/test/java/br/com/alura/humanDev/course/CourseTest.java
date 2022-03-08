@@ -49,6 +49,13 @@ public class CourseTest {
     }
 
     @Test
+    void shouldCourseCodeBeValid() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Course("Java", "Qa8$", 10, true, "programacao",
+                        "Paulo", "Java jr", "OO", subcategory));
+    }
+
+    @Test
     void shouldCourseTimeNotBeGreaterThanTwentyHours() {
         assertThrows(IllegalArgumentException.class,
                 () -> new Course("Java", "http", 22, true, "programacao",
@@ -63,9 +70,16 @@ public class CourseTest {
     }
 
     @Test
-    void shouldCourseInstructorNotBeNullOrEmpty() {
+    void shouldCourseInstructorNotBeNull() {
         assertThrows(IllegalArgumentException.class,
-                () -> new Course("Java", "http", null, true, "programacao",
+                () -> new Course("Java", "http", 2, true, "programacao",
+                        null, "Java jr", "OO", subcategory));
+    }
+
+    @Test
+    void shouldCourseInstructorNotBeEmpty() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Course("Java", "http", 3, true, "programacao",
                         "", "Java jr", "OO", subcategory));
     }
 
