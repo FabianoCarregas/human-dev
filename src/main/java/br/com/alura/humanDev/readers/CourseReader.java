@@ -2,9 +2,11 @@ package br.com.alura.humanDev.readers;
 
 import br.com.alura.humanDev.entities.Course;
 import br.com.alura.humanDev.entities.Subcategory;
+
 import java.nio.file.Paths;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class CourseReader {
 
@@ -49,18 +51,17 @@ public class CourseReader {
                 .findFirst().orElse(null);
     }
 
-    public static void showAnyPrivateCourses(List<Course> courses) {
-        List<Course> course = courses.stream()
+    public static List<Course> showAnyPrivateCourses(List<Course> courses) {
+        return courses.stream()
                 .filter(c -> c.isStatus() == true)
-                .collect(Collectors.toList());
-        System.out.println(course);
+                .toList();
     }
 
-    public static void showAllInstructors(List<Course> courses) {
-        courses.stream()
+    public static List<String> showAllInstructors(List<Course> courses) {
+        return courses.stream()
                 .filter(c -> c.getInstructor() != "")
                 .map(s -> s.getInstructor()).distinct()
-                .forEach(System.out::println);
+                .toList();
     }
 
     public static void showInstructorsWithCourses(List<Course> courses) {
@@ -73,3 +74,4 @@ public class CourseReader {
 
     }
 }
+

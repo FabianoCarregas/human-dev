@@ -29,7 +29,7 @@ public class Program {
         showActiveCategories(categories1);  //ok
 
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Subcategories with no Description>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        showSubcategoriesWithoutDescription(subcategories1); //ok?
+        showSubcategoriesWithoutDescription(subcategories1);
 
         System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Private Courses >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         showAnyPrivateCourses(courses1); //ok?

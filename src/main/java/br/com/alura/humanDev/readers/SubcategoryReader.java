@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class SubcategoryReader {
 
@@ -43,11 +42,10 @@ public class SubcategoryReader {
 
     }
 
-    public static void showSubcategoriesWithoutDescription(List<Subcategory> subcategories) {
-        List<Subcategory> sub =  subcategories.stream()
+    public static List<Subcategory> showSubcategoriesWithoutDescription(List<Subcategory> subcategories) {
+        return subcategories.stream()
                 .filter(s -> s.getSubcategoryDescription().equals(""))
-                .collect(Collectors.toList());
-        System.out.println(sub);
+                .toList();
     }
 
     static Category findCategoryByCode(List<Category> categories, String code) {

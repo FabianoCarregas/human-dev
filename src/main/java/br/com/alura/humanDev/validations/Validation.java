@@ -3,7 +3,7 @@ package br.com.alura.humanDev.validations;
 public class Validation {
 
     public static void notNull(String field) {
-        if (field == null) throw new IllegalArgumentException("The field name can not be null.");
+        if (field == null) throw new NullPointerException("The field name can not be null.");
     }
 
     public static void notBlankOrNull(String field) {

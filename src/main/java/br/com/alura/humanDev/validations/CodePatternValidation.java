@@ -17,4 +17,5 @@ public class CodePatternValidation {
             throw new IllegalArgumentException("The code pattern accept only Hexadecimal colour characters");
         }
     }
+
 }

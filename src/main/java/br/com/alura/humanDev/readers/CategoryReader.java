@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class CategoryReader {
 
@@ -42,11 +41,10 @@ public class CategoryReader {
         return categories;
 
     }
-    public static void showActiveCategories(List<Category> categories) {
-        List<Category> cat = categories.stream()
+    public static List<Category> showActiveCategories(List<Category> categories) {
+        return categories.stream()
                 .filter(c -> c.isActive() == true)
-                .collect(Collectors.toList());
-        System.out.println(cat);
+                .toList();
     }
 
 }

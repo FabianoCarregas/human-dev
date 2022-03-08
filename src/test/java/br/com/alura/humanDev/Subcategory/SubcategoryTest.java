@@ -4,8 +4,12 @@ import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.entities.Subcategory;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.ArrayList;
+import java.util.List;
+
+import static br.com.alura.humanDev.readers.SubcategoryReader.showSubcategoriesActiveWithDescription;
+import static br.com.alura.humanDev.readers.SubcategoryReader.showSubcategoriesWithoutDescription;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SubcategoryTest {
 
@@ -13,13 +17,13 @@ public class SubcategoryTest {
 
     @Test
     void shouldCreateNewSubcategory() {
-        Subcategory subcategory = new Subcategory("Java", "java", 1, "curso", true, category);
-        assertEquals(category, category);
+        assertDoesNotThrow(
+                () -> new Subcategory("Java", "java", 1, "curso", true, category));
     }
 
     @Test
     void shouldSubcategoryNameNotBeNull() {
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(NullPointerException.class,
                 () -> new Subcategory(null, "java", 1, "curso", true, category));
     }
 
@@ -31,7 +35,7 @@ public class SubcategoryTest {
 
     @Test
     void shouldSubcategoryCodeNotBeNull() {
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(NullPointerException.class,
                 () -> new Subcategory("Java", null, 1, "curso", true, category));
     }
 
@@ -42,23 +46,55 @@ public class SubcategoryTest {
     }
 
     @Test
-    void shouldSubcategoryCodeNotValid() {
+    void shouldSubcategoryCodeNotBeUppercase() {
         assertThrows(IllegalArgumentException.class,
-                () -> new Subcategory("Java", "%T6h", 1, "curso", true, category));
+                () -> new Subcategory("Java", "COde", 1, "curso", true, category));
     }
 
     @Test
-    void shouldSubcategoryCategoryNotBeNull() {
+    void shouldSubcategoryCodeNotHaveSpecialCharacters() {
         assertThrows(IllegalArgumentException.class,
-                () -> new Subcategory("Java", "dd", 1, "curso", true, null));
+                () -> new Subcategory("Java", "&$de", 1, "curso", true, category));
     }
 
     @Test
-    void shouldShowSubcategoriesWithoutDescription() {
-        Subcategory subcategory1 = new Subcategory("Java", "java", 1, "s", true, category);
+    void shouldSubcategoryCodeNotHaveSpace() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Subcategory("Java", "co de", 1, "curso", true, category));
+    }
 
+    @Test
+    void shouldSubcategoryCategoryNotBeEmpty() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Subcategory("Java", "co de", 1, "curso", true, null));
+    }
 
-        assertEquals(subcategory1, subcategory1);
+    @Test
+    void shouldShowSubcategoriesWithoutDescription() throws Exception {
+        List<Subcategory> subcategories = new ArrayList<>();
+        List<Subcategory> subcat2 = new ArrayList<>();
+
+        Subcategory sub1 = new Subcategory("Java", "java", 1, "", true, category);
+        Subcategory sub2 = new Subcategory("Java", "java", 1, "rerere", true, category);
+
+        subcategories.add(sub1);
+        subcategories.add(sub2);
+        subcat2.add(sub1);
+
+        assertEquals(subcat2, showSubcategoriesWithoutDescription(subcategories));
+    }
+
+    @Test
+    void shouldShowSubcategoriesActiveWithDescription() throws Exception {
+        List<Subcategory> allSubcategories = new ArrayList<>();
+
+        Subcategory sub1 = new Subcategory("Java", "java", 1, "", true, category);
+        Subcategory sub2 = new Subcategory("Java", "java", 1, "rerere", true, category);
+
+        allSubcategories.add(sub1);
+        allSubcategories.add(sub2);
+
+        assertEquals(1L, showSubcategoriesActiveWithDescription(allSubcategories));
     }
 
 }
