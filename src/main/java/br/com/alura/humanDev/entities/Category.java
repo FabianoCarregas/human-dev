@@ -35,7 +35,6 @@ public class Category {
         this.hexaColor = hexaColor;
     }
 
-
     public String getCode() {
         return code;
     }
