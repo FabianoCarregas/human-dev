@@ -85,8 +85,8 @@ public class CategoryTest {
         List<Category> categoryList = new ArrayList<>();
         List<Category> categoryReturn = new ArrayList<>();
 
-        Category category = new Category("Php", "php", 1, "php course", true, "gdgd", "#FFF");
-        Category category1 = new Category("Php", "php", 1, "php course", false, "gdgd", "#FFF");
+        Category category = new Category("Java", "java", 1, "java course", true, "http", "#FFF");
+        Category category1 = new Category("Php", "php", 1, "php course", false, "http", "#FFF");
 
         categoryList.add(category);
         categoryList.add(category1);

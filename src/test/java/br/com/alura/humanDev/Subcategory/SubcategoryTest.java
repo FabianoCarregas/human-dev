@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static br.com.alura.humanDev.readers.SubcategoryReader.showSubcategoriesActiveWithDescription;
-import static br.com.alura.humanDev.readers.SubcategoryReader.showSubcategoriesWithoutDescription;
+import static br.com.alura.humanDev.readers.SubcategoryReader.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SubcategoryTest {
@@ -74,8 +73,8 @@ public class SubcategoryTest {
         List<Subcategory> subcategories = new ArrayList<>();
         List<Subcategory> subcat2 = new ArrayList<>();
 
-        Subcategory sub1 = new Subcategory("Java", "java", 1, "", true, category);
-        Subcategory sub2 = new Subcategory("Java", "java", 1, "rerere", true, category);
+        Subcategory sub1 = new Subcategory("Java", "java", 1, "curso java", true, category);
+        Subcategory sub2 = new Subcategory("Php", "php", 1, "curso php", true, category);
 
         subcategories.add(sub1);
         subcategories.add(sub2);
@@ -85,11 +84,11 @@ public class SubcategoryTest {
     }
 
     @Test
-    void shouldShowSubcategoriesActiveWithDescription() throws Exception {
+    void shouldshowSubcategoriesActiveWithDescription() throws Exception {
         List<Subcategory> allSubcategories = new ArrayList<>();
 
-        Subcategory sub1 = new Subcategory("Java", "java", 1, "", true, category);
-        Subcategory sub2 = new Subcategory("Java", "java", 1, "rerere", true, category);
+        Subcategory sub1 = new Subcategory("Java", "java", 1, "curso java", true, category);
+        Subcategory sub2 = new Subcategory("PHP", "php", 1, "curso php", false, category);
 
         allSubcategories.add(sub1);
         allSubcategories.add(sub2);
