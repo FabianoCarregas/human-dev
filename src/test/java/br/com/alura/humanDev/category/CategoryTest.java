@@ -2,8 +2,6 @@ package br.com.alura.humanDev.category;
 
 import br.com.alura.humanDev.entities.Category;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static br.com.alura.humanDev.readers.CategoryReader.showActiveCategories;
@@ -11,88 +9,71 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CategoryTest {
 
+    String name = "Java";
+    String code = "java";
+    int order = 1;
+    String description = "description";
+    String color = "#FFF";
+    String icon = "http//";
+
     @Test
     void shouldCreateNewCategory() {
-        assertDoesNotThrow(
-                () -> new Category("Php", "php", 1, "php course", true, "gdgd", "#FFF"));
+        assertDoesNotThrow(() -> new Category(name, code, order, description,
+                true, icon, color));
     }
 
     @Test
     void shouldCategoryNameNotBeNull() {
-        assertThrows(NullPointerException.class,
-                () -> new Category(
-                null, "programacao", 1, "programe nas principais...",
-                true, "https://www.alura.com.br",
-                "#00c86f"));
+        assertThrows(NullPointerException.class, () -> new Category(null, code,
+                order, description,true, icon, color));
     }
 
     @Test
     void shouldCategoryNameNotBeEmpty() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Category(
-                        "", "progra-macao", 1, "programe nas principais...",
-                        true, "https://www.alura.com.br",
-                        "#00c86f"));
+        assertThrows(IllegalArgumentException.class, () -> new Category("", code,
+                order, description,true, icon, color));
     }
 
     @Test
     void shouldCategoryCodeNotBeNull() {
-        assertThrows(NullPointerException.class,
-                () -> new Category(
-                "Java", null, 1, "programe nas principais...",
-                        true, "https://www.alura.com.br",
-                        "#00c86f"));
+        assertThrows(NullPointerException.class, () -> new Category(name, null, order, code,
+                        true, icon, color));
     }
 
     @Test
     void shouldCategoryCodeNotBeEmpty() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Category(
-                        "Java", "", 1, "programe nas principais...",
-                        true, "https://www.alura.com.br",
-                        "#00c86f"));
+        assertThrows(IllegalArgumentException.class, () -> new Category(name, "", order, code,
+                        true, icon, color));
     }
 
     @Test
     void shouldCategoryCodeNotBeWithWhiteSpace() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Category(
-                        "Java", "ja va", 1, "programe nas principais...",
-                        true, "https://www.alura.com.br",
-                        "#00c86f"));
+        assertThrows(IllegalArgumentException.class, () -> new Category(name, "co de", order, code,
+                        true, icon, color));
     }
 
     @Test
     void shouldCategoryCodeNotBeWithUpperCaseCharacters() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Category(
-                        "Java", "JAva", 1, "programe nas principais...",
-                        true, "https://www.alura.com.br",
-                        "#00c86f"));
+        assertThrows(IllegalArgumentException.class, () -> new Category(name, "CODE", order, code,
+                        true, icon, color));
     }
 
     @Test
     void shouldCategoryCodeNotWithSpecialCharacters() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new Category(
-                        "Java", "java%$", 1, "programe nas principais...",
-                        true, "https://www.alura.com.br",
-                        "#00c86f"));
+        assertThrows(IllegalArgumentException.class, () -> new Category(name, "@cod&", order, code,
+                        true, icon, color));
     }
 
     @Test
-    void shouldShowActiveCategories() throws Exception {
-        List<Category> categoryList = new ArrayList<>();
-        List<Category> categoryReturn = new ArrayList<>();
+    void shouldShowActiveCategories() {
+        Category category1 = new Category(name, code, order, description, true, icon, color);
+        Category category2 =  new Category(name, code, order, description, false, icon, color);
 
-        Category category = new Category("Java", "java", 1, "java course", true, "http", "#FFF");
-        Category category1 = new Category("Php", "php", 1, "php course", false, "http", "#FFF");
+        List<Category> categoryList = List.of(category1, category2);
+        List<Category> categories = showActiveCategories(categoryList);
 
-        categoryList.add(category);
-        categoryList.add(category1);
-        categoryReturn.add(category);
-
-        assertEquals(categoryReturn, showActiveCategories(categoryList));
+        assertEquals(1, categories.size());
+        assertEquals(category1, categories.get(0));
     }
 
 }
