@@ -23,7 +23,7 @@ public class Writer {
             reader += String.format("""
                     <div style="background-color:%s;color:white;padding:20px;">  <!--category colour-->
                         <h2 style="text-align:center";>%s</h3>  <!--category name-->
-                        <h5 style="font-size:20px">%s</h5>  <!--category description--> 
+                        <h5 style="font-size:20px">%s</h5>  <!--category description-->
                         <img src="%s" alt="Icon-course" style="width:100px;height:100px;">
                         <h5 style="font-size:20px">%d</h5>  <!--category description-->
                         <h5 style="font-size:20px"> Total de horas: %d </h5> <!--category description-->
@@ -62,8 +62,8 @@ public class Writer {
                            <h1  style="text-align:center";>Human-Dev<h1>
                            """ + reader + """
                         </body>
-                    </div>    
-                </html>            
+                    </div>
+                </html>
                 """;
 
         bufferedWriter.write(htmlFile);

@@ -41,8 +41,27 @@ public class Course {
         this.subcategory = subcategory;
     }
 
+    public Course(String name, String codeUrl, Integer courseTimeHours, String instructor) {
+        this.name = name;
+        this.codeUrl = codeUrl;
+        this.courseTimeHours = courseTimeHours;
+        this.instructor = instructor;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public String getCodeUrl() {
+        return codeUrl;
     }
 
     public Integer getCourseTimeHours() {

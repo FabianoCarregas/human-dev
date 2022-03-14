@@ -16,4 +16,4 @@ INSERT INTO Subcategory (
 
 INSERT INTO Subcategory (
 `NAME`, `CODE`, `ORDINATION`, `SUBCATEGORY_DESCRIPTION`, `ACTIVE`, `category_id`) VALUES (
-'Builds e Controle de versão', 'builds-e-controle-de-versao', 1, 'As ferramentas mais utilizadas para desenvolvimento: controle de versão com Git e Github além de build da aplicação através de Maven.', true, 1);
+'Builds e Controle de versão', 'builds-e-controle-de-versao', 1, 'As ferramentas mais utilizadas para desenvolvimento: controle de versão com Git e Github além de build da aplicação através de Maven.', true, 2);
