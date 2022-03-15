@@ -1,18 +1,12 @@
 package br.com.alura.humanDev.jdbc.query;
 
-import br.com.alura.humanDev.entities.Category;
-import br.com.alura.humanDev.entities.Course;
-import br.com.alura.humanDev.entities.Subcategory;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import static br.com.alura.humanDev.writers.filter.WriterFilters.*;
-import static br.com.alura.humanDev.writers.filter.WriterFilters.findCoursesNamesForSubcategory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class HtmlReport {
 
@@ -28,59 +22,57 @@ public class HtmlReport {
                 "inner join Subcategory s on c.subcategory_id = s.id\n" +
                 "where c.status";
 
+        String htmlOpen = """
+                <!DOCTYPE html>
+                <html>
+                <head>
+                <meta charset= UTF-8 />
+                <title>Cursos</title>
+                </head>
+                <body>
+                <h1>Cursos</h1>
+                """;
+
         try (PreparedStatement pstm = connection.prepareStatement(sql)) {
             pstm.execute();
 
             String reader = null;
             try (ResultSet rst = pstm.getResultSet()) {
                 while (rst.next()) {
-
                     Long id = rst.getLong("id");
-                    System.out.println(id);
                     String name = rst.getString("name");
-                    System.out.println(name);
                     int hours = rst.getInt("course_time_hours");
-                    System.out.println(hours);
                     Long subcategoryId = rst.getLong("subcategory_id");
-                    System.out.println(subcategoryId);
                     String subcategory = rst.getString("name");
-                    System.out.println(subcategory);
 
-                    reader = "";
-                    reader += String.format("""
-                                    <div>
-                                        <ul>
-                                            <li %d>
-                                            <li %s>
-                                            <li %d>
-                                            <li %d>
-                                            <li %s>
-                                        </ul>
-                                     </div>
-                                    """,
-                            id, name, hours, subcategoryId, subcategory);
+                    htmlOpen += """
+                            <div>
+                                <ul>
+                                    <li> %d </li>
+                                    <li> %s </li>
+                                    <li> %d </li>
+                                    <li> %d </li>
+                                    <li> %s </li>
+                                </ul>
+                               </div>
+                            """.formatted(id, name, hours, subcategoryId, subcategory);
                 }
             }
+
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("report.html"));
 
-            String htmlFile = """
-                    <html>
-                        <head>
-                        </head>
-                        <div style=background-color:#555151;>
-                            <body>
-                               <h1  style="text-align:center";>Human-Dev<h1>
-                               """ + reader + """
+            htmlOpen += """  
                             </body>
-                        </div>
                     </html>
                     """;
 
-            bufferedWriter.write(htmlFile);
+            bufferedWriter.write(htmlOpen);
+            bufferedWriter.flush();
             bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("created");
     }
 }
 

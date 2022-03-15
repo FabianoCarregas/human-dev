@@ -44,21 +44,17 @@ public class CourseDAO {
         }catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    public void updateToActive(Course course) throws SQLException {
+    public static int updateToActive() throws SQLException {
         String sql = "update Course set status = 1 where status = 0";
 
-        try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try(PreparedStatement pstm = connection.prepareStatement(sql)) {
             pstm.execute();
-
-            try (ResultSet rst = pstm.getGeneratedKeys()) {
-                while(rst.next()) {
-                    course.setId(rst.getLong(1));
-                    System.out.println("Course id " + course.getId() + " created successfully");
-                }
-            }
+            return pstm.getUpdateCount();
+        }catch (Exception e) {
+            e.printStackTrace();
         }
+        return 0;
     }
 }
