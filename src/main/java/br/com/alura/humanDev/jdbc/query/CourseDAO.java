@@ -6,32 +6,31 @@ import java.sql.*;
 
 public class CourseDAO {
 
-    private Connection connection;
+    private static Connection connection;
 
     public CourseDAO(Connection connection) {
-        this.connection = connection;
+        CourseDAO.connection = connection;
     }
 
-    public void insert(Course course) throws SQLException {
-        String sql = "INSERT INTO Course (name, code_url, course_time_hours, instructor) VALUES (?, ?, ?, ?)";
+    public static int insert(CourseDTO courseDTO) throws SQLException {
+        String sql = "INSERT INTO Course (name, code_url, course_time_hours, instructor, subcategory_id) VALUES (?, ?, ?, ?, ?)";
 
         try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            pstm.setString(1, course.getName());
-            pstm.setString(2, course.getCodeUrl());
-            pstm.setInt(3, course.getCourseTimeHours());
-            pstm.setString(4, course.getInstructor());
+            pstm.setString(1, courseDTO.getName());
+            pstm.setString(2, courseDTO.getCodeUrl());
+            pstm.setInt(3, courseDTO.getCourseTimeHours());
+            pstm.setString(4,courseDTO.getInstructor());
+            pstm.setInt(5, courseDTO.getSubcategoryId());
 
             pstm.execute();
 
             try (ResultSet rst = pstm.getGeneratedKeys()) {
-                while(rst.next()) {
-                    course.setId(rst.getLong(1));
-                    System.out.println("Course id " + course.getId() + " created successfully");
+                rst.next();
+                return rst.getInt(1);
                 }
             }
         }
-    }
 
     public void deleteCourseByCode(String code) throws SQLException {
         String sql = "DELETE FROM Course WHERE code_url = ?";
@@ -45,10 +44,21 @@ public class CourseDAO {
         }catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void updateToActive(Course course) throws SQLException {
+        String sql = "update Course set status = 1 where status = 0";
+
+        try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            pstm.execute();
+
+            try (ResultSet rst = pstm.getGeneratedKeys()) {
+                while(rst.next()) {
+                    course.setId(rst.getLong(1));
+                    System.out.println("Course id " + course.getId() + " created successfully");
+                }
+            }
+        }
     }
 }
-
-   // Integer modifiedLines = stm.getUpdateCount();
-//
-//        System.out.println("The quantity of lines removed from the table = " + modifiedLines);
-//        connection.close();

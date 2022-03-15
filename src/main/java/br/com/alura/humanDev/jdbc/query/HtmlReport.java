@@ -23,9 +23,10 @@ public class HtmlReport {
     }
 
     public void list() throws SQLException {
-        String sql = "select A.id, A.name, A.course_time_hours, A.subcategory_id from Course A " +
-                "inner join Subcategory B on A.subcategory_id = B.id\n" +
-                "group by A.id, A.name, A.course_time_hours, A.subcategory_id, B.name";
+        String sql = "select c.id, c.`name`, c.course_time_hours, c.subcategory_id, s.`name`\n" +
+                "from Course c\n" +
+                "inner join Subcategory s on c.subcategory_id = s.id\n" +
+                "where c.status";
 
         try (PreparedStatement pstm = connection.prepareStatement(sql)) {
             pstm.execute();

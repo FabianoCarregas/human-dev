@@ -8,20 +8,24 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-    public DataSource dataSource;
+    String localhost = "jdbc:mysql://localhost/humandev?useTimezone=true&serverTimezone=UTC";
+    String user = "root";
+    String password = "Http@0081";
+
+    private DataSource dataSource;
 
     public ConnectionFactory() {
         ComboPooledDataSource poolData = new ComboPooledDataSource();
-        poolData.setJdbcUrl("jdbc:mysql://localhost/humandev?useTimezone=true&serverTimezone=UTC");
-        poolData.setUser("root");
-        poolData.setPassword("Http@0081");
-
+        poolData.setJdbcUrl(localhost);
+        poolData.setUser(user);
+        poolData.setPassword(password);
         poolData.setMaxPoolSize(10);
 
         this.dataSource = poolData;
     }
 
-    public Connection connectionFactory() throws SQLException {
+    public Connection getConnection() throws SQLException {
      return dataSource.getConnection();
     }
+
 }
