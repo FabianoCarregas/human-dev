@@ -2,7 +2,7 @@ package br.com.alura.humanDev.application;
 
 import br.com.alura.humanDev.jdbc.ConnectionFactory;
 import br.com.alura.humanDev.jdbc.query.CourseDAO;
-import br.com.alura.humanDev.jdbc.query.CourseDTO;
+import br.com.alura.humanDev.entities.dto.CourseDTO;
 import br.com.alura.humanDev.jdbc.query.HtmlReport;
 
 import java.sql.Connection;

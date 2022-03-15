@@ -18,11 +18,10 @@ public class HtmlReport {
 
     public void list() throws SQLException {
         String sql = "select c.id, c.`name`, c.course_time_hours, c.subcategory_id, s.`name`\n" +
-                "from Course c\n" +
-                "inner join Subcategory s on c.subcategory_id = s.id\n" +
+                "from Course c inner join Subcategory s on c.subcategory_id = s.id\n" +
                 "where c.status";
 
-        String htmlOpen = """
+        StringBuilder htmlOpen = new StringBuilder("""
                 <!DOCTYPE html>
                 <html>
                 <head>
@@ -31,7 +30,7 @@ public class HtmlReport {
                 </head>
                 <body>
                 <h1>Cursos</h1>
-                """;
+                """);
 
         try (PreparedStatement pstm = connection.prepareStatement(sql)) {
             pstm.execute();
@@ -45,34 +44,34 @@ public class HtmlReport {
                     Long subcategoryId = rst.getLong("subcategory_id");
                     String subcategory = rst.getString("name");
 
-                    htmlOpen += """
+                    htmlOpen.append("""
                             <div>
                                 <ul>
-                                    <li> %d </li>
-                                    <li> %s </li>
-                                    <li> %d </li>
-                                    <li> %d </li>
-                                    <li> %s </li>
+                                    <li>Course id: %d </li>
+                                    <li>Course name: %s </li>
+                                    <li>Course time: %d </li>
+                                    <li>Subcategory Id: %d </li>
+                                    <li>Subcategory: %s </li>
                                 </ul>
                                </div>
-                            """.formatted(id, name, hours, subcategoryId, subcategory);
+                            """.formatted(id, name, hours, subcategoryId, subcategory));
                 }
             }
 
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("report.html"));
 
-            htmlOpen += """  
+            htmlOpen.append("""  
                             </body>
                     </html>
-                    """;
+                    """);
 
-            bufferedWriter.write(htmlOpen);
+            bufferedWriter.write(htmlOpen.toString());
             bufferedWriter.flush();
             bufferedWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("created");
+        System.out.println("HTML created");
     }
 }
 

@@ -1,4 +1,4 @@
-package br.com.alura.humanDev.jdbc.query;
+package br.com.alura.humanDev.entities.dto;
 
 import br.com.alura.humanDev.entities.Subcategory;
 

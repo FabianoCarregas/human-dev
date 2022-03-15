@@ -1,6 +1,6 @@
 package br.com.alura.humanDev.jdbc.query;
 
-import br.com.alura.humanDev.entities.Course;
+import br.com.alura.humanDev.entities.dto.CourseDTO;
 
 import java.sql.*;
 
@@ -32,7 +32,7 @@ public class CourseDAO {
             }
         }
 
-    public void deleteCourseByCode(String code) throws SQLException {
+    public void deleteCourseByCode(String code){
         String sql = "DELETE FROM Course WHERE code_url = ?";
 
         try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -46,7 +46,7 @@ public class CourseDAO {
         }
     }
 
-    public static int updateToActive() throws SQLException {
+    public static int updateToActive(){
         String sql = "update Course set status = 1 where status = 0";
 
         try(PreparedStatement pstm = connection.prepareStatement(sql)) {
