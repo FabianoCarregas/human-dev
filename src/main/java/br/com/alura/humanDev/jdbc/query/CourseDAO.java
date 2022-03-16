@@ -1,6 +1,6 @@
 package br.com.alura.humanDev.jdbc.query;
 
-import br.com.alura.humanDev.entities.dto.CourseDTO;
+import br.com.alura.humanDev.entities.dto.InsertCourse;
 
 import java.sql.*;
 
@@ -12,16 +12,16 @@ public class CourseDAO {
         CourseDAO.connection = connection;
     }
 
-    public static int insert(CourseDTO courseDTO) throws SQLException {
+    public static int insert(InsertCourse insertCourse) throws SQLException {
         String sql = "INSERT INTO Course (name, code_url, course_time_hours, instructor, subcategory_id) VALUES (?, ?, ?, ?, ?)";
 
         try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            pstm.setString(1, courseDTO.getName());
-            pstm.setString(2, courseDTO.getCodeUrl());
-            pstm.setInt(3, courseDTO.getCourseTimeHours());
-            pstm.setString(4,courseDTO.getInstructor());
-            pstm.setInt(5, courseDTO.getSubcategoryId());
+            pstm.setString(1, insertCourse.getName());
+            pstm.setString(2, insertCourse.getCodeUrl());
+            pstm.setInt(3, insertCourse.getCourseTimeHours());
+            pstm.setString(4, insertCourse.getInstructor());
+            pstm.setInt(5, insertCourse.getSubcategoryId());
 
             pstm.execute();
 
