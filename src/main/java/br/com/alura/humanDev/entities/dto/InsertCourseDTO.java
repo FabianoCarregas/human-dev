@@ -1,6 +1,6 @@
 package br.com.alura.humanDev.entities.dto;
 
-public class InsertCourse {
+public class InsertCourseDTO {
 
     private String name;
     private String codeUrl;
@@ -8,7 +8,7 @@ public class InsertCourse {
     private String instructor;
     private int subcategoryId;
 
-    public InsertCourse(String name, String codeUrl, int courseTimeHours, String instructor, int subcategoryId) {
+    public InsertCourseDTO(String name, String codeUrl, int courseTimeHours, String instructor, int subcategoryId) {
         this.name = name;
         this.codeUrl = codeUrl;
         this.courseTimeHours = courseTimeHours;

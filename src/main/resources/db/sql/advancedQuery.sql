@@ -5,9 +5,9 @@ ON c.`subcategory_id` = s.`id`
 WHERE `active`
 ORDER BY `ordination`;
 
-SELECT instructor, COUNT(*) AS quantity
-FROM Course
-GROUP BY instructor ORDER BY quantity DESC
+SELECT `instructor`, COUNT(*) AS `quantity`
+FROM `Course`
+GROUP BY `instructor` ORDER BY `quantity` DESC
 limit 1;
 
 SELECT ca.`name`, COUNT(co.`id`) AS `quantity_of_courses`,

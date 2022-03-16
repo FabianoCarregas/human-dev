@@ -2,7 +2,7 @@ package br.com.alura.humanDev.application;
 
 import br.com.alura.humanDev.jdbc.ConnectionFactory;
 import br.com.alura.humanDev.jdbc.query.CourseDAO;
-import br.com.alura.humanDev.entities.dto.InsertCourse;
+import br.com.alura.humanDev.entities.dto.InsertCourseDTO;
 import br.com.alura.humanDev.jdbc.query.HtmlReport;
 
 import java.sql.Connection;
@@ -15,15 +15,15 @@ public class Program {
     public static void main(String[] args) {
 
         String courseCode = "java-se";
-        InsertCourse insertCourse = new InsertCourse("java-se", "java-se", 12,
+        InsertCourseDTO insertCourseDTO = new InsertCourseDTO("java-se", "java-se", 12,
                 "fa", 1);
 
         ConnectionFactory factory = new ConnectionFactory();
         try(Connection connection = factory.getConnection()) {
             CourseDAO courseDAO = new CourseDAO(connection);
-            System.out.println(insert(insertCourse));
+            System.out.println(insert(insertCourseDTO));
             HtmlReport htmlReport = new HtmlReport(connection);
-            System.out.println(courseDAO.updateToActive());
+            System.out.println(courseDAO.updateAllToActive());
             courseDAO.deleteCourseByCode(courseCode);
             htmlReport.list();
         }  catch (SQLException s) {

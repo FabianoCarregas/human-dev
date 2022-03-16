@@ -1,6 +1,6 @@
 package br.com.alura.humanDev.jdbc.query;
 
-import br.com.alura.humanDev.entities.dto.InsertCourse;
+import br.com.alura.humanDev.entities.dto.InsertCourseDTO;
 
 import java.sql.*;
 
@@ -12,17 +12,17 @@ public class CourseDAO {
         CourseDAO.connection = connection;
     }
 
-    public static int insert(InsertCourse insertCourse) {
+    public static int insert(InsertCourseDTO insertCourseDTO) {
         String sql = "INSERT INTO Course (name, code_url, course_time_hours, instructor, subcategory_id)" +
                 " VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            pstm.setString(1, insertCourse.getName());
-            pstm.setString(2, insertCourse.getCodeUrl());
-            pstm.setInt(3, insertCourse.getCourseTimeHours());
-            pstm.setString(4, insertCourse.getInstructor());
-            pstm.setInt(5, insertCourse.getSubcategoryId());
+            pstm.setString(1, insertCourseDTO.getName());
+            pstm.setString(2, insertCourseDTO.getCodeUrl());
+            pstm.setInt(3, insertCourseDTO.getCourseTimeHours());
+            pstm.setString(4, insertCourseDTO.getInstructor());
+            pstm.setInt(5, insertCourseDTO.getSubcategoryId());
 
             pstm.execute();
 
@@ -49,7 +49,7 @@ public class CourseDAO {
         }
     }
 
-    public static int updateToActive() {
+    public static int updateAllToActive() {
         String sql = "update Course set status = 1 where status = 0";
 
         try (PreparedStatement pstm = connection.prepareStatement(sql)) {
