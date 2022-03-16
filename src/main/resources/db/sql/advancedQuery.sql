@@ -5,12 +5,10 @@ ON c.`subcategory_id` = s.`id`
 WHERE `active`
 ORDER BY `ordination`;
 
-SELECT DISTINCT s.`name`, s.`ordination`
-FROM `Subcategory` s
-INNER JOIN `Course` c
-ON c.`subcategory_id` = s.`id`
-WHERE `active`
-ORDER BY `ordination`;
+SELECT instructor, COUNT(*) AS quantity
+FROM Course
+GROUP BY instructor ORDER BY quantity DESC
+limit 1;
 
 SELECT ca.`name`, COUNT(co.`id`) AS `quantity_of_courses`,
 COALESCE(SUM(co.`course_time_hours`), 0) AS `estimated_time`

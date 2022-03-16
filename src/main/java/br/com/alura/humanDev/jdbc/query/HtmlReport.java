@@ -72,6 +72,7 @@ public class HtmlReport {
             e.printStackTrace();
         }
         System.out.println("HTML created");
+
     }
 }
 

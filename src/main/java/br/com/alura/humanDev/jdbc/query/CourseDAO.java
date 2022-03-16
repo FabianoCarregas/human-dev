@@ -12,10 +12,11 @@ public class CourseDAO {
         CourseDAO.connection = connection;
     }
 
-    public static int insert(InsertCourse insertCourse) throws SQLException {
-        String sql = "INSERT INTO Course (name, code_url, course_time_hours, instructor, subcategory_id) VALUES (?, ?, ?, ?, ?)";
+    public static int insert(InsertCourse insertCourse) {
+        String sql = "INSERT INTO Course (name, code_url, course_time_hours, instructor, subcategory_id)" +
+                " VALUES (?, ?, ?, ?, ?)";
 
-        try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             pstm.setString(1, insertCourse.getName());
             pstm.setString(2, insertCourse.getCodeUrl());
@@ -28,31 +29,33 @@ public class CourseDAO {
             try (ResultSet rst = pstm.getGeneratedKeys()) {
                 rst.next();
                 return rst.getInt(1);
-                }
             }
+        } catch (SQLException s) {
+            throw new RuntimeException(s);
         }
+    }
 
-    public void deleteCourseByCode(String code){
+    public static void deleteCourseByCode(String code) {
         String sql = "DELETE FROM Course WHERE code_url = ?";
 
-        try(PreparedStatement pstm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement pstm = connection.prepareStatement(sql)) {
             pstm.setString(1, code);
             pstm.execute();
 
             Integer modifiedLines = pstm.getUpdateCount();
             System.out.println(modifiedLines + " lines removed from the table.");
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static int updateToActive(){
+    public static int updateToActive() {
         String sql = "update Course set status = 1 where status = 0";
 
-        try(PreparedStatement pstm = connection.prepareStatement(sql)) {
+        try (PreparedStatement pstm = connection.prepareStatement(sql)) {
             pstm.execute();
             return pstm.getUpdateCount();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return 0;
