@@ -18,6 +18,7 @@ public class Program {
         InsertCourseDTO insertCourseDTO = new InsertCourseDTO("java-se", "java-se", 12,
                 "fa", 1);
 
+
         ConnectionFactory factory = new ConnectionFactory();
         try(Connection connection = factory.getConnection()) {
             CourseDAO courseDAO = new CourseDAO(connection);
