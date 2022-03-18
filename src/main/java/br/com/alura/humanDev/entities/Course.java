@@ -15,12 +15,23 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String codeUrl;
+
+
+    @Column(columnDefinition = "SMALLINT",name = "course_time_hours")
     private Integer courseTimeHours;
+
+    @Column(name = "code_url")
+    private String codeUrl;
     private boolean status;
+
+    @Column(columnDefinition = "TEXT", name = "target_audience")
     private String targetAudience;
+
     private String instructor;
+    @Column(columnDefinition = "TEXT", name = "course_description")
     private String courseDescription;
+
+    @Column(columnDefinition = "TEXT", name = "developed_skills")
     private String developedSkills;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -80,6 +91,8 @@ public class Course {
         this.developedSkills = developedSkills;
         this.subcategory = subcategory;
     }
+
+
 
     public Long getId() {
         return id;

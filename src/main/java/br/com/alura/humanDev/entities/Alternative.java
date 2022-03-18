@@ -2,10 +2,18 @@ package br.com.alura.humanDev.entities;
 
 import br.com.alura.humanDev.entities.activities.Question;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
+@Entity
 public class Alternative {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String questionExplanation;
     private int ordination;

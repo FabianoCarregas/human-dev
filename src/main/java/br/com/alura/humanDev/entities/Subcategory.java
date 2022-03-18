@@ -16,7 +16,11 @@ public class Subcategory {
     private Long id;
     private String name;
     private String code;
+
+    @Column(columnDefinition = "TEXT", name = "subcategory_description")
     private String subcategoryDescription;
+
+    @Column(name = "study_guide")
     private String studyGuide;
     private boolean active;
     private Integer ordination;
@@ -36,17 +40,17 @@ public class Subcategory {
                        Integer ordination,
                        String subcategoryDescription,
                        boolean subcategoryStatus,
-                       Category category_id) {
+                       Category category) {
         notBlankOrNull(name);
         validUrl(code);
-        notBlankOrNull(String.valueOf(category_id));
+        notBlankOrNull(String.valueOf(category));
         this.id = id;
         this.name = name;
         this.code = code;
         this.subcategoryDescription = subcategoryDescription;
         this.active = subcategoryStatus;
         this.ordination = ordination;
-        this.category = category_id;
+        this.category = category;
     }
 
     public Subcategory(String name,
@@ -54,16 +58,30 @@ public class Subcategory {
                        Integer ordination,
                        String subcategoryDescription,
                        boolean subcategoryStatus,
-                       Category category_id) {
+                       Category category) {
         notBlankOrNull(name);
         validUrl(code);
-        notBlankOrNull(String.valueOf(category_id));
+        notBlankOrNull(String.valueOf(category));
         this.name = name;
         this.code = code;
         this.subcategoryDescription = subcategoryDescription;
         this.active = subcategoryStatus;
         this.ordination = ordination;
-        this.category = category_id;
+        this.category = category;
+    }
+
+    public Subcategory(Long id, String name, String code, String subcategoryDescription, String studyGuide, boolean active, Integer ordination, Category category) {
+        notBlankOrNull(name);
+        validUrl(code);
+        notBlankOrNull(String.valueOf(category));
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.subcategoryDescription = subcategoryDescription;
+        this.studyGuide = studyGuide;
+        this.active = active;
+        this.ordination = ordination;
+        this.category = category;
     }
 
     public String getCode() {

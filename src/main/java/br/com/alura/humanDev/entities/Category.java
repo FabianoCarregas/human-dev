@@ -17,12 +17,15 @@ public class Category implements Serializable {
     private Long id;
     private String name;
     private String code;
+
     @Column(name = "category_description")
     private String categoryDescription;
+
     @Column(name = "study_guide")
     private String studyGuide;
     private boolean active;
-    private Integer order;
+
+    private Integer ordination;
     private String icon;
     private String hexaColor;
 
@@ -48,7 +51,7 @@ public class Category implements Serializable {
         this.code = code;
         this.categoryDescription = categoryDescription;
         this.active = categoryStatus;
-        this.order = order;
+        this.ordination = order;
         this.icon = icon;
         this.hexaColor = hexaColor;
     }
@@ -67,7 +70,7 @@ public class Category implements Serializable {
         this.code = code;
         this.categoryDescription = categoryDescription;
         this.active = categoryStatus;
-        this.order = order;
+        this.ordination = order;
         this.icon = icon;
         this.hexaColor = hexaColor;
     }
@@ -89,7 +92,7 @@ public class Category implements Serializable {
         this.categoryDescription = categoryDescription;
         this.studyGuide = studyGuide;
         this.active = active;
-        this.order = order;
+        this.ordination = order;
         this.icon = icon;
         this.hexaColor = hexaColor;
     }

@@ -1,4 +1,4 @@
-package br.com.alura.humanDev.jdbc.query;
+package br.com.alura.humanDev.jpa;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
