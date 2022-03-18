@@ -1,34 +1,30 @@
 package br.com.alura.humanDev.application;
 
-import br.com.alura.humanDev.jdbc.ConnectionFactory;
-import br.com.alura.humanDev.jdbc.query.CourseDAO;
-import br.com.alura.humanDev.entities.dto.InsertCourseDTO;
-import br.com.alura.humanDev.jdbc.query.HtmlReport;
+import br.com.alura.humanDev.entities.Category;
+import br.com.alura.humanDev.entities.Course;
+import br.com.alura.humanDev.entities.Subcategory;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
-import static br.com.alura.humanDev.jdbc.query.CourseDAO.insert;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class Program {
 
     public static void main(String[] args) {
 
-        String courseCode = "java-se";
-        InsertCourseDTO insertCourseDTO = new InsertCourseDTO("java-se", "java-se", 12,
-                "fa", 1);
+        Category category = new Category(1L, "java", "code", "desc", "guide", true, 2, "http", "#FFF");
+        Subcategory subcategory = new Subcategory(null,"ja", "ja", 1, "na", true, category);
+        Course course = new Course(null, "ba", "ba", 1, true, "gga", "haha", "bom", "kaka", subcategory);
 
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("humanDev");
 
-        ConnectionFactory factory = new ConnectionFactory();
-        try(Connection connection = factory.getConnection()) {
-            CourseDAO courseDAO = new CourseDAO(connection);
-            System.out.println(insert(insertCourseDTO));
-            HtmlReport htmlReport = new HtmlReport(connection);
-            System.out.println(courseDAO.updateAllToActive());
-            courseDAO.deleteCourseByCode(courseCode);
-            htmlReport.list();
-        }  catch (SQLException s) {
-            throw new RuntimeException(s);
-        }
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+        em.persist(category);
+        em.persist(subcategory);
+        em.persist(course);
+        em.getTransaction().commit();
+        em.close();
+
     }
 }

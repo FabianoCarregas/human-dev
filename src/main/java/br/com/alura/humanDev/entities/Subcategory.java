@@ -1,10 +1,18 @@
 package br.com.alura.humanDev.entities;
 
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
 import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
+@Entity
 public class Subcategory {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String code;
@@ -12,23 +20,50 @@ public class Subcategory {
     private String studyGuide;
     private boolean active;
     private Integer ordination;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
+
+    @OneToMany(mappedBy = "subcategory")
+    List<Course> courses = new ArrayList<>();
+
+    public Subcategory() {
+    }
+
+    public Subcategory(Long id,
+                       String name,
+                       String code,
+                       Integer ordination,
+                       String subcategoryDescription,
+                       boolean subcategoryStatus,
+                       Category category_id) {
+        notBlankOrNull(name);
+        validUrl(code);
+        notBlankOrNull(String.valueOf(category_id));
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.subcategoryDescription = subcategoryDescription;
+        this.active = subcategoryStatus;
+        this.ordination = ordination;
+        this.category = category_id;
+    }
 
     public Subcategory(String name,
                        String code,
                        Integer ordination,
                        String subcategoryDescription,
                        boolean subcategoryStatus,
-                       Category category) {
+                       Category category_id) {
         notBlankOrNull(name);
         validUrl(code);
-        notBlankOrNull(String.valueOf(category));
+        notBlankOrNull(String.valueOf(category_id));
         this.name = name;
         this.code = code;
         this.subcategoryDescription = subcategoryDescription;
         this.active = subcategoryStatus;
         this.ordination = ordination;
-        this.category = category;
+        this.category = category_id;
     }
 
     public String getCode() {
@@ -53,19 +88,6 @@ public class Subcategory {
 
     public Category getCategory() {
         return category;
-    }
-
-    @Override
-    public String toString() {
-        return "Subcategory {\n" +
-                "   \"name\" = \"" + name + "\", \n" +
-                "   \"code\" = \"" + code + "\", \n" +
-                "   \"subcategoryDescription\" = \"" + subcategoryDescription + "\", \n" +
-                "   \"studyGuide\" = \"" + studyGuide + "\", \n" +
-                "   \"subcategoryStatus\" = " + active + ", \n" +
-                "   \"ordination\" = " + ordination + ", \n" +
-                "         \"category\" = \"" + category + "; \n" +
-                '}';
     }
 
 }
