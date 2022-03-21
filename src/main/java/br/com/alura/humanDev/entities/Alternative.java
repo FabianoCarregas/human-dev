@@ -2,10 +2,7 @@ package br.com.alura.humanDev.entities;
 
 import br.com.alura.humanDev.entities.activities.Question;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
@@ -15,12 +12,20 @@ public class Alternative {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "question_explanation")
     private String questionExplanation;
     private int ordination;
     private String answer;
+    @Column(name = "answer_check")
     private boolean answerCheck;
+    @Column(name = "answer_justification")
     private String answerJustification;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Question question;
+
+    public Alternative() {
+    }
 
     public Alternative(String questionExplanation,
                        String answer,
@@ -44,4 +49,5 @@ public class Alternative {
                 ", rightAnswer='" + answerCheck + '\'' +
                 '}';
     }
+
 }

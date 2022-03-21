@@ -1,9 +1,11 @@
 package br.com.alura.humanDev.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.alura.humanDev.entities.activities.Activity;
+
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
 import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
@@ -18,8 +20,17 @@ public class Section {
     private String code;
     private int ordination;
     private boolean active;
+    @Column(name = "test_status")
     private boolean testStatus;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Course course;
+
+    @OneToMany(mappedBy = "section")
+    List<Activity> activities = new ArrayList<>();
+
+    public Section() {
+    }
 
     public Section(String name,
                    String code,

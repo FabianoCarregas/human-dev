@@ -24,7 +24,6 @@ public class Category implements Serializable {
     @Column(name = "study_guide")
     private String studyGuide;
     private boolean active;
-
     private Integer ordination;
     private String icon;
     private String hexaColor;
@@ -120,6 +119,5 @@ public class Category implements Serializable {
     public String getHexaColor() {
         return hexaColor;
     }
-
 
 }

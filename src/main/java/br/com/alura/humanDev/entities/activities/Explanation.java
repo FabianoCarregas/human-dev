@@ -2,20 +2,20 @@ package br.com.alura.humanDev.entities.activities;
 
 import br.com.alura.humanDev.entities.Section;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 @Entity
+@DiscriminatorValue("Explanation")
 public class Explanation extends Activity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "activity_explanation")
     private String activityExplanation;
+
+    public Explanation() {
+    }
 
     public Explanation(String title,
                        String code,
@@ -32,4 +32,5 @@ public class Explanation extends Activity {
                 "activityExplanation='" + activityExplanation + '\'' +
                 '}';
     }
+
 }

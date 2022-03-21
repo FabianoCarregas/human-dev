@@ -16,7 +16,6 @@ public class Course {
     private Long id;
     private String name;
 
-
     @Column(columnDefinition = "SMALLINT",name = "course_time_hours")
     private Integer courseTimeHours;
 
@@ -36,6 +35,9 @@ public class Course {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Subcategory subcategory;
+
+    @OneToMany(mappedBy = "course")
+    List<Section> sections = new ArrayList<>();
 
     public Course() {
     }

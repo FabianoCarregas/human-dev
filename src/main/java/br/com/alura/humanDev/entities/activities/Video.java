@@ -2,23 +2,25 @@ package br.com.alura.humanDev.entities.activities;
 
 import br.com.alura.humanDev.entities.Section;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
 import static br.com.alura.humanDev.validations.Validation.validNumberHours;
 
 @Entity
+@DiscriminatorValue("video")
 public class Video extends Activity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "video_url")
     private String videoUrl;
+    @Column(columnDefinition = "SMALLINT",name = "video_time")
     private int videoTime;
+    @Column(name = "video_description")
     private String videoDescription;
+
+    public Video() {
+    }
 
     public Video(String title,
                  String code,
@@ -40,4 +42,5 @@ public class Video extends Activity{
                 ", videoDescription='" + videoDescription + '\'' +
                 '}';
     }
+
 }
