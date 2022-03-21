@@ -1,10 +1,9 @@
 package br.com.alura.humanDev.jpa;
 
 import br.com.alura.humanDev.entities.Course;
-import br.com.alura.humanDev.entities.dto.InsertCourseDTO;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import java.util.List;
 
 public class CourseDAO {
 
@@ -13,10 +12,20 @@ public class CourseDAO {
     public CourseDAO(EntityManager em) {
         this.em = em;
     }
-//
-//    public void insert(Course course) {
-//        String jpql = ""
-//    }
+    public void insert(Course course) {
+        this.em.persist(course);
+        Long id = course.getId();
+        System.out.println("Course Id:" + id + " Created");
+    }
+
+    public void deleteCourseByCode(String code) {
+        String jpql = "SELECT c FROM Course c WHERE c.code= :code";
+        Course course = this.em.createQuery(jpql, Course.class)
+                .setParameter("code", code)
+                .getSingleResult();
+        this.em.merge(course);
+        this.em.remove(course);
+    }
 
     public void updateCourseStatusToPublic() {
         String jpql = "UPDATE FROM Course c Set c.status = 0 where c.status = 1";
@@ -24,9 +33,10 @@ public class CourseDAO {
         System.out.println("updated");
     }
 
-    public void deleteCourseByCode(String code) {
-       String jpql = "DELETE FROM Course c WHERE c.code_url = :code_url";
-       em.createQuery(jpql).setParameter(code, "code_url").executeUpdate();
+    public List<Course> showPublicCourses() {
+        String jpql = "SELECT c FROM Course c WHERE c.status = 1";
+        return em.createQuery(jpql, Course.class)
+                .getResultList();
     }
 
 }

@@ -18,9 +18,7 @@ public class Course {
 
     @Column(columnDefinition = "SMALLINT",name = "course_time_hours")
     private Integer courseTimeHours;
-
-    @Column(name = "code_url")
-    private String codeUrl;
+    private String code;
     private boolean status;
 
     @Column(columnDefinition = "TEXT", name = "target_audience")
@@ -44,7 +42,7 @@ public class Course {
 
     public Course(Long id,
                   String name,
-                  String codeUrl,
+                  String code,
                   Integer courseTimeHours,
                   boolean status,
                   String targetAudience,
@@ -53,13 +51,13 @@ public class Course {
                   String developedSkills,
                   Subcategory subcategory) {
         notBlankOrNull(name);
-        validUrl(codeUrl);
+        validUrl(code);
         validNumberHours(courseTimeHours);
         notBlankOrNull(instructor);
         notBlankOrNull(String.valueOf(subcategory));
         this.id = id;
         this.name = name;
-        this.codeUrl = codeUrl;
+        this.code = code;
         this.courseTimeHours = courseTimeHours;
         this.status = status;
         this.targetAudience = targetAudience;
@@ -70,7 +68,7 @@ public class Course {
     }
 
     public Course(String name,
-                  String codeUrl,
+                  String code,
                   Integer courseTimeHours,
                   boolean status,
                   String targetAudience,
@@ -79,12 +77,12 @@ public class Course {
                   String developedSkills,
                   Subcategory subcategory) {
         notBlankOrNull(name);
-        validUrl(codeUrl);
+        validUrl(code);
         validNumberHours(courseTimeHours);
         notBlankOrNull(instructor);
         notBlankOrNull(String.valueOf(subcategory));
         this.name = name;
-        this.codeUrl = codeUrl;
+        this.code = code;
         this.courseTimeHours = courseTimeHours;
         this.status = status;
         this.targetAudience = targetAudience;

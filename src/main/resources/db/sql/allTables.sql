@@ -29,7 +29,7 @@ FOREIGN KEY (`category_id`) REFERENCES Category (`id`)
 CREATE TABLE Course
 (id bigint auto_increment unique PRIMARY KEY,
 `name` VARCHAR(80) NOT NULL,
-`code_url` VARCHAR(80) NOT NULL,
+`code` VARCHAR(80) NOT NULL,
 `course_time_hours` SMALLINT UNSIGNED,
 `status` BOOLEAN,
 `target_audience` TEXT,
