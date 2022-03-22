@@ -1,4 +1,4 @@
-package br.com.alura.humanDev.course;
+package br.com.alura.humanDev.domain.course;
 
 import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.entities.Course;

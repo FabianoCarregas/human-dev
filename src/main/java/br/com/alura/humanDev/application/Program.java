@@ -3,13 +3,12 @@ package br.com.alura.humanDev.application;
 import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.entities.Course;
 import br.com.alura.humanDev.entities.Subcategory;
-import br.com.alura.humanDev.entities.dto.InsertCourseDTO;
 import br.com.alura.humanDev.jpa.CategoryDAO;
 import br.com.alura.humanDev.jpa.CourseDAO;
+import br.com.alura.humanDev.jpa.HtmlReport;
 import br.com.alura.humanDev.jpa.SubcategoryDAO;
 
 import javax.persistence.EntityManager;
-import java.util.List;
 
 import static br.com.alura.humanDev.jpa.JPAUtil.getEntityManager;
 
@@ -36,9 +35,8 @@ public class Program {
 //        courseDAO.insert(course);
 //        courseDAO.deleteCourseByCode(code);
 //        courseDAO.updateCourseStatusToPublic();
-        courseDAO.showPublicCourses();
-        List<Category> cat = categoryDAO.showActiveCategoriesByOrder();
-        cat.forEach(c -> System.out.println(c.getName()));
+
+        HtmlReport.listHtml(categoryDAO, subcategoryDAO, courseDAO);
         em.getTransaction().commit();
         em.close();
 

@@ -20,7 +20,7 @@ public class CategoryDAO {
     }
 
     public List<Category> showActiveCategoriesByOrder() {
-        String jpql = "SELECT c FROM Category c WHERE c.status = 1 ORDER BY c.ordination";
+        String jpql = "SELECT c FROM Category c WHERE c.active = true ORDER BY c.ordination";
         return em.createQuery(jpql, Category.class)
                 .getResultList();
     }

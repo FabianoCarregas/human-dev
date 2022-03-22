@@ -1,4 +1,4 @@
-package br.com.alura.humanDev.category;
+package br.com.alura.humanDev.domain.category;
 
 import br.com.alura.humanDev.entities.Category;
 import org.junit.jupiter.api.Test;

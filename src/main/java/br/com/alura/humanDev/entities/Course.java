@@ -114,6 +114,10 @@ public class Course {
         return subcategory;
     }
 
+    public String getCode() {
+        return code;
+    }
+
     public boolean isStatus() {
         return status;
     }

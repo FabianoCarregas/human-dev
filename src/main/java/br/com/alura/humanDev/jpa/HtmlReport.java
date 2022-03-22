@@ -1,64 +1,90 @@
 package br.com.alura.humanDev.jpa;
 
+import br.com.alura.humanDev.entities.Category;
+import br.com.alura.humanDev.entities.Course;
+import br.com.alura.humanDev.entities.Subcategory;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
 public class HtmlReport {
 
-    private Connection connection;
-
-    public HtmlReport(Connection connection) {
-        this.connection = connection;
+    public HtmlReport() {
     }
 
-    public void list() throws SQLException {
-        String sql = "select c.id, c.`name`, c.course_time_hours, c.subcategory_id, s.`name`\n" +
-                "from Course c inner join Subcategory s on c.subcategory_id = s.id\n" +
-                "where c.status";
+    public static void listHtml(CategoryDAO categoryDAO, SubcategoryDAO subcategoryDAO, CourseDAO courseDAO) {
 
         StringBuilder htmlOpen = new StringBuilder("""
                 <!DOCTYPE html>
                 <html>
                 <head>
                 <meta charset= UTF-8 />
-                <title>Cursos</title>
+                <title>Categories</title>
                 </head>
                 <body>
-                <h1>Cursos</h1>
                 """);
 
-        try (PreparedStatement pstm = connection.prepareStatement(sql)) {
-            pstm.execute();
+        List<Category> cat = categoryDAO.showActiveCategoriesByOrder();
+        cat.forEach(c -> System.out.println(
 
-            String reader = null;
-            try (ResultSet rst = pstm.getResultSet()) {
-                while (rst.next()) {
-                    Long id = rst.getLong("id");
-                    String name = rst.getString("name");
-                    int hours = rst.getInt("course_time_hours");
-                    Long subcategoryId = rst.getLong("subcategory_id");
-                    String subcategory = rst.getString("name");
+                htmlOpen.append("""
+                        <div>
+                            <ul>
+                                <li>Category name: %s </li>
+                                <li>Category code: %s </li>
+                                <li>Category description: %s </li>
+                                <li>Category color: %s </li>
+                                <li>Category icon: %s </li>
+                            </ul>
+                        </div>
+                        """.formatted(c.getName(), c.getCode(), c.getCategoryDescription(), c.getHexaColor(), c.getIcon()))));
 
-                    htmlOpen.append("""
-                            <div>
-                                <ul>
-                                    <li>Course id: %d </li>
-                                    <li>Course name: %s </li>
-                                    <li>Course time: %d </li>
-                                    <li>Subcategory Id: %d </li>
-                                    <li>Subcategory: %s </li>
-                                </ul>
-                               </div>
-                            """.formatted(id, name, hours, subcategoryId, subcategory));
-                }
-            }
+        List<Subcategory> sub = subcategoryDAO.showActiveSubcategoriesByOrder();
+        sub.forEach(c -> System.out.println(
 
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("report.html"));
+                htmlOpen.append("""
+                        <div>
+                            <ul>
+                                <li>Subcategory name: %s </li>
+                                <li>Subcategory code: %s </li>
+                                <li>Subcategory description: %s </li>
+                                <li>Subcategory ordination: %s </li>
+                                <li>Subcategory category: %s </li>
+                            </ul>
+                        </div>
+                        """.formatted(c.getName(), c.getCode(), c.getSubcategoryDescription(), c.getOrdination(), c.getCategory()))));
+
+        List<Course> courses = courseDAO.showPublicCourses();
+        courses.forEach(c -> System.out.println(
+
+                htmlOpen.append("""
+                        <div>
+                            <ul>
+                                <li>Course name: %s </li>
+                                <li>Course code: %s </li>
+                                <li>Course instructor: %s </li>
+                                <li>Course course hours: %s </li>
+                                <li>Course subcategory: %s </li>
+                            </ul>
+                        </div>
+                        """.formatted(c.getName(), c.getCode(), c.getInstructor(), c.getCourseTimeHours(), c.getSubcategory() ))));
+
+        List<String> subName = subcategoryDAO.showSubcategoriesWithoutDescription();
+        subName.forEach(c -> System.out.println(
+
+                htmlOpen.append("""
+                        <div>
+                            <ul>
+                                <li>Subcategory without description </li>
+                                <li>Subcategory name: %s </li>
+                            </ul>
+                        </div>
+                        """.formatted(c.toString()))));
+
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("report.html"))) {
 
             htmlOpen.append("""  
                             </body>
@@ -68,12 +94,13 @@ public class HtmlReport {
             bufferedWriter.write(htmlOpen.toString());
             bufferedWriter.flush();
             bufferedWriter.close();
+            System.out.println("HTML created");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("HTML created");
-
     }
+
 }
 
 

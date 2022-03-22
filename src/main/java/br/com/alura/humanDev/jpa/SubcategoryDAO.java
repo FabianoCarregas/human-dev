@@ -20,14 +20,14 @@ public class SubcategoryDAO {
     }
 
     public List<Subcategory> showActiveSubcategoriesByOrder() {
-        String jpql = "SELECT s FROM Subcategory s WHERE s.status = 1 ORDER BY s.ordination";
+        String jpql = "SELECT s FROM Subcategory s WHERE s.active = true ORDER BY s.ordination";
         return em.createQuery(jpql, Subcategory.class)
                 .getResultList();
     }
 
-    public List<Subcategory> showSubcategoriesWithoutDescription() {
-        String jpql = "SELECT s FROM Subcategory s WHERE s.description = ''";
-        return em.createQuery(jpql, Subcategory.class)
+    public List<String> showSubcategoriesWithoutDescription() {
+        String jpql = "SELECT s.name FROM Subcategory s WHERE s.subcategoryDescription = ''";
+        return em.createQuery(jpql, String.class)
                 .getResultList();
     }
 
