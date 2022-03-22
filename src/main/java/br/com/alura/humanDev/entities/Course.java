@@ -40,33 +40,6 @@ public class Course {
     public Course() {
     }
 
-    public Course(Long id,
-                  String name,
-                  String code,
-                  Integer courseTimeHours,
-                  boolean status,
-                  String targetAudience,
-                  String instructor,
-                  String courseDescription,
-                  String developedSkills,
-                  Subcategory subcategory) {
-        notBlankOrNull(name);
-        validUrl(code);
-        validNumberHours(courseTimeHours);
-        notBlankOrNull(instructor);
-        notBlankOrNull(String.valueOf(subcategory));
-        this.id = id;
-        this.name = name;
-        this.code = code;
-        this.courseTimeHours = courseTimeHours;
-        this.status = status;
-        this.targetAudience = targetAudience;
-        this.instructor = instructor;
-        this.courseDescription = courseDescription;
-        this.developedSkills = developedSkills;
-        this.subcategory = subcategory;
-    }
-
     public Course(String name,
                   String code,
                   Integer courseTimeHours,
@@ -91,8 +64,6 @@ public class Course {
         this.developedSkills = developedSkills;
         this.subcategory = subcategory;
     }
-
-
 
     public Long getId() {
         return id;

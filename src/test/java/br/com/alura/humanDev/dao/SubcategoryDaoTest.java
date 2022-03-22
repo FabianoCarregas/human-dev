@@ -1,18 +1,17 @@
 package br.com.alura.humanDev.dao;
 
 
+public class SubcategoryDaoTest {
 
-public class CourseDaoTest {
 
-//    private Subcategory subcategory;
 //    private Category category;
-//    private CourseDAO dao;
+//    private SubcategoryDAO dao;
 //    private EntityManager em ;
 //
 //    @BeforeEach
 //    public void beforeEach() {
 //        this.em = JPAUtil.getEntityManager();
-//        this.dao = new CourseDAO(em);
+//        this.dao = new SubcategoryDAO(em);
 //        em.getTransaction().begin();
 //
 //        this.category = new CategoryBuilder()
@@ -25,22 +24,12 @@ public class CourseDaoTest {
 //                .withHexaColor("#FFF")
 //                .create();
 //        em.persist(category);
-//
-//        this.subcategory = new SubcategoryBuilder()
-//                .withName("java")
-//                .withCode("code")
-//                .withOrdination(1)
-//                .withSubcategoryDescription("desc")
-//                .withActive(true)
-//                .withCategory(category)
-//                .create();
-//        em.persist(subcategory);
-//
-//   }
+//    }
 //
 //    @AfterEach
 //    public void afterEach() {
 //        em.getTransaction().rollback();
 //    }
+
 
 }

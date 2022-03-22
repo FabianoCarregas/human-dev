@@ -34,64 +34,21 @@ public class Category implements Serializable {
     public Category() {
     }
 
-    public Category(Long id,
-                    String name,
+     public Category(String name,
                     String code,
-                    Integer order,
+                    Integer ordination,
                     String categoryDescription,
-                    boolean categoryStatus,
-                    String icon,
-                    String hexaColor) {
-        notBlankOrNull(name);
-        validUrl(code);
-        validColor(hexaColor);
-        this.id = id;
-        this.name = name;
-        this.code = code;
-        this.categoryDescription = categoryDescription;
-        this.active = categoryStatus;
-        this.ordination = order;
-        this.icon = icon;
-        this.hexaColor = hexaColor;
-    }
-
-    public Category(String name,
-                    String code,
-                    Integer order,
-                    String categoryDescription,
-                    boolean categoryStatus,
-                    String icon,
-                    String hexaColor) {
-        notBlankOrNull(name);
-        validUrl(code);
-        validColor(hexaColor);
-        this.name = name;
-        this.code = code;
-        this.categoryDescription = categoryDescription;
-        this.active = categoryStatus;
-        this.ordination = order;
-        this.icon = icon;
-        this.hexaColor = hexaColor;
-    }
-    public Category(Long id,
-                    String name,
-                    String code,
-                    String categoryDescription,
-                    String studyGuide,
                     boolean active,
-                    Integer order,
                     String icon,
                     String hexaColor) {
         notBlankOrNull(name);
         validUrl(code);
         validColor(hexaColor);
-        this.id = id;
         this.name = name;
         this.code = code;
         this.categoryDescription = categoryDescription;
-        this.studyGuide = studyGuide;
         this.active = active;
-        this.ordination = order;
+        this.ordination = ordination;
         this.icon = icon;
         this.hexaColor = hexaColor;
     }

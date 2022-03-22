@@ -12,6 +12,7 @@ public class CourseDAO {
     public CourseDAO(EntityManager em) {
         this.em = em;
     }
+
     public void insert(Course course) {
         this.em.persist(course);
         Long id = course.getId();

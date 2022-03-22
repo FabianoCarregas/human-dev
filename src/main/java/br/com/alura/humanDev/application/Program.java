@@ -18,10 +18,12 @@ public class Program {
 
         String code = "code";
 
-        Category category = new Category(null, "java", "code", "desc", "guide", true, 2, "http", "#FFF");
-        Subcategory subcategory = new Subcategory(null,"name", "code", "desc", "guide", true, 3, category);
-        Course course = new Course(null,"name", "code", 1, false, "target", "inst", "desc", "skills", subcategory);
-
+        Category category = new Category("java", "code", 2, "desc",
+                true, "http", "#FFF");
+        Subcategory subcategory = new Subcategory("name", "code", 3, "desc",
+                true, category);
+        Course course = new Course("name", "code", 1, false, "target",
+                "inst", "desc", "skills", subcategory);
 
         EntityManager em = getEntityManager();
         CategoryDAO categoryDAO = new CategoryDAO(em);
@@ -30,7 +32,7 @@ public class Program {
 
 
         em.getTransaction().begin();
-//        categoryDAO.insert(category);
+       categoryDAO.insert(category);
 //        subcategoryDAO.insert(subcategory);
 //        courseDAO.insert(course);
 //        courseDAO.deleteCourseByCode(code);
