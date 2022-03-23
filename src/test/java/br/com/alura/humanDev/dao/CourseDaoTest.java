@@ -3,7 +3,7 @@ package br.com.alura.humanDev.dao;
 import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.entities.Course;
 import br.com.alura.humanDev.entities.Subcategory;
-import br.com.alura.humanDev.util.JPAUtil;
+import br.com.alura.humanDev.util.JPAUtilTest;
 import br.com.alura.humanDev.builders.CategoryBuilder;
 import br.com.alura.humanDev.builders.CourseBuilder;
 import br.com.alura.humanDev.builders.SubcategoryBuilder;
@@ -21,15 +21,17 @@ public class CourseDaoTest {
 
     private Subcategory subcategory;
     private Category category;
-    private CourseDAO dao;
+    private CourseDAO coursedao;
     private CategoryDAO categoryDAO;
     private SubcategoryDAO subcategoryDAO;
     private EntityManager em ;
 
     @BeforeEach
     public void beforeEach() {
-        this.em = JPAUtil.getEntityManagerTest();
-        this.dao = new CourseDAO(em);
+        this.em = JPAUtilTest.getEntityManager();
+        this.coursedao = new CourseDAO(em);
+        this.categoryDAO = new CategoryDAO(em);
+        this.subcategoryDAO = new SubcategoryDAO(em);
 
         this.category = new CategoryBuilder()
                 .withName("Development")
@@ -55,23 +57,9 @@ public class CourseDaoTest {
 
     @AfterEach
     public void afterEach() {
+        coursedao.removeAllCourses();
         subcategoryDAO.removeAllSubcategories();
-    }
-
-    private Course createCourse2() {
-        Course course = new CourseBuilder()
-                .withName("course-true")
-                .withCode("code-test")
-                .withCourseTimeHours(1)
-                .withStatus(true)
-                .withTargetAudience("")
-                .withIntructor("Bia")
-                .withCourseDescription("")
-                .withDevelopedSkills("")
-                .withSubcategory(subcategory)
-                .create();
-        dao.insert(course);
-        return course;
+        categoryDAO.removeAllCategories();
     }
 
     @Test
@@ -79,7 +67,7 @@ public class CourseDaoTest {
         createCourse();
         createCourse2();
 
-        List<Course> courses = this.dao.showPublicCourses();
+        List<Course> courses = this.coursedao.showPublicCourses();
 
         assertEquals(1, courses.size());
         assertEquals("course-true", courses.get(0).getName());
@@ -90,7 +78,7 @@ public class CourseDaoTest {
         createCourse();
         createCourse2();
 
-        List<Course> courses = this.dao.updateCourseStatusToPublic();
+        List<Course> courses = this.coursedao.updateCourseStatusToPublic();
 
         assertEquals(2, courses.size());
         assertTrue(courses.get(1).isStatus());
@@ -108,7 +96,23 @@ public class CourseDaoTest {
                 .withDevelopedSkills("")
                 .withSubcategory(subcategory)
                 .create();
-        dao.insert(course);
+        coursedao.insert(course);
+        return course;
+    }
+
+    private Course createCourse2() {
+        Course course = new CourseBuilder()
+                .withName("course-true")
+                .withCode("code-test")
+                .withCourseTimeHours(1)
+                .withStatus(true)
+                .withTargetAudience("")
+                .withIntructor("Bia")
+                .withCourseDescription("")
+                .withDevelopedSkills("")
+                .withSubcategory(subcategory)
+                .create();
+        coursedao.insert(course);
         return course;
     }
 

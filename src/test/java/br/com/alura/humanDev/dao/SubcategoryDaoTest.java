@@ -2,7 +2,7 @@ package br.com.alura.humanDev.dao;
 
 import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.entities.Subcategory;
-import br.com.alura.humanDev.util.JPAUtil;
+import br.com.alura.humanDev.util.JPAUtilTest;
 import br.com.alura.humanDev.builders.CategoryBuilder;
 import br.com.alura.humanDev.builders.SubcategoryBuilder;
 import org.junit.jupiter.api.AfterEach;
@@ -17,14 +17,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SubcategoryDaoTest {
 
     private Category category;
-    private SubcategoryDAO dao;
-    private CategoryDAO categoryDAOdao;
+    private SubcategoryDAO subcategorydao;
+    private CategoryDAO categoryDAO;
     private EntityManager em;
 
     @BeforeEach
     public void beforeEach() {
-        this.em = JPAUtil.getEntityManagerTest();
-        this.dao = new SubcategoryDAO(em);
+        this.em = JPAUtilTest.getEntityManager();
+        this.subcategorydao = new SubcategoryDAO(em);
+        this.categoryDAO = new CategoryDAO(em);
 
         this.category = new CategoryBuilder()
                 .withName("Development")
@@ -35,12 +36,13 @@ public class SubcategoryDaoTest {
                 .withIcon("http")
                 .withHexaColor("#FFF")
                 .create();
-        categoryDAOdao.insert(category);
+        categoryDAO.insert(category);
     }
 
     @AfterEach
     public void afterEach() {
-        dao.removeAllSubcategories();
+        subcategorydao.removeAllSubcategories();
+        categoryDAO.removeAllCategories();
     }
 
     @Test
@@ -48,7 +50,7 @@ public class SubcategoryDaoTest {
         createSubcategory();
         createSubcategory2();
 
-        List<String> subcategories = this.dao.showSubcategoriesWithoutDescription();
+        List<String> subcategories = this.subcategorydao.showSubcategoriesWithoutDescription();
 
         assertEquals("java2", subcategories.get(0));
         assertEquals(1, subcategories.size());
@@ -59,7 +61,7 @@ public class SubcategoryDaoTest {
         createSubcategory();
         createSubcategory2();
 
-        List<Subcategory> subcategories = this.dao.showActiveSubcategoriesByOrder();
+        List<Subcategory> subcategories = this.subcategorydao.showActiveSubcategoriesByOrder();
 
         assertEquals(2, subcategories.size());
         assertEquals("java", subcategories.get(0).getName());
@@ -75,7 +77,7 @@ public class SubcategoryDaoTest {
                 .withActive(true)
                 .withCategory(category)
                 .create();
-        dao.insert(subcategory);
+        subcategorydao.insert(subcategory);
         return subcategory;
     }
 
@@ -88,7 +90,7 @@ public class SubcategoryDaoTest {
                 .withActive(true)
                 .withCategory(category)
                 .create();
-        dao.insert(subcategory);
+        subcategorydao.insert(subcategory);
         return subcategory;
     }
 }

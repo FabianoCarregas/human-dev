@@ -61,7 +61,7 @@ public class CourseDAO {
     }
 
     public void removeAllCourses() {
-        String jpql = "DELETE FROM Courses";
+        String jpql = "DELETE FROM Course";
         try {
             em.getTransaction().begin();
             em.createQuery(jpql).executeUpdate();

@@ -1,8 +1,8 @@
 package br.com.alura.humanDev.dao;
 
 import br.com.alura.humanDev.entities.Category;
-import br.com.alura.humanDev.util.JPAUtil;
 import br.com.alura.humanDev.builders.CategoryBuilder;
+import br.com.alura.humanDev.util.JPAUtilTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,8 +19,9 @@ public class CategoryDaoTest {
 
     @BeforeEach
     public void beforeEach() {
-        this.em = JPAUtil.getEntityManagerTest();
+        this.em = JPAUtilTest.getEntityManager();
         this.dao = new CategoryDAO(em);
+        System.out.println("teste>>>>>>>>>>>");
     }
 
     @AfterEach
