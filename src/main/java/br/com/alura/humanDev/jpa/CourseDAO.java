@@ -40,4 +40,10 @@ public class CourseDAO {
                 .getResultList();
     }
 
+    public List<Course> findAllCourses() {
+        String jpql = "SELECT c from Course c";
+        return em.createQuery(jpql, Course.class)
+                .getResultList();
+    }
+
 }

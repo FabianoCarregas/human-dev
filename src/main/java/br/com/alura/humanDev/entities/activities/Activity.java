@@ -10,9 +10,11 @@ import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 //@DiscriminatorColumn(name = "type")
+//@PrimaryKeyJoinColumn
 public abstract class Activity {
 
     @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String code;

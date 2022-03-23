@@ -15,6 +15,10 @@ public class CourseBuilder {
     private String developedSkills;
     private Subcategory subcategory;
 
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public CourseBuilder withName(String name) {
         this.name = name;
         return this;

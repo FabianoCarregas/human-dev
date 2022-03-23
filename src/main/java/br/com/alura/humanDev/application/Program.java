@@ -32,11 +32,11 @@ public class Program {
 
 
         em.getTransaction().begin();
-       categoryDAO.insert(category);
+//        categoryDAO.insert(category);
 //        subcategoryDAO.insert(subcategory);
 //        courseDAO.insert(course);
 //        courseDAO.deleteCourseByCode(code);
-//        courseDAO.updateCourseStatusToPublic();
+        courseDAO.updateCourseStatusToPublic();
 
         HtmlReport.listHtml(categoryDAO, subcategoryDAO, courseDAO);
         em.getTransaction().commit();
