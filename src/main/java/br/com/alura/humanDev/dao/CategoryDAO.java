@@ -14,22 +14,30 @@ public class CategoryDAO {
     }
 
     public void insert(Category category) {
-        this.em.getTransaction().begin();
-        this.em.persist(category);
-        this.em.getTransaction().commit();
+        try {
+            this.em.getTransaction().begin();
+            this.em.persist(category);
+            this.em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Category> showActiveCategoriesByOrder() {
-        this.em.getTransaction().begin();
-        String jpql = "SELECT c FROM Category c WHERE c.active = true ORDER BY c.ordination";
-        List<Category> categories = em.createQuery(jpql, Category.class)
-                .getResultList();
-        this.em.getTransaction().commit();
-        return categories;
+        try {
+            this.em.getTransaction().begin();
+            String jpql = "SELECT c FROM Category c WHERE c.active = true ORDER BY c.ordination";
+            List<Category> categories = em.createQuery(jpql, Category.class)
+                    .getResultList();
+            this.em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void removeAllCategories() {
-       String jpql = "DELETE FROM Category";
+        String jpql = "DELETE FROM Category";
         try {
             em.getTransaction().begin();
             em.createQuery(jpql).executeUpdate();
@@ -38,5 +46,4 @@ public class CategoryDAO {
             e.printStackTrace();
         }
     }
-
 }

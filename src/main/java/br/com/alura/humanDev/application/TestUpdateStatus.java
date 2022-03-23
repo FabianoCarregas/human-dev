@@ -11,7 +11,7 @@ public class TestUpdateStatus {
         EntityManager em = JPAUtil.getEntityManager();
         CourseDAO courseDAO = new CourseDAO(em);
 
-        courseDAO.updateCourseStatusToPublic();
+        courseDAO.updateAllCourseStatusToPublic();
 
         em.close();
     }

@@ -78,7 +78,7 @@ public class CourseDaoTest {
         createCourse();
         createCourse2();
 
-        List<Course> courses = this.coursedao.updateCourseStatusToPublic();
+        List<Course> courses = this.coursedao.updateAllCourseStatusToPublic();
 
         assertEquals(2, courses.size());
         assertTrue(courses.get(1).isStatus());

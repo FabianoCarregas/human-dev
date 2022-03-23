@@ -14,50 +14,72 @@ public class CourseDAO {
     }
 
     public void insert(Course course) {
-        this.em.getTransaction().begin();
-        this.em.persist(course);
-        this.em.getTransaction().commit();
-        Long id = course.getId();
-        System.out.println("Course Id:" + id + " Created");
+        try {
+            this.em.getTransaction().begin();
+            this.em.persist(course);
+            this.em.getTransaction().commit();
+            Long id = course.getId();
+            System.out.println("Course Id:" + id + " Created");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteCourseByCode(String code) {
-        this.em.getTransaction().begin();
-        String jpql = "SELECT c FROM Course c WHERE c.code= :code";
-        Course course = this.em.createQuery(jpql, Course.class)
-                .setParameter("code", code)
-                .getSingleResult();
-        this.em.merge(course);
-        this.em.remove(course);
-        this.em.getTransaction().commit();
+        try {
+            this.em.getTransaction().begin();
+            String jpql = "SELECT c FROM Course c WHERE c.code= :code";
+            Course course = this.em.createQuery(jpql, Course.class)
+                    .setParameter("code", code)
+                    .getSingleResult();
+            this.em.merge(course);
+            this.em.remove(course);
+            this.em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public List<Course> updateCourseStatusToPublic() {
-        this.em.getTransaction().begin();
-        String jpql = "UPDATE FROM Course c Set c.status = 1 where c.status = 0";
-        em.createQuery(jpql).executeUpdate();
-        this.em.getTransaction().commit();
-        System.out.println("Course updated to Public");
-        return findAllCourses();
+    public List<Course> updateAllCourseStatusToPublic() {
+        try {
+            this.em.getTransaction().begin();
+            String jpql = "UPDATE Course c Set c.status = 0";
+            em.createQuery(jpql).executeUpdate();
+            this.em.getTransaction().commit();
+            System.out.println("Course updated to Public");
+            return findAllCourses();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public List<Course> showPublicCourses() {
-        this.em.getTransaction().begin();
-        String jpql = "SELECT c FROM Course c WHERE c.status = 1";
-        List<Course> courses = em.createQuery(jpql, Course.class)
-                .getResultList();
-        this.em.getTransaction().commit();
-        return courses;
-
+        try {
+            this.em.getTransaction().begin();
+            String jpql = "SELECT c FROM Course c WHERE c.status = :true";
+            List<Course> courses = em.createQuery(jpql, Course.class)
+                    .getResultList();
+            this.em.getTransaction().commit();
+            return courses;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public List<Course> findAllCourses() {
-        this.em.getTransaction().begin();
-        String jpql = "SELECT c from Course c";
-        List<Course> courses = em.createQuery(jpql, Course.class)
-                .getResultList();
-        this.em.getTransaction().commit();
-        return courses;
+        try {
+            this.em.getTransaction().begin();
+            String jpql = "SELECT c from Course c";
+            List<Course> courses = em.createQuery(jpql, Course.class)
+                    .getResultList();
+            this.em.getTransaction().commit();
+            return courses;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void removeAllCourses() {
