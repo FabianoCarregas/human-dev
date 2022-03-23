@@ -68,4 +68,5 @@ public class CategoryDaoTest {
         assertEquals("Development1", categories.get(1).getName());
     }
 
+
 }

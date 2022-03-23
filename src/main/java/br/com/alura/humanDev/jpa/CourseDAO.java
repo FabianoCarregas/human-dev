@@ -28,10 +28,11 @@ public class CourseDAO {
         this.em.remove(course);
     }
 
-    public void updateCourseStatusToPublic() {
+    public List<Course> updateCourseStatusToPublic() {
         String jpql = "UPDATE FROM Course c Set c.status = 1 where c.status = 0";
         em.createQuery(jpql).executeUpdate();
         System.out.println("Course updated to Public");
+        return findAllCourses();
     }
 
     public List<Course> showPublicCourses() {

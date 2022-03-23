@@ -36,9 +36,9 @@ public class Program {
 //        subcategoryDAO.insert(subcategory);
 //        courseDAO.insert(course);
 //        courseDAO.deleteCourseByCode(code);
-//        courseDAO.updateCourseStatusToPublic();
-
-        HtmlReport.listHtml(categoryDAO, subcategoryDAO, courseDAO);
+        courseDAO.updateCourseStatusToPublic();
+//
+//        HtmlReport.listHtml(categoryDAO, subcategoryDAO, courseDAO);
         em.getTransaction().commit();
         em.close();
 

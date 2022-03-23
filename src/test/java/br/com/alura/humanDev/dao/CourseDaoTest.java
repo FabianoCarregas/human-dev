@@ -9,7 +9,6 @@ import br.com.alura.humanDev.jpa.builder.CategoryBuilder;
 import br.com.alura.humanDev.jpa.builder.CourseBuilder;
 import br.com.alura.humanDev.jpa.builder.SubcategoryBuilder;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +16,7 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CourseDaoTest {
 
@@ -105,10 +105,12 @@ public class CourseDaoTest {
     void shouldUpdateCourseStatusToPublic() {
         createCourse();
         createCourse2();
-        this.dao.updateCourseStatusToPublic();
-        List<Course> courses = this.dao.showPublicCourses();
+
+        List<Course> courses = this.dao.updateCourseStatusToPublic();
 
         assertEquals(2, courses.size());
+        assertTrue(courses.get(1).isStatus());
+        assertTrue(courses.get(0).isStatus());
     }
 
 }

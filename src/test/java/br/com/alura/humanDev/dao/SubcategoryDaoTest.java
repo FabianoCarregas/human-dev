@@ -1,22 +1,18 @@
 package br.com.alura.humanDev.dao;
 
 import br.com.alura.humanDev.entities.Category;
-import br.com.alura.humanDev.entities.Course;
 import br.com.alura.humanDev.entities.Subcategory;
 import br.com.alura.humanDev.jpa.JPAUtil;
 import br.com.alura.humanDev.jpa.SubcategoryDAO;
 import br.com.alura.humanDev.jpa.builder.CategoryBuilder;
 import br.com.alura.humanDev.jpa.builder.SubcategoryBuilder;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
-
 import java.util.List;
 
-import static br.com.alura.humanDev.readers.SubcategoryReader.showSubcategoriesWithoutDescription;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SubcategoryDaoTest {
@@ -84,7 +80,6 @@ public class SubcategoryDaoTest {
 
         assertEquals("java2", subcategories.get(0));
         assertEquals(1, subcategories.size());
-
     }
 
     @Test
