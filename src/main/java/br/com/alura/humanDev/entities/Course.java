@@ -34,9 +34,6 @@ public class Course {
     @ManyToOne(fetch = FetchType.LAZY)
     private Subcategory subcategory;
 
-    @OneToMany(mappedBy = "course")
-    List<Section> sections = new ArrayList<>();
-
     public Course() {
     }
 

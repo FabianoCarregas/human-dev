@@ -9,6 +9,13 @@
         <class>br.com.alura.humanDev.entities.Category</class>
         <class>br.com.alura.humanDev.entities.Subcategory</class>
         <class>br.com.alura.humanDev.entities.Course</class>
+<!--        <class>br.com.alura.humanDev.entities.activities.Activity</class>-->
+<!--        <class>br.com.alura.humanDev.entities.activities.Explanation</class>-->
+<!--        <class>br.com.alura.humanDev.entities.activities.Question</class>-->
+<!--        <class>br.com.alura.humanDev.entities.activities.Video</class>-->
+<!--        <class>br.com.alura.humanDev.entities.Alternative</class>-->
+<!--        <class>br.com.alura.humanDev.entities.Category</class>-->
+<!--        <class>br.com.alura.humanDev.entities.Section</class>-->
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />

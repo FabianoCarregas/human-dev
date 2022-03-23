@@ -21,7 +21,6 @@ public class CategoryDaoTest {
     public void beforeEach() {
         this.em = JPAUtilTest.getEntityManager();
         this.dao = new CategoryDAO(em);
-        System.out.println("teste>>>>>>>>>>>");
     }
 
     @AfterEach
