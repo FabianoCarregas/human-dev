@@ -1,5 +1,8 @@
-package br.com.alura.humanDev.jpa;
+package br.com.alura.humanDev.reports;
 
+import br.com.alura.humanDev.dao.CategoryDAO;
+import br.com.alura.humanDev.dao.CourseDAO;
+import br.com.alura.humanDev.dao.SubcategoryDAO;
 import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.entities.Course;
 import br.com.alura.humanDev.entities.Subcategory;

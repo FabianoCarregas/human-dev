@@ -3,11 +3,10 @@ package br.com.alura.humanDev.dao;
 import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.entities.Course;
 import br.com.alura.humanDev.entities.Subcategory;
-import br.com.alura.humanDev.jpa.CourseDAO;
-import br.com.alura.humanDev.jpa.JPAUtil;
-import br.com.alura.humanDev.jpa.builder.CategoryBuilder;
-import br.com.alura.humanDev.jpa.builder.CourseBuilder;
-import br.com.alura.humanDev.jpa.builder.SubcategoryBuilder;
+import br.com.alura.humanDev.util.JPAUtil;
+import br.com.alura.humanDev.builders.CategoryBuilder;
+import br.com.alura.humanDev.builders.CourseBuilder;
+import br.com.alura.humanDev.builders.SubcategoryBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,13 +22,14 @@ public class CourseDaoTest {
     private Subcategory subcategory;
     private Category category;
     private CourseDAO dao;
+    private CategoryDAO categoryDAO;
+    private SubcategoryDAO subcategoryDAO;
     private EntityManager em ;
 
     @BeforeEach
     public void beforeEach() {
         this.em = JPAUtil.getEntityManagerTest();
         this.dao = new CourseDAO(em);
-        em.getTransaction().begin();
 
         this.category = new CategoryBuilder()
                 .withName("Development")
@@ -40,7 +40,7 @@ public class CourseDaoTest {
                 .withIcon("http")
                 .withHexaColor("#FFF")
                 .create();
-        em.persist(category);
+        categoryDAO.insert(category);
 
         this.subcategory = new SubcategoryBuilder()
                 .withName("java")
@@ -50,28 +50,12 @@ public class CourseDaoTest {
                 .withActive(true)
                 .withCategory(category)
                 .create();
-        em.persist(subcategory);
+       subcategoryDAO.insert(subcategory);
    }
 
     @AfterEach
     public void afterEach() {
-        em.getTransaction().rollback();
-    }
-
-    private Course createCourse() {
-        Course course = new CourseBuilder()
-                .withName("name")
-                .withCode("code-test")
-                .withCourseTimeHours(1)
-                .withStatus(false)
-                .withTargetAudience("")
-                .withIntructor("Bia")
-                .withCourseDescription("")
-                .withDevelopedSkills("")
-                .withSubcategory(subcategory)
-                .create();
-        em.persist(course);
-        return course;
+        subcategoryDAO.removeAllSubcategories();
     }
 
     private Course createCourse2() {
@@ -86,7 +70,7 @@ public class CourseDaoTest {
                 .withDevelopedSkills("")
                 .withSubcategory(subcategory)
                 .create();
-        em.persist(course);
+        dao.insert(course);
         return course;
     }
 
@@ -110,7 +94,22 @@ public class CourseDaoTest {
 
         assertEquals(2, courses.size());
         assertTrue(courses.get(1).isStatus());
-        assertTrue(courses.get(0).isStatus());
+    }
+
+    private Course createCourse() {
+        Course course = new CourseBuilder()
+                .withName("name")
+                .withCode("code-test")
+                .withCourseTimeHours(1)
+                .withStatus(false)
+                .withTargetAudience("")
+                .withIntructor("Bia")
+                .withCourseDescription("")
+                .withDevelopedSkills("")
+                .withSubcategory(subcategory)
+                .create();
+        dao.insert(course);
+        return course;
     }
 
 }

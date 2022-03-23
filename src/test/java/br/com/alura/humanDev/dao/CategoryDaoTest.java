@@ -1,9 +1,8 @@
 package br.com.alura.humanDev.dao;
 
 import br.com.alura.humanDev.entities.Category;
-import br.com.alura.humanDev.jpa.CategoryDAO;
-import br.com.alura.humanDev.jpa.JPAUtil;
-import br.com.alura.humanDev.jpa.builder.CategoryBuilder;
+import br.com.alura.humanDev.util.JPAUtil;
+import br.com.alura.humanDev.builders.CategoryBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,12 +21,22 @@ public class CategoryDaoTest {
     public void beforeEach() {
         this.em = JPAUtil.getEntityManagerTest();
         this.dao = new CategoryDAO(em);
-        em.getTransaction().begin();
     }
 
     @AfterEach
     public void afterEach() {
-        em.getTransaction().rollback();
+        dao.removeAllCategories();
+    }
+
+    @Test
+    void shouldShowActiveCategoriesByOrder() {
+        createCategory();
+        createCategory2();
+        List<Category> categories = this.dao.showActiveCategoriesByOrder();
+
+        assertEquals(2, categories.size());
+        assertEquals("Development", categories.get(0).getName());
+        assertEquals("Development1", categories.get(1).getName());
     }
 
     private Category createCategory() {
@@ -40,7 +49,7 @@ public class CategoryDaoTest {
                 .withIcon("http")
                 .withHexaColor("#FFF")
                 .create();
-        em.persist(category);
+        dao.insert(category);
         return category;
     }
 
@@ -54,19 +63,8 @@ public class CategoryDaoTest {
                 .withIcon("http")
                 .withHexaColor("#FFF")
                 .create();
-        em.persist(category);
+        dao.insert(category);
         return category;
     }
-    @Test
-    void shouldShowActiveCategoriesByOrder() {
-        createCategory();
-        createCategory2();
-        List<Category> categories = this.dao.showActiveCategoriesByOrder();
-
-        assertEquals(2, categories.size());
-        assertEquals("Development", categories.get(0).getName());
-        assertEquals("Development1", categories.get(1).getName());
-    }
-
 
 }

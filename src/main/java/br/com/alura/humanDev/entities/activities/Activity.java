@@ -9,7 +9,6 @@ import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-//@PrimaryKeyJoinColumn
 public abstract class Activity {
 
     @Id

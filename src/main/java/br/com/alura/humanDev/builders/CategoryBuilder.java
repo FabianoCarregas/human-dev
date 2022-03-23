@@ -1,4 +1,4 @@
-package br.com.alura.humanDev.jpa.builder;
+package br.com.alura.humanDev.builders;
 
 import br.com.alura.humanDev.entities.Category;
 

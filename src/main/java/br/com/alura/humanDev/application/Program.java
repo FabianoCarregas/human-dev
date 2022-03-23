@@ -3,14 +3,14 @@ package br.com.alura.humanDev.application;
 import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.entities.Course;
 import br.com.alura.humanDev.entities.Subcategory;
-import br.com.alura.humanDev.jpa.CategoryDAO;
-import br.com.alura.humanDev.jpa.CourseDAO;
-import br.com.alura.humanDev.jpa.HtmlReport;
-import br.com.alura.humanDev.jpa.SubcategoryDAO;
+import br.com.alura.humanDev.dao.CategoryDAO;
+import br.com.alura.humanDev.dao.CourseDAO;
+import br.com.alura.humanDev.reports.HtmlReport;
+import br.com.alura.humanDev.dao.SubcategoryDAO;
 
 import javax.persistence.EntityManager;
 
-import static br.com.alura.humanDev.jpa.JPAUtil.getEntityManager;
+import static br.com.alura.humanDev.util.JPAUtil.getEntityManager;
 
 public class Program {
 
@@ -30,17 +30,13 @@ public class Program {
         SubcategoryDAO subcategoryDAO = new SubcategoryDAO(em);
         CourseDAO courseDAO = new CourseDAO(em);
 
-
-        em.getTransaction().begin();
 //        categoryDAO.insert(category);
 //        subcategoryDAO.insert(subcategory);
 //        courseDAO.insert(course);
 //        courseDAO.deleteCourseByCode(code);
-        courseDAO.updateCourseStatusToPublic();
-//
-//        HtmlReport.listHtml(categoryDAO, subcategoryDAO, courseDAO);
-        em.getTransaction().commit();
-        em.close();
+//        courseDAO.updateCourseStatusToPublic();
 
+        HtmlReport.listHtml(categoryDAO, subcategoryDAO, courseDAO);
+        em.close();
     }
 }

@@ -1,4 +1,4 @@
-package br.com.alura.humanDev.jpa;
+package br.com.alura.humanDev.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

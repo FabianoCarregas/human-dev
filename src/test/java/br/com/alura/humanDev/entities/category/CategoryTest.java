@@ -1,8 +1,7 @@
-package br.com.alura.humanDev.domain.category;
+package br.com.alura.humanDev.entities.category;
 
 import br.com.alura.humanDev.entities.Category;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 
 
 import static org.junit.jupiter.api.Assertions.*;
