@@ -8,7 +8,6 @@ import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
 import static br.com.alura.humanDev.validations.Validation.validNumberHours;
 
 @Entity
-@DiscriminatorValue("video")
 public class Video extends Activity{
 
     private Long id;

@@ -16,13 +16,13 @@ public class Program {
 
     public static void main(String[] args) {
 
-        String code = "code";
+        String code = "cour-code";
 
-        Category category = new Category("java", "code", 2, "desc",
+        Category category = new Category("java", "code-j", 2, "desc",
                 true, "http", "#FFF");
-        Subcategory subcategory = new Subcategory("name", "code", 3, "desc",
+        Subcategory subcategory = new Subcategory("sub-name", "code-sub", 3, "desc",
                 true, category);
-        Course course = new Course("name", "code", 1, false, "target",
+        Course course = new Course("cour-name", "cour-code", 1, false, "target",
                 "inst", "desc", "skills", subcategory);
 
         EntityManager em = getEntityManager();
@@ -36,7 +36,7 @@ public class Program {
 //        subcategoryDAO.insert(subcategory);
 //        courseDAO.insert(course);
 //        courseDAO.deleteCourseByCode(code);
-        courseDAO.updateCourseStatusToPublic();
+//        courseDAO.updateCourseStatusToPublic();
 
         HtmlReport.listHtml(categoryDAO, subcategoryDAO, courseDAO);
         em.getTransaction().commit();

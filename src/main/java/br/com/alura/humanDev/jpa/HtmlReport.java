@@ -54,7 +54,7 @@ public class HtmlReport {
                                 <li>Subcategory category: %s </li>
                             </ul>
                         </div>
-                        """.formatted(c.getName(), c.getCode(), c.getSubcategoryDescription(), c.getOrdination(), c.getCategory()))));
+                        """.formatted(c.getName(), c.getCode(), c.getSubcategoryDescription(), c.getOrdination(), c.getCategory().getName()))));
 
         List<Course> courses = courseDAO.showPublicCourses();
         courses.forEach(c -> System.out.println(
@@ -69,7 +69,7 @@ public class HtmlReport {
                                 <li>Course subcategory: %s </li>
                             </ul>
                         </div>
-                        """.formatted(c.getName(), c.getCode(), c.getInstructor(), c.getCourseTimeHours(), c.getSubcategory() ))));
+                        """.formatted(c.getName(), c.getCode(), c.getInstructor(), c.getCourseTimeHours(), c.getSubcategory().getName()))));
 
         List<String> subName = subcategoryDAO.showSubcategoriesWithoutDescription();
         subName.forEach(c -> System.out.println(

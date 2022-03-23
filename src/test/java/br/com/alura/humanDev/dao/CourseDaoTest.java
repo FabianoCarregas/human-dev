@@ -16,8 +16,7 @@ import org.junit.jupiter.api.Test;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-import static br.com.alura.humanDev.readers.CourseReader.showAllInstructors;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CourseDaoTest {
 
@@ -25,7 +24,6 @@ public class CourseDaoTest {
     private Category category;
     private CourseDAO dao;
     private EntityManager em ;
-    private String code = "code-test";
 
     @BeforeEach
     public void beforeEach() {
@@ -76,37 +74,42 @@ public class CourseDaoTest {
         return course;
     }
 
-    @Test
-    void shouldDeleteCourseByCode() {
-        createCourse();
-        this.dao.deleteCourseByCode(code);
-        List<Course> courses = this.dao.findAllCourses();
+    private Course createCourse2() {
+        Course course = new CourseBuilder()
+                .withName("course-true")
+                .withCode("code-test")
+                .withCourseTimeHours(1)
+                .withStatus(true)
+                .withTargetAudience("")
+                .withIntructor("Bia")
+                .withCourseDescription("")
+                .withDevelopedSkills("")
+                .withSubcategory(subcategory)
+                .create();
+        em.persist(course);
+        return course;
+    }
 
-        assertEquals(0, courses.size());
-        assertFalse(courses.contains(courses));
+    @Test
+    void shouldShowPublicCourses() {
+        createCourse();
+        createCourse2();
+
+        List<Course> courses = this.dao.showPublicCourses();
+
+        assertEquals(1, courses.size());
+        assertEquals("course-true", courses.get(0).getName());
     }
 
     @Test
     void shouldUpdateCourseStatusToPublic() {
         createCourse();
+        createCourse2();
         this.dao.updateCourseStatusToPublic();
-        List<Course> courses = this.dao.findAllCourses();
+        List<Course> courses = this.dao.showPublicCourses();
 
-        assertEquals(1, courses.size());
-        assertTrue(courses.get(0).isStatus());
+        assertEquals(2, courses.size());
     }
-
-//    @Test
-//    void shouldShowPublicCourses() {
-//        createCourse();
-//        this.dao.updateCourseStatusToPublic();
-//        List<Course> courses = this.dao.showPublicCourses();
-//
-//        Assertions.assertEquals(1, courses.size());
-//        Assertions.assertEquals(courses.get(0), createCourse().getClass());
-//    }
-
-
 
 }
 

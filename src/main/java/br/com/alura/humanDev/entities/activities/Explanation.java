@@ -7,7 +7,6 @@ import javax.persistence.*;
 import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 @Entity
-@DiscriminatorValue("Explanation")
 public class Explanation extends Activity {
 
     private Long id;

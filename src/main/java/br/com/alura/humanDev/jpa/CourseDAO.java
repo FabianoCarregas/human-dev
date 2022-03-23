@@ -29,9 +29,9 @@ public class CourseDAO {
     }
 
     public void updateCourseStatusToPublic() {
-        String jpql = "UPDATE FROM Course c Set c.status = 0 where c.status = 1";
+        String jpql = "UPDATE FROM Course c Set c.status = 1 where c.status = 0";
         em.createQuery(jpql).executeUpdate();
-        System.out.println("updated");
+        System.out.println("Course updated to Public");
     }
 
     public List<Course> showPublicCourses() {

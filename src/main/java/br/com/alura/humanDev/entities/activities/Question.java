@@ -12,7 +12,6 @@ import java.util.List;
 import static br.com.alura.humanDev.validations.Validation.notBlankOrNull;
 
 @Entity
-@DiscriminatorValue("Question")
 public class Question extends Activity {
 
     private Long id;
