@@ -5,9 +5,10 @@ import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.util.JPAUtil;
 
 import javax.persistence.EntityManager;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 public class CategoriesListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
 
         EntityManager em = JPAUtil.getEntityManager();
         CategoryDAO dao = new CategoryDAO(em);
@@ -25,13 +26,22 @@ public class CategoriesListServlet extends HttpServlet {
         List<Category> categories = dao.findAllCategories();
 
         out.println("<html><body>");
+        out.println("<h1>Categories</h1>");
         out.println("<ul>");
 
         for (Category c : categories) {
             out.println("<li>" + c.getName() + "<li>");
+            out.println("<li>" + c.getCode()+ "<li>");
+            out.println("<li>" + c.getCategoryDescription()+ "<li>");
+            out.println("<li>" + c.getHexaColor()+ "<li>");
+            out.println("<li>" + c.getIcon() + "<li>");
+            out.println("<h5>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</h5>");
+
+
         }
 
         out.println("</ul>");
         out.println("</body></html>");
     }
+
 }
