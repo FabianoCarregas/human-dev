@@ -23,6 +23,13 @@ public class CategoryDAO {
         }
     }
 
+    public List<Category> findAllCategories() {
+        String jpql = "SELECT a FROM Category a";
+        List<Category> categories = em.createQuery(jpql, Category.class)
+                .getResultList();
+        return categories;
+    }
+
     public List<Category> showActiveCategoriesByOrder() {
             String jpql = "SELECT c FROM Category c WHERE c.active = true ORDER BY c.ordination";
             List<Category> categories = em.createQuery(jpql, Category.class)
