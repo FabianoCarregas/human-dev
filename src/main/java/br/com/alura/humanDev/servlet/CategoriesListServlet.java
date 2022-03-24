@@ -5,43 +5,29 @@ import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.util.JPAUtil;
 
 import javax.persistence.EntityManager;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/listaCategorias")
 public class CategoriesListServlet extends HttpServlet {
-    @Override
+    private static final long serialVersionUID = 1L;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+            throws IOException, ServletException {
 
         EntityManager em = JPAUtil.getEntityManager();
         CategoryDAO dao = new CategoryDAO(em);
-        PrintWriter out = response.getWriter();
+        List<Category> categoriesList = dao.findAllCategories();
 
-        List<Category> categories = dao.findAllCategories();
+        request.setAttribute("categories", categoriesList);
 
-        out.println("<html><body>");
-        out.println("<h1>Categories</h1>");
-        out.println("<ul>");
-
-        for (Category c : categories) {
-            out.println("<li>" + c.getName() + "<li>");
-            out.println("<li>" + c.getCode()+ "<li>");
-            out.println("<li>" + c.getCategoryDescription()+ "<li>");
-            out.println("<li>" + c.getHexaColor()+ "<li>");
-            out.println("<li>" + c.getIcon() + "<li>");
-            out.println("<h5>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</h5>");
-
-
-        }
-
-        out.println("</ul>");
-        out.println("</body></html>");
+        RequestDispatcher rd = request.getRequestDispatcher("/categoriesList.jsp");
+        rd.forward(request, response);
     }
-
 }
