@@ -1,23 +1,44 @@
 package br.com.alura.humanDev.entities;
 
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static br.com.alura.humanDev.validations.CodePatternValidation.validUrl;
 import static br.com.alura.humanDev.validations.Validation.*;
 
+@Entity
 public class Course {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String codeUrl;
+
+    @Column(columnDefinition = "SMALLINT",name = "course_time_hours")
     private Integer courseTimeHours;
+    private String code;
     private boolean status;
+
+    @Column(columnDefinition = "TEXT", name = "target_audience")
     private String targetAudience;
+
     private String instructor;
+    @Column(columnDefinition = "TEXT", name = "course_description")
     private String courseDescription;
+
+    @Column(columnDefinition = "TEXT", name = "developed_skills")
     private String developedSkills;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Subcategory subcategory;
 
+    public Course() {
+    }
+
     public Course(String name,
-                  String codeUrl,
+                  String code,
                   Integer courseTimeHours,
                   boolean status,
                   String targetAudience,
@@ -26,12 +47,12 @@ public class Course {
                   String developedSkills,
                   Subcategory subcategory) {
         notBlankOrNull(name);
-        validUrl(codeUrl);
+        validUrl(code);
         validNumberHours(courseTimeHours);
         notBlankOrNull(instructor);
         notBlankOrNull(String.valueOf(subcategory));
         this.name = name;
-        this.codeUrl = codeUrl;
+        this.code = code;
         this.courseTimeHours = courseTimeHours;
         this.status = status;
         this.targetAudience = targetAudience;
@@ -53,10 +74,6 @@ public class Course {
         return name;
     }
 
-    public String getCodeUrl() {
-        return codeUrl;
-    }
-
     public Integer getCourseTimeHours() {
         return courseTimeHours;
     }
@@ -65,25 +82,16 @@ public class Course {
         return subcategory;
     }
 
+    public String getCode() {
+        return code;
+    }
+
     public boolean isStatus() {
         return status;
     }
 
     public String getInstructor() {
         return instructor;
-    }
-
-    public String toString() {
-        return "Course{" +
-                "name='" + name + '\'' +
-                ", codeUrl='" + codeUrl + '\'' +
-                ", courseTimeHours=" + courseTimeHours +
-                ", status=" + status +
-                ", targetAudience='" + targetAudience + '\'' +
-                ", instructor='" + instructor + '\'' +
-                ", courseDescription='" + courseDescription + '\'' +
-                ", developedSkills='" + developedSkills + '\'' +
-                '}';
     }
 
 }

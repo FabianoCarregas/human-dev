@@ -1,10 +1,9 @@
-package br.com.alura.humanDev.category;
+package br.com.alura.humanDev.entities.category;
 
 import br.com.alura.humanDev.entities.Category;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 
-import static br.com.alura.humanDev.readers.CategoryReader.showActiveCategories;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CategoryTest {
@@ -64,16 +63,16 @@ public class CategoryTest {
                         true, icon, color));
     }
 
-    @Test
-    void shouldShowActiveCategories() {
-        Category category1 = new Category(name, code, order, description, true, icon, color);
-        Category category2 =  new Category(name, code, order, description, false, icon, color);
-
-        List<Category> categoryList = List.of(category1, category2);
-        List<Category> categories = showActiveCategories(categoryList);
-
-        assertEquals(1, categories.size());
-        assertEquals(category1, categories.get(0));
-    }
+//    @Test
+//    void shouldShowActiveCategories() {
+//        Category category1 = new Category(name, code, order, description, true, icon, color);
+//        Category category2 =  new Category(name, code, order, description, false, icon, color);
+//
+//        List<Category> categoryList = List.of(category1, category2);
+//        List<Category> categories = showActiveCategories(categoryList);
+//
+//        assertEquals(1, categories.size());
+//        assertEquals(category1, categories.get(0));
+//    }
 
 }

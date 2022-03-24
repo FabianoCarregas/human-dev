@@ -1,4 +1,4 @@
-package br.com.alura.humanDev.Subcategory;
+package br.com.alura.humanDev.entities.subcategory;
 
 import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.entities.Subcategory;

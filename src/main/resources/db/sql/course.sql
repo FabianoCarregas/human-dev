@@ -17,5 +17,3 @@ INSERT INTO Course(
 INSERT INTO Course(
 `NAME`, `CODE_URL`, `COURSE_TIME_HOURS`, `STATUS`, `TARGET_AUDIENCE`, `INSTRUCTOR`, `COURSE_DESCRIPTION`, `DEVELOPED_SKILLS`, `subcategory_id`) VALUES (
 'Angular CLI', 'angular-clI', 20, true, 'Alunos de Angular que querem conhecer mais sobre a CLI', 'Alvaro Camilo', '- Conheça todos os comando da CLI do Angular. <br> - Saiba como funcionam as Workspaces no angular.json. <br> - Saiba como o Schematics pode aumentar sua produtividade <br> - Garanta consistência e otimizações para produção com o Builder.', '', 1);
-
-
