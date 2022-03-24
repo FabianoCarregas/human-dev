@@ -24,16 +24,10 @@ public class CategoryDAO {
     }
 
     public List<Category> showActiveCategoriesByOrder() {
-        try {
-            this.em.getTransaction().begin();
             String jpql = "SELECT c FROM Category c WHERE c.active = true ORDER BY c.ordination";
             List<Category> categories = em.createQuery(jpql, Category.class)
                     .getResultList();
-            this.em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        return categories;
     }
 
     public void removeAllCategories() {

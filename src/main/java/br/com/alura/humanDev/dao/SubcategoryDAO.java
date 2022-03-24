@@ -18,31 +18,17 @@ public class SubcategoryDAO {
     }
 
     public List<Subcategory> showActiveSubcategoriesByOrder() {
-        try {
-            this.em.getTransaction().begin();
             String jpql = "SELECT s FROM Subcategory s WHERE s.active = true ORDER BY s.ordination";
             List<Subcategory> subcategories = em.createQuery(jpql, Subcategory.class)
                     .getResultList();
-            this.em.getTransaction().commit();
             return subcategories;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public List<String> showSubcategoriesWithoutDescription() {
-        try {
-            this.em.getTransaction().begin();
             String jpql = "SELECT s.name FROM Subcategory s WHERE s.subcategoryDescription = ''";
             List<String> subcategories = em.createQuery(jpql, String.class)
                     .getResultList();
-            this.em.getTransaction().commit();
             return subcategories;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
 
