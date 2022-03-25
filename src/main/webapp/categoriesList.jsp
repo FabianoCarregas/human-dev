@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List, br.com.alura.humanDev.entities.Category" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,20 +11,15 @@
 <body>
     <h1>Categories List</h1>
     <ul>
-        <%
-            List<Category> caregoryList = (List<Category>)request.getAttribute("categories");
-            for (Category c : caregoryList) {
-        %>
-        <h3>Category -></h3>
-            <li><%= c.getName() %></li>
-            <li><%= c.getCode() %></li>
-            <li><%= c.getIcon() %></li>
-            <li><%= c.getCategoryDescription() %></li>
-            <li><%= c.getHexaColor() %></li>
-        <h1>--------------------------------------------------------------------</h1>
-        <%
-            }
-        %>
+        <c:forEach items="${categories}" var="cat">
+            <h3>categorie</h3>
+            <li>${cat.name}</li>
+            <li>${cat.code}</li>
+            <li>${cat.icon}</li>
+            <li>${cat.categoryDescription}</li>
+            <li>${cat.hexaColor}</li>
+            <h1>--------------------------------------------------------------------</h1>
+        </c:forEach>
     </ul>
 </body>
 </html>
