@@ -1,7 +1,6 @@
 package br.com.alura.humanDev.servlet;
 
 import br.com.alura.humanDev.dao.CategoryDAO;
-import br.com.alura.humanDev.dto.CategoryDTO;
 import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.util.JPAUtil;
 
@@ -41,10 +40,9 @@ public class PostCategoriesServlet extends HttpServlet {
         EntityManager em = JPAUtil.getEntityManager();
         CategoryDAO dao = new CategoryDAO(em);
         dao.insert(category);
+        em.close();
 
         response.sendRedirect("listaCategorias");
-
-        em.close();
 
     }
 }

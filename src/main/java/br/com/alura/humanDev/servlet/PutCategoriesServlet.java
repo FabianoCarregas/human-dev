@@ -33,16 +33,14 @@ public class PutCategoriesServlet extends HttpServlet {
             String color = request.getParameter("hexaColor");
 
             Category category = new Category(id, name, code, ordination, description, active, icon, color);
-            em.getTransaction().begin();
-            dao.findCategoryById(id);
-            dao.insert(category);
+            dao.update(category);
+            em.close();
+
         }catch (Exception e) {
             em.getTransaction().rollback();
         }
 
         response.sendRedirect("listaCategorias");
-//        RequestDispatcher rd = request.getRequestDispatcher("/PostCategory.jsp");
-//        request.setAttribute("category", category.getName());
-//        rd.forward(request, response);
+
     }
 }

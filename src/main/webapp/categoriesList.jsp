@@ -5,28 +5,70 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 6px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
     <meta charset="ISO-8859-1">
-    <title>Doc</title>
 </head>
 <body>
-
-    <c:if test="${not empty categoria}">
-        Category ${ categoria } created successfully !!!
-    </c:if>
-
-    <ul>
+    <header>
+        <div>
+            <h1>Categorias</h1>
+        </div>
+    </header>
+    <div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Code</th>
+            <th >Icon</th>
+            <th>Description</th>
+            <th>Active</th>
+            <th>Color</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
         <c:forEach items="${categories}" var="categoria">
-            <li>Id = ${categoria.id}</li>
-            <li>Name = ${categoria.name}</li>
-            <li>Code = ${categoria.code}</li>
-            <li>Icon = ${categoria.icon}</li>
-            <li>Description = ${categoria.categoryDescription}</li>
-            <li>Active = ${categoria.active}</li>
-            <li>Color = ${categoria.hexaColor}</li>
+        <tr>
+            <td>${categoria.id}</td>
+            <td>${categoria.name}</td>
+            <td>${categoria.code}</td>
+            <td>${categoria.icon}</td>
+            <td>${categoria.categoryDescription}</td>
+            <td>${categoria.active}</td>
+            <td>${categoria.hexaColor}</td>
 
-            <a href="/getCategory?id=${ categoria.id }">edit</a>
-        </c:forEach>
-    </ul>
+            <td>
+                <form action="/changeCategoryStatus" method="post">
+                    <input type="hidden" name="id" value="${categoria.id}">
+                    <button type="submit" onclick = alert("Do_you_really_want_to_change_the_status_?")>
+                        changeStatus</button>
+                </form >
+            </td>
+            <td><a href="/getCategory?id=${ categoria.id }"><button>EDIT</button></a></td>
+            </c:forEach>
+        </tr>
+        <td><a href="/criarCategoria"><button>Add Category</button></a></td>
+    </table>
+    </div>
+    <script>
+        function confirm() {
 
+        }
+    </script>
 </body>
 </html>

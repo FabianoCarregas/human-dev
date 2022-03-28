@@ -62,7 +62,9 @@ public class Category implements Serializable {
                     boolean active,
                     String icon,
                     String hexaColor) {
-
+        notBlankOrNull(name);
+        validUrl(code);
+        validColor(hexaColor);
         this.name = name;
         this.code = code;
         this.categoryDescription = categoryDescription;
@@ -70,6 +72,10 @@ public class Category implements Serializable {
         this.ordination = ordination;
         this.icon = icon;
         this.hexaColor = hexaColor;
+    }
+
+    public void toggleStatus() {
+        this.active = !isActive();
     }
 
     public Long getId() {
@@ -103,4 +109,6 @@ public class Category implements Serializable {
     public Integer getOrdination() {
         return ordination;
     }
+
+
 }
