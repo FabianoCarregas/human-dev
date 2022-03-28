@@ -1,5 +1,6 @@
 package br.com.alura.humanDev.dao;
 
+import br.com.alura.humanDev.dto.CategoryDTO;
 import br.com.alura.humanDev.entities.Category;
 
 import javax.persistence.EntityManager;
@@ -15,7 +16,7 @@ public class CategoryDAO {
 
     public void insert(Category category) {
         try {
-            this.em.getTransaction().begin();
+
             this.em.persist(category);
             this.em.getTransaction().commit();
         } catch (Exception e) {
@@ -46,5 +47,9 @@ public class CategoryDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Category findCategoryById(Long id) {
+        return em.find(Category.class, id);
     }
 }

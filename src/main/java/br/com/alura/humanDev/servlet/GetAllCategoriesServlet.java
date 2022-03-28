@@ -15,8 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/listaCategorias")
-public class CategoriesListServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+public class GetAllCategoriesServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {

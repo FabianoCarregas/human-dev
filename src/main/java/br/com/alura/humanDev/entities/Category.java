@@ -34,7 +34,8 @@ public class Category implements Serializable {
     public Category() {
     }
 
-     public Category(String name,
+     public Category(Long id,
+                     String name,
                     String code,
                     Integer ordination,
                     String categoryDescription,
@@ -44,6 +45,7 @@ public class Category implements Serializable {
         notBlankOrNull(name);
         validUrl(code);
         validColor(hexaColor);
+        this.id = id;
         this.name = name;
         this.code = code;
         this.categoryDescription = categoryDescription;
@@ -51,6 +53,27 @@ public class Category implements Serializable {
         this.ordination = ordination;
         this.icon = icon;
         this.hexaColor = hexaColor;
+    }
+
+    public Category(String name,
+                    String code,
+                    Integer ordination,
+                    String categoryDescription,
+                    boolean active,
+                    String icon,
+                    String hexaColor) {
+
+        this.name = name;
+        this.code = code;
+        this.categoryDescription = categoryDescription;
+        this.active = active;
+        this.ordination = ordination;
+        this.icon = icon;
+        this.hexaColor = hexaColor;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getCode() {
@@ -77,4 +100,7 @@ public class Category implements Serializable {
         return hexaColor;
     }
 
+    public Integer getOrdination() {
+        return ordination;
+    }
 }

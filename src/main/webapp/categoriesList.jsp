@@ -9,17 +9,24 @@
     <title>Doc</title>
 </head>
 <body>
-    <h1>Categories List</h1>
+
+    <c:if test="${not empty categoria}">
+        Category ${ categoria } created successfully !!!
+    </c:if>
+
     <ul>
-        <c:forEach items="${categories}" var="cat">
-            <h3>categorie</h3>
-            <li>${cat.name}</li>
-            <li>${cat.code}</li>
-            <li>${cat.icon}</li>
-            <li>${cat.categoryDescription}</li>
-            <li>${cat.hexaColor}</li>
-            <h1>--------------------------------------------------------------------</h1>
+        <c:forEach items="${categories}" var="categoria">
+            <li>Id = ${categoria.id}</li>
+            <li>Name = ${categoria.name}</li>
+            <li>Code = ${categoria.code}</li>
+            <li>Icon = ${categoria.icon}</li>
+            <li>Description = ${categoria.categoryDescription}</li>
+            <li>Active = ${categoria.active}</li>
+            <li>Color = ${categoria.hexaColor}</li>
+
+            <a href="/getCategory?id=${ categoria.id }">edit</a>
         </c:forEach>
     </ul>
+
 </body>
 </html>
