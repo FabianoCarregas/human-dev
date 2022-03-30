@@ -17,16 +17,16 @@ import java.util.List;
 @WebServlet("/getCategory")
 public class GetCategoryServlet extends HttpServlet {
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-        String paramId = request.getParameter("id");
-        Long id = Long.valueOf(paramId);
-
         EntityManager em = JPAUtil.getEntityManager();
         CategoryDAO dao = new CategoryDAO(em);
-        Category category = dao.findCategoryById(id);
 
+        Long id = Long.valueOf(request.getParameter("id"));
+
+        Category category = dao.findCategoryById(id);
         request.setAttribute("category", category);
 
         RequestDispatcher rd = request.getRequestDispatcher("/putCategories.jsp");

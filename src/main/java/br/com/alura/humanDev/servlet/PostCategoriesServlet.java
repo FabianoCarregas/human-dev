@@ -27,6 +27,9 @@ public class PostCategoriesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
+        EntityManager em = JPAUtil.getEntityManager();
+        CategoryDAO dao = new CategoryDAO(em);
+
         String name = request.getParameter("name");
         String code = request.getParameter("code");
         Integer ordination = Integer.valueOf(request.getParameter("ordination"));
@@ -37,8 +40,6 @@ public class PostCategoriesServlet extends HttpServlet {
 
         Category category = new Category(name, code, ordination, description, active, icon, color);
 
-        EntityManager em = JPAUtil.getEntityManager();
-        CategoryDAO dao = new CategoryDAO(em);
         dao.insert(category);
         em.close();
 

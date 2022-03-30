@@ -16,29 +16,26 @@ import java.io.IOException;
 @WebServlet("/alterarCategoria")
 public class PutCategoriesServlet extends HttpServlet {
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
         EntityManager em = JPAUtil.getEntityManager();
         CategoryDAO dao = new CategoryDAO(em);
 
-        try {
-            Long id = Long.valueOf(request.getParameter("id"));
-            String name = request.getParameter("name");
-            String code = request.getParameter("code");
-            Integer ordination = Integer.valueOf(request.getParameter("ordination"));
-            String description = request.getParameter("categoryDescription");
-            boolean active = Boolean.parseBoolean(request.getParameter("categoryDescription"));
-            String icon = request.getParameter("icon");
-            String color = request.getParameter("hexaColor");
+        Long id = Long.valueOf(request.getParameter("id"));
 
-            Category category = new Category(id, name, code, ordination, description, active, icon, color);
-            dao.update(category);
-            em.close();
+        String name = request.getParameter("name");
+        String code = request.getParameter("code");
+        Integer ordination = Integer.valueOf(request.getParameter("ordination"));
+        String description = request.getParameter("categoryDescription");
+        boolean active = Boolean.parseBoolean(request.getParameter("categoryDescription"));
+        String icon = request.getParameter("icon");
+        String color = request.getParameter("hexaColor");
 
-        }catch (Exception e) {
-            em.getTransaction().rollback();
-        }
+        Category category = new Category(id, name, code, ordination, description, active, icon, color);
+        dao.update(category);
+        em.close();
 
         response.sendRedirect("listaCategorias");
 

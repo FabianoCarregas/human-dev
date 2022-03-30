@@ -49,26 +49,17 @@
             <td>${categoria.code}</td>
             <td>${categoria.icon}</td>
             <td>${categoria.categoryDescription}</td>
-            <td>${categoria.active}</td>
+            <td id="active-${categoria.id}">${categoria.active}</td>
             <td>${categoria.hexaColor}</td>
 
-            <td>
-                <form action="/changeCategoryStatus" method="post">
-                    <input type="hidden" name="id" value="${categoria.id}">
-                    <button type="submit" onclick = alert("Do_you_really_want_to_change_the_status_?")>
-                        changeStatus</button>
-                </form >
-            </td>
+            <td><button onclick ="statusChange(${categoria.id})">changeStatus</button></td>
             <td><a href="/getCategory?id=${ categoria.id }"><button>EDIT</button></a></td>
             </c:forEach>
         </tr>
         <td><a href="/criarCategoria"><button>Add Category</button></a></td>
     </table>
     </div>
-    <script>
-        function confirm() {
-
-        }
+    <script src="scripts.js">
     </script>
 </body>
 </html>

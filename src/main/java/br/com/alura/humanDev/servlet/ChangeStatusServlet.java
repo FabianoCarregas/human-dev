@@ -21,8 +21,8 @@ public class ChangeStatusServlet extends HttpServlet {
         EntityManager em = JPAUtil.getEntityManager();
         CategoryDAO dao = new CategoryDAO(em);
 
-        String paramId = request.getParameter("id");
-        Long id = Long.valueOf(paramId);
+        Long id = Long.valueOf(request.getParameter("id"));
+
         Category category = dao.findCategoryById(id);
         category.toggleStatus();
         dao.update(category);

@@ -17,13 +17,14 @@ import java.util.List;
 @WebServlet("/listaCategorias")
 public class GetAllCategoriesServlet extends HttpServlet {
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
         EntityManager em = JPAUtil.getEntityManager();
         CategoryDAO dao = new CategoryDAO(em);
-        List<Category> categoriesList = dao.findAllCategories();
 
+        List<Category> categoriesList = dao.findAllCategories();
         request.setAttribute("categories", categoriesList);
 
         RequestDispatcher rd = request.getRequestDispatcher("/categoriesList.jsp");
