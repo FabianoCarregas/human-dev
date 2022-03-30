@@ -45,19 +45,19 @@
             <th></th>
         </tr>
         <c:forEach items="${categories}" var="categoria">
-        <tr>
-            <td>${categoria.id}</td>
-            <td>${categoria.name}</td>
-            <td>${categoria.code}</td>
-            <td>${categoria.icon}</td>
-            <td>${categoria.categoryDescription}</td>
-            <td id="active-${categoria.id}">${categoria.active}</td>
-            <td>${categoria.hexaColor}</td>
+            <tr>
+                <td>${categoria.id}</td>
+                <td>${categoria.name}</td>
+                <td>${categoria.code}</td>
+                <td>${categoria.icon}</td>
+                <td>${categoria.categoryDescription}</td>
+                <td id="active-${categoria.id}">${categoria.active}</td>
+                <td>${categoria.hexaColor}</td>
 
-            <td><button onclick="statusChange(${categoria.id})">changeStatus</button></td>
-            <td><a href="/alterarCategoria?id=${ categoria.id }"><button>EDIT</button></a></td>
-            </c:forEach>
-        </tr>
+                <td><button onclick="statusChange(${categoria.id})">changeStatus</button></td>
+                <td><a href="/alterarCategoria?id=${ categoria.id }"><button>EDIT</button></a></td>
+            </tr>
+        </c:forEach>
         <td><a href="/criarCategoria">
             <button>Add Category</button>
         </a></td>

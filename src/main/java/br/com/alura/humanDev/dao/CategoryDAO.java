@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CategoryDAO {
 
-    public EntityManager em;
+    private EntityManager em;
 
     public CategoryDAO(EntityManager em) {
         this.em = em;
