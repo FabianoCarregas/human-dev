@@ -4,8 +4,6 @@ import br.com.alura.humanDev.dao.CategoryDAO;
 import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.util.JPAUtil;
 
-import javax.persistence.EntityManager;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,20 +13,15 @@ import java.io.IOException;
 @WebServlet("/changeCategoryStatus")
 public class ChangeStatusServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
+    private final CategoryDAO dao = new CategoryDAO(JPAUtil.getEntityManager());
 
-        EntityManager em = JPAUtil.getEntityManager();
-        CategoryDAO dao = new CategoryDAO(em);
-
+    @Override
+    protected void doPost( HttpServletRequest request, HttpServletResponse response)
+            throws IOException{
         Long id = Long.valueOf(request.getParameter("id"));
-
         Category category = dao.findCategoryById(id);
         category.toggleStatus();
         dao.update(category);
-
-        em.close();
         response.sendRedirect("listaCategorias");
     }
-
 }

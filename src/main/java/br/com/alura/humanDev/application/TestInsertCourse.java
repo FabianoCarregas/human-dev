@@ -14,7 +14,7 @@ public class TestInsertCourse {
 
     public static void main(String[] args) {
 
-        Category category = new Category(null, "java", "code-j", 2, "desc",
+        Category category = new Category("java", "code-j", 2, "desc",
                 true, "http", "#FFF");
         Subcategory subcategory = new Subcategory("sub-name", "code-sub", 3, "desc",
                 true, category);

@@ -48,7 +48,7 @@ public class CourseDAO {
             this.em.getTransaction().commit();
             System.out.println("Course updated to Public");
             findAllCourses();
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             e.getMessage();
         }
         return null;

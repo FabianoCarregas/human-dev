@@ -4,7 +4,6 @@ import br.com.alura.humanDev.dao.CategoryDAO;
 import br.com.alura.humanDev.entities.Category;
 import br.com.alura.humanDev.util.JPAUtil;
 
-import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +15,8 @@ import java.io.IOException;
 @WebServlet("/criarCategoria")
 public class PostCategoriesServlet extends HttpServlet {
 
+    private final CategoryDAO dao = new CategoryDAO(JPAUtil.getEntityManager());
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
@@ -25,11 +26,7 @@ public class PostCategoriesServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
-
-        EntityManager em = JPAUtil.getEntityManager();
-        CategoryDAO dao = new CategoryDAO(em);
-
+            throws IOException{
         String name = request.getParameter("name");
         String code = request.getParameter("code");
         Integer ordination = Integer.valueOf(request.getParameter("ordination"));
@@ -39,11 +36,8 @@ public class PostCategoriesServlet extends HttpServlet {
         String color = request.getParameter("hexaColor");
 
         Category category = new Category(name, code, ordination, description, active, icon, color);
-
         dao.insert(category);
-        em.close();
 
         response.sendRedirect("listaCategorias");
-
     }
 }

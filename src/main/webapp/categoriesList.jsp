@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ page import="java.util.List, br.com.alura.humanDev.entities.Category" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -11,11 +11,13 @@
             border-collapse: collapse;
             width: 100%;
         }
+
         td, th {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 6px;
         }
+
         tr:nth-child(even) {
             background-color: #dddddd;
         }
@@ -23,18 +25,18 @@
     <meta charset="ISO-8859-1">
 </head>
 <body>
-    <header>
-        <div>
-            <h1>Categorias</h1>
-        </div>
-    </header>
+<header>
     <div>
+        <h1>Categorias</h1>
+    </div>
+</header>
+<div>
     <table>
         <tr>
             <th>Id</th>
             <th>Name</th>
             <th>Code</th>
-            <th >Icon</th>
+            <th>Icon</th>
             <th>Description</th>
             <th>Active</th>
             <th>Color</th>
@@ -52,14 +54,16 @@
             <td id="active-${categoria.id}">${categoria.active}</td>
             <td>${categoria.hexaColor}</td>
 
-            <td><button onclick ="statusChange(${categoria.id})">changeStatus</button></td>
-            <td><a href="/getCategory?id=${ categoria.id }"><button>EDIT</button></a></td>
+            <td><button onclick="statusChange(${categoria.id})">changeStatus</button></td>
+            <td><a href="/alterarCategoria?id=${ categoria.id }"><button>EDIT</button></a></td>
             </c:forEach>
         </tr>
-        <td><a href="/criarCategoria"><button>Add Category</button></a></td>
+        <td><a href="/criarCategoria">
+            <button>Add Category</button>
+        </a></td>
     </table>
-    </div>
-    <script src="scripts.js">
-    </script>
+</div>
+<script src="scripts.js">
+</script>
 </body>
 </html>

@@ -19,8 +19,8 @@
         <input id="order" type="number" name="ordination" value="${ category.ordination }"> </br>
         <label for="description">description:</label><br>
         <input id="description" type="text" name="categoryDescription" value="${ category.categoryDescription }"> </br>
-        <label for="status">status:</label><br>
-        <input id="status" type="text" name="active" value="${ category.active }"> </br>
+        <label for="active">Active Category </label>
+        <input id="active" type="checkbox" name="active" value="true"> </br>
         <label for="icon">icon:</label><br>
         <input id="icon" type="text" name="icon" value="${ category.icon }"> </br>
         <label for="color">color:</label><br>

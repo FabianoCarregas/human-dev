@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CategoryDAO {
 
-    private EntityManager em;
+    public EntityManager em;
 
     public CategoryDAO(EntityManager em) {
         this.em = em;
@@ -14,7 +14,7 @@ public class CategoryDAO {
 
     public void insert(Category category) {
         try {
-            em.getTransaction().begin();
+            this.em.getTransaction().begin();
             this.em.persist(category);
             this.em.getTransaction().commit();
         } catch (Exception e) {
