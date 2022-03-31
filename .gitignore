@@ -1,5 +1,3 @@
-#
-  
 ### Java ###
 # Compiled class file
 *.class
@@ -18,3 +16,7 @@ out/
 .idea/
 target/
 human-dev.iml
+.mvn
+HELP.md
+mvnw.cmd
+mvnw
