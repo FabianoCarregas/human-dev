@@ -47,39 +47,25 @@ public class CourseDAO {
             em.createQuery(jpql).executeUpdate();
             this.em.getTransaction().commit();
             System.out.println("Course updated to Public");
-            return findAllCourses();
+            findAllCourses();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.getMessage();
         }
         return null;
     }
 
     public List<Course> showPublicCourses() {
-        try {
-            this.em.getTransaction().begin();
             String jpql = "SELECT c FROM Course c WHERE c.status = :true";
             List<Course> courses = em.createQuery(jpql, Course.class)
                     .getResultList();
-            this.em.getTransaction().commit();
             return courses;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public List<Course> findAllCourses() {
-        try {
-            this.em.getTransaction().begin();
             String jpql = "SELECT c from Course c";
             List<Course> courses = em.createQuery(jpql, Course.class)
                     .getResultList();
-            this.em.getTransaction().commit();
             return courses;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public void removeAllCourses() {

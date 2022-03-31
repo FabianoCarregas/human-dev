@@ -1,7 +1,6 @@
 package br.com.alura.humanDev.dao;
 
 import br.com.alura.humanDev.entities.Category;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -23,17 +22,18 @@ public class CategoryDAO {
         }
     }
 
+    public List<Category> findAllCategories() {
+        String jpql = "SELECT a FROM Category a";
+        List<Category> categories = em.createQuery(jpql, Category.class)
+                .getResultList();
+        return categories;
+    }
+
     public List<Category> showActiveCategoriesByOrder() {
-        try {
-            this.em.getTransaction().begin();
             String jpql = "SELECT c FROM Category c WHERE c.active = true ORDER BY c.ordination";
             List<Category> categories = em.createQuery(jpql, Category.class)
                     .getResultList();
-            this.em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        return categories;
     }
 
     public void removeAllCategories() {
@@ -46,4 +46,19 @@ public class CategoryDAO {
             e.printStackTrace();
         }
     }
+
+    public Category findCategoryById(Long id) {
+        return em.find(Category.class, id);
+    }
+
+    public void update(Category category) {
+        try {
+            em.getTransaction().begin();
+            this.em.merge(category);
+            this.em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
