@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:url value="/criarCategoria" var="linkServletPostCategory"/>
 
 <!doctype html>
 <html lang="en">
@@ -10,7 +9,6 @@
 <body>
 
     <form action="${linkServletPostCategory}" method="post">
-
         <label for="name">Name:</label><br>
         <input id="name" type="text" name="name" value="${ category.name }">     </br>
         <label for="code">Code:</label><br>

@@ -21,10 +21,11 @@ public class Subcategory {
     private boolean active;
     private Integer ordination;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    @ManyToOne
     private Category category;
 
-    @OneToMany(mappedBy = "subcategory")
+    @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
     List<Course> courses = new ArrayList<>();
 
     public Subcategory() {
@@ -42,6 +43,12 @@ public class Subcategory {
         this.active = active;
         this.ordination = ordination;
         this.category = category;
+        this.category.addSubcategory(this);
+    }
+
+
+    public List<Course> getCourses() {
+        return courses;
     }
 
     public String getCode() {

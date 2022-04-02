@@ -51,6 +51,10 @@ public class Course {
         this.subcategory = subcategory;
     }
 
+    public String getDevelopedSkills() {
+        return developedSkills;
+    }
+
     public Long getId() {
         return id;
     }
