@@ -1,15 +1,15 @@
 package br.com.alura.humandev.controllers;
 
+import br.com.alura.humandev.dtos.CategoryFormDto;
 import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -37,14 +37,27 @@ public class CategoryController {
         return "categoriesList";
     }
 
-//    @PostMapping("/add")
-//    public String addCategory(@Valid @ModelAttribute("category") Category category, BindingResult result, Model model) {
-//        if (result.hasErrors()) {
-//            return "error";
-//        }
-//        categoryRepository.save(category.getName(), category.getCode(), category.getCategoryDescription(), category.isActive(),
-//                category.getOrdination(), category.getIcon(), category.getHexaColor());
-//        return null;
-//
-//    }
+    @GetMapping(value = "/add")
+    public String addCategory(Model model) {
+        model.addAttribute("category", new Category());
+        return "postcategory";
+    }
+
+
+    @RequestMapping(value = "/postcat", method = RequestMethod.POST)
+    public ModelAndView addCategory(@Valid @RequestBody CategoryFormDto categoryDto, BindingResult result) {
+        if (result.hasErrors()) {
+            return null;
+        }
+        ModelAndView view = new ModelAndView("postcategory");
+        categoryRepository.save(categoryDto.toEntity());
+        return view;
+    }
+
+    @PutMapping("/category/{code}")
+    @Transactional
+    public String editCategoryByCode(@Valid @PathVariable String code, @RequestBody CategoryFormDto categoryDto) {
+        Category category = categoryDto.update(code, categoryRepository);
+        return null;
+     }
 }

@@ -29,7 +29,7 @@ public class Category implements Serializable {
     @Column(name = "category_description")
     private String categoryDescription;
 
-    @Length(min = 50)
+    @Length(min = 1)
     @Column(name = "study_guide")
     private String studyGuide;
     private boolean active = false;
@@ -45,26 +45,29 @@ public class Category implements Serializable {
     public Category() {
     }
 
-    public Category(String name,
+    public Category(Long id,
+                    String name,
                     String code,
                     Integer ordination,
                     String categoryDescription,
+                    String studyGuide,
                     boolean active,
                     String icon,
                     String hexaColor) {
         this.name = name;
         this.code = code;
         this.categoryDescription = categoryDescription;
+        this.studyGuide = studyGuide;
         this.active = active;
         this.ordination = ordination;
         this.icon = icon;
         this.hexaColor = hexaColor;
     }
 
-    public int getNumberOfCourses(Subcategory subcategory) {
-        int n = subcategory.countCourses();
-        return n;
-    }
+//    public int getNumberOfCourses(Subcategory subcategory) {
+//        int n = subcategory.countCourses();
+//        return n;
+//    }
 
     public void addSubcategory(Subcategory subcategory) {
         this.subcategories.add(subcategory);
@@ -116,4 +119,42 @@ public class Category implements Serializable {
         return ordination;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
+    }
+
+    public void setStudyGuide(String studyGuide) {
+        this.studyGuide = studyGuide;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setOrdination(Integer ordination) {
+        this.ordination = ordination;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public void setHexaColor(String hexaColor) {
+        this.hexaColor = hexaColor;
+    }
+
+    public void setSubcategories(List<Subcategory> subcategories) {
+        this.subcategories = subcategories;
+    }
+
+    public void setId(Long id) {
+    }
 }

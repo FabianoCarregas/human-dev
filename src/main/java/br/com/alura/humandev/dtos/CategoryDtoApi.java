@@ -21,7 +21,7 @@ public class CategoryDtoApi {
         this.ordination = category.getOrdination();
         this.hexaColor = category.getHexaColor();
         this.studyGuide = category.getStudyGuide();
-        this.totalCourses = category.getNumberOfCourses(new Subcategory());
+       // this.totalCourses = category.getNumberOfCourses(new Subcategory());
         this.subcategoryDtoApi = SubcategoryDtoApi.toDto(category.getSubcategories());
     }
 
