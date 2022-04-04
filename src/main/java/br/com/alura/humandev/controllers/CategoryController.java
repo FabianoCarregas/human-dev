@@ -1,15 +1,17 @@
 package br.com.alura.humandev.controllers;
 
+import br.com.alura.humandev.dtos.CategoryDto;
 import br.com.alura.humandev.dtos.CategoryFormDto;
 import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -23,41 +25,46 @@ public class CategoryController {
         this.categoryRepository = categoryRepository;
     }
 
-    @GetMapping("/c")
-    @ResponseBody
-    public List<Category> findAll() {
-        List<Category> categories = categoryRepository.findAll();
-        return categories;
-    }
-
-    @GetMapping("/categories")
+    @GetMapping("admin/categories")
     public String listAll(Model model) {
         List<Category> categories = categoryRepository.findAll();
+        List<CategoryDto> categoryDto = categories.stream().map(CategoryDto::new).toList();
         model.addAttribute("categories", categories);
         return "categoriesList";
     }
 
-    @GetMapping(value = "/add")
+    @GetMapping("/add")
     public String addCategory(Model model) {
         model.addAttribute("category", new Category());
         return "postcategory";
     }
 
-
-    @RequestMapping(value = "/postcat", method = RequestMethod.POST)
-    public ModelAndView addCategory(@Valid @RequestBody CategoryFormDto categoryDto, BindingResult result) {
+    @PostMapping("admin/categories/new")
+    public String addCategory(@Valid CategoryFormDto categoryDto, BindingResult result) {
         if (result.hasErrors()) {
             return null;
         }
-        ModelAndView view = new ModelAndView("postcategory");
         categoryRepository.save(categoryDto.toEntity());
-        return view;
+        return "redirect:/admin/categories";
     }
 
-    @PutMapping("/category/{code}")
-    @Transactional
-    public String editCategoryByCode(@Valid @PathVariable String code, @RequestBody CategoryFormDto categoryDto) {
-        Category category = categoryDto.update(code, categoryRepository);
-        return null;
+    @GetMapping("/admin/categories/{code}")
+    public String showCategoryToUpdate(@PathVariable String code, Model model) {
+        Category category = categoryRepository.findByCode(code);
+        model.addAttribute("category", CategoryFormDto.toDto(category));
+        return "putCategories";
+    }
+
+    @PostMapping("/admin/categories{code}")
+    public String editCategoryByCode(@Valid CategoryFormDto categoryDto, BindingResult result) {
+        if (result.hasErrors()) {
+            return null;
+        }
+        categoryRepository.save(categoryDto.toEntity());
+        return "redirect:admin/categories";
      }
+
 }
+
+
+

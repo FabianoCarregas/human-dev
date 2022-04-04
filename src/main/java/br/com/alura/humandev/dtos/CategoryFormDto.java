@@ -1,7 +1,6 @@
 package br.com.alura.humandev.dtos;
 
 import br.com.alura.humandev.entities.Category;
-import br.com.alura.humandev.repositories.CategoryRepository;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -82,18 +81,17 @@ public class CategoryFormDto {
         return new Category(id, name, code, ordination, categoryDescription, studyGuide, active, icon, hexaColor);
      }
 
-     public Category update(String code, CategoryRepository categoryRepository) {
-        Category category = categoryRepository.findByCode(code);
-        category.setId(this.id);
-        category.setName(this.name);
-        category.setCode(this.code);
-        category.setOrdination(this.ordination);
-        category.setCategoryDescription(this.categoryDescription);
-        category.setStudyGuide(this.studyGuide);
-        category.setActive(this.active);
-        category.setIcon(this.icon);
-        category.setHexaColor(this.hexaColor);
-        return categoryRepository.save(category);
+     public static CategoryFormDto toDto(Category category) {
+        return new CategoryFormDto(
+        category.getId(),
+        category.getName(),
+        category.getCode(),
+        category.getCategoryDescription(),
+        category.getStudyGuide(),
+        category.isActive(),
+        category.getOrdination(),
+        category.getIcon(),
+        category.getHexaColor());
      }
 
 }

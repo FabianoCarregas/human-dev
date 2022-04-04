@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!doctype html>
@@ -35,10 +35,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Code</th>
-            <th>Icon</th>
-            <th>Description</th>
             <th>Active</th>
-            <th>Color</th>
             <th></th>
             <th></th>
             <th></th>
@@ -48,21 +45,15 @@
                 <td>${categoria.id}</td>
                 <td>${categoria.name}</td>
                 <td>${categoria.code}</td>
-                <td>${categoria.icon}</td>
-                <td>${categoria.categoryDescription}</td>
                 <td id="active-${categoria.id}">${categoria.active}</td>
-                <td>${categoria.hexaColor}</td>
+                <td ${categoria.subcategories} "></td>
 
                 <td><button onclick="statusChange(${categoria.id})">changeStatus</button></td>
-                <td><a href="/alterarCategoria?id=${ categoria.id }"><button>EDIT</button></a></td>
+                <td><a href="/admin/categories/${ categoria.code }"><button>EDIT</button></a></td>
             </tr>
         </c:forEach>
-        <td><a href="/criarCategoria">
-            <button>Add Category</button>
-        </a></td>
+        <td><a href="/add"><button>Add Category</button></a></td>
     </table>
 </div>
-<script src="/assets/scripts.js">
-</script>
 </body>
 </html>
