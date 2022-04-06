@@ -1,7 +1,5 @@
 package br.com.alura.humandev.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity

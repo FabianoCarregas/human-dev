@@ -37,4 +37,20 @@ public class CourseDtoApi {
     public String getDevelopedSkills() {
         return developedSkills;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setCourseTimeHours(int courseTimeHours) {
+        this.courseTimeHours = courseTimeHours;
+    }
+
+    public void setDevelopedSkills(String developedSkills) {
+        this.developedSkills = developedSkills;
+    }
 }

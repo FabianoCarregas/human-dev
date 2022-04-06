@@ -1,5 +1,6 @@
 package br.com.alura.humandev.entities;
 
+import br.com.alura.humandev.dtos.CategoryFormDto;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -32,7 +34,7 @@ public class Category implements Serializable {
     @Length(min = 1)
     @Column(name = "study_guide")
     private String studyGuide;
-    private boolean active = false;
+    private boolean active;
     private Integer ordination;
     private String icon;
 
@@ -45,8 +47,7 @@ public class Category implements Serializable {
     public Category() {
     }
 
-    public Category(Long id,
-                    String name,
+    public Category(String name,
                     String code,
                     Integer ordination,
                     String categoryDescription,
@@ -64,23 +65,42 @@ public class Category implements Serializable {
         this.hexaColor = hexaColor;
     }
 
-//    public int getNumberOfCourses(Subcategory subcategory) {
-//        int n = subcategory.countCourses();
-//        return n;
-//    }
+    public Category(Long id,
+                    String name,
+                    String code,
+                    String categoryDescription,
+                    String studyGuide,
+                    boolean active,
+                    Integer ordination,
+                    String icon,
+                    String hexaColor) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.categoryDescription = categoryDescription;
+        this.studyGuide = studyGuide;
+        this.active = active;
+        this.ordination = ordination;
+        this.icon = icon;
+        this.hexaColor = hexaColor;
+    }
 
+    public void update(CategoryFormDto categoryFormDto) {
+        this.id = categoryFormDto.getId();
+        this.name = categoryFormDto.getName();
+        this.code = categoryFormDto.getCode();
+        this.ordination = categoryFormDto.getOrdination();
+        this.id = categoryFormDto.getId();
+        this.id = categoryFormDto.getId();
+        this.id = categoryFormDto.getId();
+        this.id = categoryFormDto.getId();
+    }
     public void addSubcategory(Subcategory subcategory) {
         this.subcategories.add(subcategory);
     }
 
     public List<Subcategory> getSubcategories() {
         return subcategories;
-    }
-
-
-
-    public void toggleStatus() {
-        this.active = !isActive();
     }
 
     public Long getId() {
@@ -119,42 +139,4 @@ public class Category implements Serializable {
         return ordination;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setCategoryDescription(String categoryDescription) {
-        this.categoryDescription = categoryDescription;
-    }
-
-    public void setStudyGuide(String studyGuide) {
-        this.studyGuide = studyGuide;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public void setOrdination(Integer ordination) {
-        this.ordination = ordination;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public void setHexaColor(String hexaColor) {
-        this.hexaColor = hexaColor;
-    }
-
-    public void setSubcategories(List<Subcategory> subcategories) {
-        this.subcategories = subcategories;
-    }
-
-    public void setId(Long id) {
-    }
 }

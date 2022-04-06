@@ -3,40 +3,56 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Doc</title>
+    <meta charset="UTF-8">
+    <title >Doc</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-
-    <form action="/admin/categories{code}" method="post">
-
-        <label for="name">Name:</label><br>
-        <input id="name" type="text" name="name" value="${ category.name }">     </br>
-
-        <label for="code">Code:</label><br>
-        <input id="code" type="text" name="code" value="${ category.code }"> </br>
-
-        <label for="description">description:</label><br>
-        <input id="description" type="text" name="categoryDescription" value="${ category.categoryDescription }"> </br>
-
-        <label for="studyGuide">studyGuide:</label><br>
-        <input id="studyGuide" type="text" name="studyGuide" value="${ category.studyGuide }"> </br>
-
-        <label for="active">Active Category </label>
-        <input id="active" type="checkbox" name="active" value="true"> </br>
-
-        <label for="order">order:</label><br>
-        <input id="order" type="number" name="ordination" value="${ category.ordination }"> </br>
-
-        <label for="icon">icon:</label><br>
-        <input id="icon" type="text" name="icon" value="${ category.icon }"> </br>
-
-        <label for="color">color:</label><br>
-        <input id="color" type="text" name="hexaColor" value="${ category.hexaColor }"> </br>
-
-        <input type="hidden" name="id" value="${ category.id }">
-        <br>
-        <input type="submit">
-    </form>
+    <div class="container">
+        <form action="/admin/categories/{code}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <input name="name" type="text" class="form-control" value="${ category.name }">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Codigo</label>
+                <input name="code" type="text" class="form-control" value="${ category.code }">
+            </div>
+            <div class="form-group ">
+                <div class="mb-3 form-check div-checkbox">
+                    <input type="checkbox" class="form-check-input" name="active" value="${ category.categoryDescription }">
+                    <label class="form-check-label" class="form-label">
+                        <p class="active-category">Categoria Ativa? </p>
+                    </label>
+                    <p class="text-muted">
+                        Mostre ou deixa de mostrar a categoria na listagem dos alunos, de formações, etc
+                    </p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ordem da categoria</label>
+                <input name="ordination" type="text" class="form-control" value="${ category.ordination }">
+            </div>
+            <div class="form-group">
+                <label>Guia de estudos</label>
+                <textarea class="form-control" name="studyGuide" rows="6" value="${ category.studyGuide }"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Caminho do ícone</label>
+                <input name="icon" type="text" class="form-control" value="${ category.icon }">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">cor</label>
+                <input name="hexaColor" type="text" class="form-control" value="${ category.hexaColor }">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Descrição</label>
+                <input name="categoryDescription" type="text" class="form-control" ${ category.categoryDescription }>
+            </div>
+            <div class="mb-3" style="margin-top:30px">
+            <button type="submit" class="btn btn-primary" style="margin-bottom:30px">Submit</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

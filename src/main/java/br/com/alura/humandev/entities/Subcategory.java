@@ -12,6 +12,7 @@ public class Subcategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String code;
 
@@ -47,7 +48,6 @@ public class Subcategory {
         this.category = category;
         this.category.addSubcategory(this);
     }
-
 
     public List<Course> getCourses() {
         return courses;

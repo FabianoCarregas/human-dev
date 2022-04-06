@@ -9,34 +9,54 @@
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-
-    <form action="admin/categories/new" method="post">
-        <label for="name">Name:</label><br>
-        <input id="name" type="text" name="name" value="${ category.name }">     </br>
-
-        <label for="code">Code:</label><br>
-        <input id="code" type="text" name="code" value="${ category.code }"> </br>
-
-        <label for="description">description:</label><br>
-        <input id="description" type="text" name="categoryDescription" value="${ category.categoryDescription }"> </br>
-
-        <label for="studyGuide">studyGuide:</label><br>
-        <input id="studyGuide" type="text" name="studyGuide" value="${ category.studyGuide }"> </br>
-
-        <label for="active">Active Category </label>
-        <input id="active" type="checkbox" name="active" value="true"> </br>
-
-        <label for="order">order:</label><br>
-        <input id="order" type="number" name="ordination" value="${ category.ordination }"> </br>
-
-        <label for="icon">icon:</label><br>
-        <input id="icon" type="text" name="icon" value="${ category.icon }"> </br>
-
-        <label for="color">color:</label><br>
-        <input id="color" type="text" name="hexaColor" value="${ category.hexaColor }"> </br>
-
-        <input type="hidden" name="id" value="${ category.id }">
-        <input type="submit">
-    </form>
+    <div class="container">
+        <h1 style="font-family: 'DejaVu Sans' ">Nova categoria</h1>
+        <form action="/admin/categories" method="post">
+            <div class="mb-3" style="margin-top: 35px">
+                <label class="form-label">Nome</label>
+                <input name="name" type="text" class="form-control" placeholder="Digite aqui o nome da categoria">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" style="margin-top: 20px">Codigo</label>
+                <input name="code" type="text" class="form-control" placeholder="por exemplo: desenvolvimento, mobile(não use letras maiúsculas ou acentos...">
+            </div>
+            <div class="form-group ">
+                <div class="mb-3 form-check div-checkbox" style="margin-top: 20px">
+                    <input type="checkbox" class="form-check-input"
+                           name="active" placeholder="Mostra ou deixa de mostrar a categoria na listagem dos alunos, de formações, etc">
+                    <label class="form-check-label" class="form-label">
+                        <p class="active-category">Categoria Ativa?</p>
+                    </label>
+                    <p class="text-muted">
+                        Mostre ou deixa de mostrar a categoria na listagem dos alunos, de formações, etc
+                    </p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" style="margin-top: 20px">Ordem da categoria</label>
+                <input name="ordination" type="text" class="form-control" placeholder="por exemplo: categoria de ordem 1 aparece antes da categoria 2">
+            </div>
+            <div class="form-group">
+                <label style="margin-top: 20px">Guia de estudos</label>
+                <textarea class="form-control" name="studyGuide" rows="6"
+                          placeholder="Um texto apontando para formações para ajudar pessoas perdidas"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" style="margin-top: 20px">Caminho do ícone</label>
+                <input name="icon" type="text" class="form-control" placeholder="por exemplo: /images/categorias/programação.svg">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" style="margin-top: 20px">cor</label>
+                <input name="hexaColor" type="text" class="form-control" placeholder="por exemplo: #fcc14a">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" style="margin-top: 20px">Descrição</label>
+                <input name="categoryDescription" type="text" class="form-control" placeholder="por exemplo:IOS, Android, PhoneGap e mais...">
+            </div>
+            <div style="margin-top: 25px;" class="mb-3">
+                <button type="submit" class="btn btn-success" style="margin-bottom:30px">Enviar</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

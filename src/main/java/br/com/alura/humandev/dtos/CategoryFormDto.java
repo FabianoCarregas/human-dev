@@ -1,6 +1,7 @@
 package br.com.alura.humandev.dtos;
 
 import br.com.alura.humandev.entities.Category;
+import br.com.alura.humandev.repositories.CategoryRepository;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -29,7 +30,18 @@ public class CategoryFormDto {
     @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$")
     private String hexaColor;
 
-    public CategoryFormDto(Long id, String name, String code, String categoryDescription, String studyGuide, boolean active, Integer ordination, String icon, String hexaColor) {
+    public CategoryFormDto() {
+    }
+
+    public CategoryFormDto(Long id,
+                           String name,
+                           String code,
+                           String categoryDescription,
+                           String studyGuide,
+                           boolean active,
+                           Integer ordination,
+                           String icon,
+                           String hexaColor) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -38,6 +50,42 @@ public class CategoryFormDto {
         this.active = active;
         this.ordination = ordination;
         this.icon = icon;
+        this.hexaColor = hexaColor;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
+    }
+
+    public void setStudyGuide(String studyGuide) {
+        this.studyGuide = studyGuide;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setOrdination(Integer ordination) {
+        this.ordination = ordination;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public void setHexaColor(String hexaColor) {
         this.hexaColor = hexaColor;
     }
 
@@ -78,20 +126,20 @@ public class CategoryFormDto {
     }
 
     public Category toEntity() {
-        return new Category(id, name, code, ordination, categoryDescription, studyGuide, active, icon, hexaColor);
-     }
+        return new Category(id, name , code, categoryDescription, studyGuide,active,ordination , icon, hexaColor);
+    }
 
-     public static CategoryFormDto toDto(Category category) {
+    public static CategoryFormDto toDto(Category category) {
         return new CategoryFormDto(
-        category.getId(),
-        category.getName(),
-        category.getCode(),
-        category.getCategoryDescription(),
-        category.getStudyGuide(),
-        category.isActive(),
-        category.getOrdination(),
-        category.getIcon(),
-        category.getHexaColor());
-     }
+            category.getId(),
+            category.getName(),
+            category.getCode(),
+            category.getCategoryDescription(),
+            category.getStudyGuide(),
+            category.isActive(),
+            category.getOrdination(),
+            category.getIcon(),
+            category.getHexaColor());
+    }
 
 }

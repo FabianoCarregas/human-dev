@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping
+@RequestMapping("/admin/categories")
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
@@ -25,7 +25,7 @@ public class CategoryController {
         this.categoryRepository = categoryRepository;
     }
 
-    @GetMapping("admin/categories")
+    @GetMapping
     public String listAll(Model model) {
         List<Category> categories = categoryRepository.findAll();
         List<CategoryDto> categoryDto = categories.stream().map(CategoryDto::new).toList();
@@ -33,38 +33,34 @@ public class CategoryController {
         return "categoriesList";
     }
 
-    @GetMapping("/add")
-    public String addCategory(Model model) {
-        model.addAttribute("category", new Category());
+    @GetMapping("/new")
+    public String getAddCategoryForm(CategoryFormDto categoryFormDto) {
         return "postcategory";
     }
 
-    @PostMapping("admin/categories/new")
+    @PostMapping
     public String addCategory(@Valid CategoryFormDto categoryDto, BindingResult result) {
         if (result.hasErrors()) {
-            return null;
+            return "postcategory";
         }
         categoryRepository.save(categoryDto.toEntity());
         return "redirect:/admin/categories";
     }
 
-    @GetMapping("/admin/categories/{code}")
+    @GetMapping("/{code}")
     public String showCategoryToUpdate(@PathVariable String code, Model model) {
         Category category = categoryRepository.findByCode(code);
-        model.addAttribute("category", CategoryFormDto.toDto(category));
+        model.addAttribute("category",CategoryFormDto.toDto(category));
         return "putCategories";
     }
 
-    @PostMapping("/admin/categories{code}")
-    public String editCategoryByCode(@Valid CategoryFormDto categoryDto, BindingResult result) {
+    @PostMapping("/{code}")
+    public String editCategoryByCode(@Valid CategoryFormDto categoryFormDto, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return null;
+            return "putCategories" ;
         }
-        categoryRepository.save(categoryDto.toEntity());
-        return "redirect:admin/categories";
+        Category category = categoryFormDto.toEntity();
+        categoryRepository.save(category);
+        return "redirect:/admin/categories";
      }
-
 }
-
-
-

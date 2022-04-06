@@ -16,7 +16,6 @@ public class SubcategoryDtoApi {
         this.code = subcategory.getCode();
         this.subcategoryDescription = subcategory.getSubcategoryDescription();
         this.courseDtoApi = CourseDtoApi.toDto(subcategory.getCourses());
-//        subcategory.getCourses().forEach(c -> this.courseDto.add(new CourseDto(c.)));
     }
 
     public static List<SubcategoryDtoApi> toDto(List<Subcategory> subcategories) {
@@ -39,4 +38,23 @@ public class SubcategoryDtoApi {
         return courseDtoApi;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setSubcategoryDescription(String subcategoryDescription) {
+        this.subcategoryDescription = subcategoryDescription;
+    }
+
+    public List<CourseDtoApi> getCourseDtoApi() {
+        return courseDtoApi;
+    }
+
+    public void setCourseDtoApi(List<CourseDtoApi> courseDtoApi) {
+        this.courseDtoApi = courseDtoApi;
+    }
 }
