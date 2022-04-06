@@ -29,6 +29,7 @@ public class CategoryFormDto implements Serializable {
     @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$", message = "The color most be Hexadecimal code")
     private String hexaColor;
 
+    @Deprecated
     public CategoryFormDto() {
     }
 

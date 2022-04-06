@@ -1,7 +1,5 @@
 package br.com.alura.humandev.entities;
 
-import br.com.alura.humandev.dtos.CategoryFormDto;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -42,6 +40,7 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Subcategory> subcategories = new ArrayList<>();
 
+    @Deprecated
     public Category() {
     }
 
@@ -125,14 +124,6 @@ public class Category implements Serializable {
 
     public Integer getOrdination() {
         return ordination;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }

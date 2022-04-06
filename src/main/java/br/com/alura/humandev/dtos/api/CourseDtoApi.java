@@ -1,4 +1,4 @@
-package br.com.alura.humandev.dtos;
+package br.com.alura.humandev.dtos.api;
 
 import br.com.alura.humandev.entities.Course;
 
@@ -38,19 +38,4 @@ public class CourseDtoApi {
         return developedSkills;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setCourseTimeHours(int courseTimeHours) {
-        this.courseTimeHours = courseTimeHours;
-    }
-
-    public void setDevelopedSkills(String developedSkills) {
-        this.developedSkills = developedSkills;
-    }
 }

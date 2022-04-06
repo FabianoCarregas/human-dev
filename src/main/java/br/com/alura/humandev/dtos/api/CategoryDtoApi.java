@@ -1,4 +1,4 @@
-package br.com.alura.humandev.dtos;
+package br.com.alura.humandev.dtos.api;
 
 import br.com.alura.humandev.entities.Category;
 
@@ -13,7 +13,6 @@ public class CategoryDtoApi {
     private String studyGuide;
     private Integer totalCourses;
     private List<SubcategoryDtoApi> subcategoryDtoApi;
-
 
     public CategoryDtoApi(Category category) {
         this.name = category.getName();
@@ -52,39 +51,9 @@ public class CategoryDtoApi {
         return subcategoryDtoApi;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setCode(String code) {
         this.code = code;
     }
 
-    public void setOrdination(Integer ordination) {
-        this.ordination = ordination;
-    }
-
-    public void setHexaColor(String hexaColor) {
-        this.hexaColor = hexaColor;
-    }
-
-    public void setStudyGuide(String studyGuide) {
-        this.studyGuide = studyGuide;
-    }
-
-    public Integer getTotalCourses() {
-        return totalCourses;
-    }
-
-    public void setTotalCourses(Integer totalCourses) {
-        this.totalCourses = totalCourses;
-    }
-
-    public List<SubcategoryDtoApi> getSubcategoryDtoApi() {
-        return subcategoryDtoApi;
-    }
-
-    public void setSubcategoryDtoApi(List<SubcategoryDtoApi> subcategoryDtoApi) {
-        this.subcategoryDtoApi = subcategoryDtoApi;
-    }
 }
+

@@ -1,4 +1,4 @@
-package br.com.alura.humandev.dtos;
+package br.com.alura.humandev.dtos.api;
 
 import br.com.alura.humandev.entities.Subcategory;
 
@@ -34,27 +34,8 @@ public class SubcategoryDtoApi {
         return subcategoryDescription;
     }
 
-    public List<CourseDtoApi> getCourseDto() {
-        return courseDtoApi;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setSubcategoryDescription(String subcategoryDescription) {
-        this.subcategoryDescription = subcategoryDescription;
-    }
-
     public List<CourseDtoApi> getCourseDtoApi() {
         return courseDtoApi;
     }
 
-    public void setCourseDtoApi(List<CourseDtoApi> courseDtoApi) {
-        this.courseDtoApi = courseDtoApi;
-    }
 }

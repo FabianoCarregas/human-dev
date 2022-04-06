@@ -1,6 +1,6 @@
 package br.com.alura.humandev.controllers;
 
-import br.com.alura.humandev.dtos.CategoryDtoApi;
+import br.com.alura.humandev.dtos.api.CategoryDtoApi;
 import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import org.springframework.http.MediaType;
@@ -25,4 +25,5 @@ public class CategoryApiController {
         List<CategoryDtoApi> categoryDto = categories.stream().map(CategoryDtoApi::new).toList();
         return ResponseEntity.ok().body(categoryDto);
     }
+
 }

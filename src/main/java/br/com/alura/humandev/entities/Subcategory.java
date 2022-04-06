@@ -39,6 +39,7 @@ public class Subcategory implements Serializable {
     @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
     List<Course> courses = new ArrayList<>();
 
+    @Deprecated
     public Subcategory() {
     }
 

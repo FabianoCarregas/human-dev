@@ -38,6 +38,7 @@ public class Course implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Subcategory subcategory;
 
+    @Deprecated
     public Course() {
     }
 

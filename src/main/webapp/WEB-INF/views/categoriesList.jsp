@@ -7,21 +7,19 @@
     <meta charset="UTF-8">
     <title>Doc</title>
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-<style>
-    *{
-        font-size: 16px;
-    }
-</style>
-
 <body>
-
-<div style="padding: 0" class="container">
-    <h1 style="font-family: 'DejaVu Sans' ">Categorias</h1>
-    <a href="/admin/categories/new">
-        <button style="margin-bottom: 15px;" type="button" class="btn btn-primary btn-lg">Nova categoria</button>
-    </a>
-    <div >
+<div class="container">
+    <div class="row">
+        <h1>Categorias</h1>
+    </div>
+    <div class="row">
+        <a class="btn btn-primary" role="button" href="/admin/categories/new"  >
+            Nova categoria
+        </a>
+    </div>
+    <div class="row" >
         <table class="table table-bordered table-responsive">
             <thead>
             <tr class="col-">
@@ -37,12 +35,14 @@
                 <tr>
                     <td>${categoria.name}</td>
                     <td>${categoria.code}</td>
-                    <td>${categoria.active}</td>
-                    <td class="text-center"><a href="subcategories/&{categoria.code}">
-                        <button type="button" class="btn btn-link" style="font-size: large">Subcategorias</button></a>
+                    <td>${categoria.active == true ? "Ativa" : "Inativa"} </td>
+                    <td class="text-center">
+                        <a role="button" href="subcategories/&{categoria.code}">
+                            Subcategorias
+                        </a>
                     <td class="text-center">
                         <a class="btn btn-default" role="button" href="/admin/categories/${ categoria.code }">
-                        Editar
+                            Editar
                         </a>
                     </td>
                 </tr>
