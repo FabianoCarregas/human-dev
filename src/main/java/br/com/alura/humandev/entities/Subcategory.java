@@ -1,19 +1,25 @@
 package br.com.alura.humandev.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Subcategory {
+public class Subcategory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Name must not be null or empty")
     private String name;
+
+    @NotBlank
+    @Pattern(regexp = "^[a-z0-9-]+$")
     private String code;
 
     @Column(columnDefinition = "TEXT", name = "subcategory_description")
@@ -22,6 +28,8 @@ public class Subcategory {
     @Column(name = "study_guide")
     private String studyGuide;
     private boolean active;
+
+    @Positive
     private Integer ordination;
 
     @JoinColumn(name = "category_id")

@@ -1,33 +1,32 @@
 package br.com.alura.humandev.dtos;
 
 import br.com.alura.humandev.entities.Category;
-import br.com.alura.humandev.repositories.CategoryRepository;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import java.io.Serializable;
 
-public class CategoryFormDto {
+public class CategoryFormDto implements Serializable {
 
     private Long id;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank(message = "Name must not be null or empty")
     private String name;
 
-    @NotNull
-    @NotEmpty
-    @Pattern(regexp = "^[a-z0-9-]+$")
+    @NotBlank(message = "Code can't be null")
+    @Pattern(regexp = "^[a-z0-9-]+$", message = "The code must not be with space or special characters")
     private String code;
     private String categoryDescription;
     private String studyGuide;
     private boolean active;
+
+    @Positive(message = "Ordination most be positive")
     private Integer ordination;
     private String icon;
 
-    @NotEmpty
-    @NotNull
-    @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$")
+    @NotBlank
+    @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$", message = "The color most be Hexadecimal code")
     private String hexaColor;
 
     public CategoryFormDto() {

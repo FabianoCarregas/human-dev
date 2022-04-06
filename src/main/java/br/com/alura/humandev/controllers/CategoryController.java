@@ -39,11 +39,11 @@ public class CategoryController {
     }
 
     @PostMapping
-    public String addCategory(@Valid CategoryFormDto categoryDto, BindingResult result) {
+    public String addCategory(@Valid CategoryFormDto categoryFormDto, BindingResult result) {
         if (result.hasErrors()) {
-            return "postcategory";
+            return getAddCategoryForm(categoryFormDto);
         }
-        categoryRepository.save(categoryDto.toEntity());
+        categoryRepository.save(categoryFormDto.toEntity());
         return "redirect:/admin/categories";
     }
 
@@ -55,12 +55,13 @@ public class CategoryController {
     }
 
     @PostMapping("/{code}")
-    public String editCategoryByCode(@Valid CategoryFormDto categoryFormDto, BindingResult result, Model model) {
+    public String editCategoryByCode(@PathVariable String code, @Valid CategoryFormDto categoryFormDto, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "putCategories" ;
+            return showCategoryToUpdate(code, model);
         }
         Category category = categoryFormDto.toEntity();
         categoryRepository.save(category);
         return "redirect:/admin/categories";
      }
+
 }

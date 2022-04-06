@@ -1,17 +1,27 @@
 package br.com.alura.humandev.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import java.io.Serializable;
 
 @Entity
-public class Course {
+public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "the name should not be null or empty")
     private String name;
 
+    @Positive(message = "Course hours must not be null")
     @Column(columnDefinition = "SMALLINT",name = "course_time_hours")
     private Integer courseTimeHours;
+
+    @NotBlank(message = "Code can't be null")
+    @Pattern(regexp = "^[a-z0-9-]+$", message = "The code must not be with space or special characters")
     private String code;
     private boolean status;
 

@@ -1,15 +1,13 @@
 package br.com.alura.humandev.entities;
 
 import br.com.alura.humandev.dtos.CategoryFormDto;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -19,26 +17,26 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotEmpty
+    @NotBlank(message = "Name must not be null or empty")
     private String name;
 
-    @NotNull
-    @NotEmpty
-    @Pattern(regexp = "^[a-z0-9-]+$")
+    @NotBlank(message = "Code can't be null")
+    @Pattern(regexp = "^[a-z0-9-]+$", message = "The code must not be with space or special characters")
     private String code;
 
     @Column(name = "category_description")
     private String categoryDescription;
 
-    @Length(min = 1)
     @Column(name = "study_guide")
     private String studyGuide;
     private boolean active;
+
+    @Positive(message = "ordination must be greater than zero ")
     private Integer ordination;
     private String icon;
 
-    @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$")
+    @NotBlank
+    @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$", message = "The color most be Hexadecimal code")
     private String hexaColor;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
@@ -85,16 +83,6 @@ public class Category implements Serializable {
         this.hexaColor = hexaColor;
     }
 
-    public void update(CategoryFormDto categoryFormDto) {
-        this.id = categoryFormDto.getId();
-        this.name = categoryFormDto.getName();
-        this.code = categoryFormDto.getCode();
-        this.ordination = categoryFormDto.getOrdination();
-        this.id = categoryFormDto.getId();
-        this.id = categoryFormDto.getId();
-        this.id = categoryFormDto.getId();
-        this.id = categoryFormDto.getId();
-    }
     public void addSubcategory(Subcategory subcategory) {
         this.subcategories.add(subcategory);
     }
@@ -137,6 +125,14 @@ public class Category implements Serializable {
 
     public Integer getOrdination() {
         return ordination;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }
