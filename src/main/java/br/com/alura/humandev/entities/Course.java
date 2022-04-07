@@ -13,14 +13,14 @@ public class Course implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Nome é obrigatório, não pode ser vazio nem nulo")
+    @NotBlank(message = "{name.invalid}")
     private String name;
 
-    @Positive(message = "O numero de horas deve ser maior que zero")
+    @Positive(message = "{number.invalid}")
     private Integer courseTimeHours;
 
-    @NotBlank(message = "Código é obrigatório, não pode ser vazio nem nulo")
-    @Pattern(regexp = "^[a-z0-9-]+$", message = "O código pode ter apenas letras minúsculas, não pode conter acentos, espaços ou caracteres especiais")
+    @NotBlank
+    @Pattern(regexp = "^[a-z0-9-]+$", message = "{code.invalid}")
     private String code;
     private boolean status;
     private String targetAudience;
