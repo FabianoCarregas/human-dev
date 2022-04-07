@@ -22,7 +22,7 @@
     <div class="row" >
         <table class="table table-bordered table-responsive">
             <thead>
-                <tr class="row">
+                <tr>
                     <th>Nome</th>
                     <th>Código</th>
                     <th>Status</th>
