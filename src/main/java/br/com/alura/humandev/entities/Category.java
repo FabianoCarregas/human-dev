@@ -15,26 +15,22 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name must not be null or empty")
+    @NotBlank(message = "Nome é obrigatório, não pode ser vazio nem nulo")
     private String name;
 
-    @NotBlank(message = "Code can't be null")
-    @Pattern(regexp = "^[a-z0-9-]+$", message = "The code must not be with space or special characters")
+    @NotBlank(message = "Código é obrigatório, não pode ser vazio nem nulo")
+    @Pattern(regexp = "^[a-z0-9-]+$", message = "O código pode ter apenas letras minúsculas, não pode conter acentos, espaços ou caracteres especiais")
     private String code;
-
-    @Column(name = "category_description")
     private String categoryDescription;
-
-    @Column(name = "study_guide")
     private String studyGuide;
     private boolean active;
 
-    @Positive(message = "ordination must be greater than zero ")
+    @Positive(message = "A ordenação deve ser maior que zero")
     private Integer ordination;
     private String icon;
 
-    @NotBlank
-    @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$", message = "The color most be Hexadecimal code")
+    @NotBlank(message = "O código é obrigatório, não pode ser vazio nem nulo")
+    @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$", message = "A cor deve ser em código hexadecimal")
     private String hexaColor;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)

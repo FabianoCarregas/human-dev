@@ -9,14 +9,8 @@ import javax.persistence.Entity;
 public class Video extends Activity{
 
     private Long id;
-    @Column(name = "video_url")
-
     private String videoUrl;
-    @Column(columnDefinition = "SMALLINT",name = "video_time")
-
     private int videoTime;
-    @Column(name = "video_description")
-
     private String videoDescription;
 
     public Video() {

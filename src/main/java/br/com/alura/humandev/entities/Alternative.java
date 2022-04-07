@@ -10,13 +10,10 @@ public class Alternative {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "question_explanation")
     private String questionExplanation;
     private int ordination;
     private String answer;
-    @Column(name = "answer_check")
     private boolean answerCheck;
-    @Column(name = "answer_justification")
     private String answerJustification;
 
     @ManyToOne(fetch = FetchType.LAZY)

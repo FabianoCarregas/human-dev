@@ -15,21 +15,17 @@ public class Subcategory implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name must not be null or empty")
+    @NotBlank(message = "Nome é obrigatório, não pode ser vazio nem nulo")
     private String name;
 
-    @NotBlank
-    @Pattern(regexp = "^[a-z0-9-]+$")
+    @NotBlank(message = "Código é obrigatório, não pode ser vazio nem nulo")
+    @Pattern(regexp = "^[a-z0-9-]+$", message = "O código pode ter apenas letras minúsculas, não pode conter acentos, espaços ou caracteres especiais")
     private String code;
-
-    @Column(columnDefinition = "TEXT", name = "subcategory_description")
     private String subcategoryDescription;
-
-    @Column(name = "study_guide")
     private String studyGuide;
     private boolean active;
 
-    @Positive
+    @Positive(message = "A ordenação deve ser maior que zero")
     private Integer ordination;
 
     @JoinColumn(name = "category_id")

@@ -22,31 +22,31 @@
     <div class="row" >
         <table class="table table-bordered table-responsive">
             <thead>
-            <tr class="col-">
-                <th>Nome</th>
-                <th>Código</th>
-                <th>Status</th>
-                <th></th>
-                <th></th>
-            </tr>
+                <tr class="row">
+                    <th>Nome</th>
+                    <th>Código</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            <c:forEach items="${categories}" var="categoria">
-                <tr>
-                    <td>${categoria.name}</td>
-                    <td>${categoria.code}</td>
-                    <td>${categoria.active == true ? "Ativa" : "Inativa"} </td>
-                    <td class="text-center">
-                        <a role="button" href="subcategories/&{categoria.code}">
-                            Subcategorias
-                        </a>
-                    <td class="text-center">
-                        <a class="btn btn-default" role="button" href="/admin/categories/${ categoria.code }">
-                            Editar
-                        </a>
-                    </td>
-                </tr>
-            </c:forEach>
+                <c:forEach items="${categories}" var="categoria">
+                    <tr>
+                        <td>${categoria.name}</td>
+                        <td>${categoria.code}</td>
+                        <td>${categoria.active == true ? "Ativa" : "Inativa"} </td>
+                        <td class="text-center">
+                            <a role="button" href="subcategories/${categoria.code}">
+                                Subcategorias
+                            </a>
+                        <td class="text-center">
+                            <a class="btn btn-default" role="button" href="/admin/categories/${ categoria.code }">
+                                Editar
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>

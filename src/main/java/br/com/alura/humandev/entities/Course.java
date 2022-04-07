@@ -13,26 +13,19 @@ public class Course implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "the name should not be null or empty")
+    @NotBlank(message = "Nome é obrigatório, não pode ser vazio nem nulo")
     private String name;
 
-    @Positive(message = "Course hours must not be null")
-    @Column(columnDefinition = "SMALLINT",name = "course_time_hours")
+    @Positive(message = "O numero de horas deve ser maior que zero")
     private Integer courseTimeHours;
 
-    @NotBlank(message = "Code can't be null")
-    @Pattern(regexp = "^[a-z0-9-]+$", message = "The code must not be with space or special characters")
+    @NotBlank(message = "Código é obrigatório, não pode ser vazio nem nulo")
+    @Pattern(regexp = "^[a-z0-9-]+$", message = "O código pode ter apenas letras minúsculas, não pode conter acentos, espaços ou caracteres especiais")
     private String code;
     private boolean status;
-
-    @Column(columnDefinition = "TEXT", name = "target_audience")
     private String targetAudience;
-
     private String instructor;
-    @Column(columnDefinition = "TEXT", name = "course_description")
     private String courseDescription;
-
-    @Column(columnDefinition = "TEXT", name = "developed_skills")
     private String developedSkills;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -13,14 +13,12 @@ import java.util.List;
 public class Question extends Activity {
 
     private Long id;
-    @Column(name = "question_description")
     private String questionDescription;
 
     @OneToMany(mappedBy = "question")
     List<Alternative> alternatives = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "ENUM ('UNIQUE_ANSWER', 'MULTIPLE_ANSWERS', 'TRUE_OR_FALSE')", name = "question_type")
     private QuestionType questionType;
 
     public Question() {

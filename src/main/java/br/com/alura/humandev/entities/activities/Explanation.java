@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 public class Explanation extends Activity {
 
     private Long id;
-    @Column(name = "activity_explanation")
     private String activityExplanation;
 
     public Explanation() {

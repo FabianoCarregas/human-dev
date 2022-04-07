@@ -16,7 +16,6 @@ public class Section {
     private String code;
     private int ordination;
     private boolean active;
-    @Column(name = "test_status")
     private boolean testStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)

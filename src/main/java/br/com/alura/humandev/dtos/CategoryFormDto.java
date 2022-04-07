@@ -11,22 +11,22 @@ public class CategoryFormDto implements Serializable {
 
     private Long id;
 
-    @NotBlank(message = "Name must not be null or empty")
+    @NotBlank(message = "Nome é obrigatório, não pode ser vazio nem nulo")
     private String name;
 
-    @NotBlank(message = "Code can't be null")
-    @Pattern(regexp = "^[a-z0-9-]+$", message = "The code must not be with space or special characters")
+    @NotBlank(message = "O código é obrigatório, não pode ser vazio nem nulo")
+    @Pattern(regexp = "^[a-z0-9-]+$", message = "O código pode ter apenas letras minúsculas, não pode conter acentos, espaços ou caracteres especiais")
     private String code;
     private String categoryDescription;
     private String studyGuide;
     private boolean active;
 
-    @Positive(message = "Ordination most be positive")
+    @Positive(message = "A ordenação deve ser maior que zero")
     private Integer ordination;
     private String icon;
 
-    @NotBlank
-    @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$", message = "The color most be Hexadecimal code")
+    @NotBlank(message = "O código é obrigatório, não pode ser vazio nem nulo")
+    @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$", message = "O código da cor deve ser em hexadecimal")
     private String hexaColor;
 
     @Deprecated
