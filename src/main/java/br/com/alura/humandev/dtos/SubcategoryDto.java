@@ -1,21 +1,21 @@
 package br.com.alura.humandev.dtos;
 
-import br.com.alura.humandev.entities.Category;
+import br.com.alura.humandev.entities.Subcategory;
 
-public class CategoryDto {
+public class SubcategoryDto {
 
     private String name;
     private String code;
     private boolean active;
 
     @Deprecated
-    public CategoryDto() {
+    public SubcategoryDto() {
     }
 
-    public CategoryDto(Category category) {
-        this.name = category.getName();
-        this.code = category.getCode();
-        this.active = category.isActive();
+    public SubcategoryDto(Subcategory subcategory) {
+        this.name = subcategory.getName();
+        this.code = subcategory.getCode();
+        this.active = subcategory.isActive();
     }
 
     public String getName() {

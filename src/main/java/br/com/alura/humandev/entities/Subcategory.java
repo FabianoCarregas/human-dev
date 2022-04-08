@@ -1,15 +1,16 @@
 package br.com.alura.humandev.entities;
 
+import br.com.alura.humandev.dtos.CategoryFormDto;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Subcategory implements Serializable {
+public class Subcategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,6 +54,24 @@ public class Subcategory implements Serializable {
         this.category = category;
         this.category.addSubcategory(this);
     }
+    public Subcategory(Long id,
+                       String name,
+                       String code,
+                       String subcategoryDescription,
+                       String studyGuide,
+                       boolean active,
+                       Integer ordination,
+                       Category category) {
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.subcategoryDescription = subcategoryDescription;
+        this.studyGuide = studyGuide;
+        this.active = active;
+        this.ordination = ordination;
+        this.category = category;
+    }
+
 
     public List<Course> getCourses() {
         return courses;

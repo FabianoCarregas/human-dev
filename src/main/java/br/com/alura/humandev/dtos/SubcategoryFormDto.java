@@ -1,12 +1,14 @@
 package br.com.alura.humandev.dtos;
 
 import br.com.alura.humandev.entities.Category;
+import br.com.alura.humandev.entities.Subcategory;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
-public class CategoryFormDto {
+public class SubcategoryFormDto {
 
     private Long id;
 
@@ -22,25 +24,20 @@ public class CategoryFormDto {
 
     @Positive(message = "{number.invalid}")
     private Integer ordination;
-    private String icon;
-
-    @NotBlank
-    @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$", message = "{color.invalid}")
-    private String hexaColor;
+    private Category category;
 
     @Deprecated
-    public CategoryFormDto() {
+    public SubcategoryFormDto() {
     }
 
-    public CategoryFormDto(Long id,
-                           String name,
-                           String code,
-                           String categoryDescription,
-                           String studyGuide,
-                           boolean active,
-                           Integer ordination,
-                           String icon,
-                           String hexaColor) {
+    public SubcategoryFormDto(Long id,
+                              String name,
+                              String code,
+                              String categoryDescription,
+                              String studyGuide,
+                              boolean active,
+                              Integer ordination,
+                              Category category) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -48,8 +45,7 @@ public class CategoryFormDto {
         this.studyGuide = studyGuide;
         this.active = active;
         this.ordination = ordination;
-        this.icon = icon;
-        this.hexaColor = hexaColor;
+        this.category = category;
     }
 
     public void setId(Long id) {
@@ -80,14 +76,6 @@ public class CategoryFormDto {
         this.ordination = ordination;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public void setHexaColor(String hexaColor) {
-        this.hexaColor = hexaColor;
-    }
-
     public Long getId() {
         return id;
     }
@@ -116,29 +104,22 @@ public class CategoryFormDto {
         return ordination;
     }
 
-    public String getIcon() {
-        return icon;
+    public static List<SubcategoryDto> toDto(List<Subcategory> subcategories) {
+        return subcategories.stream().map(SubcategoryDto::new).toList();
+    }
+    public Subcategory toEntity(Category category) {
+        return new Subcategory(id, name , code, categoryDescription, studyGuide, active, ordination, category);
     }
 
-    public String getHexaColor() {
-        return hexaColor;
-    }
-
-    public Category toEntity() {
-        return new Category(id, name , code, categoryDescription, studyGuide,active,ordination , icon, hexaColor);
-    }
-
-    public static CategoryFormDto toDto(Category category) {
-        return new CategoryFormDto(
-            category.getId(),
-            category.getName(),
-            category.getCode(),
-            category.getCategoryDescription(),
-            category.getStudyGuide(),
-            category.isActive(),
-            category.getOrdination(),
-            category.getIcon(),
-            category.getHexaColor());
-    }
+//    public static SubcategoryFormDto toDto(Category category) {
+//        return new SubcategoryFormDto(
+//            category.getId(),
+//            category.getName(),
+//            category.getCode(),
+//            category.getCategoryDescription(),
+//            category.getStudyGuide(),
+//            category.isActive(),
+//            category.getOrdination())
+//    }
 
 }

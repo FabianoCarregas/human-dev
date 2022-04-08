@@ -11,12 +11,15 @@
 </head>
 <body>
 <div class="container">
+<%--    <div class="row">--%>
+<%--        <h1>${subcategories.code}</h1>--%>
+<%--    </div>--%>
     <div class="row">
-        <h1>Categorias</h1>
+        <h1>Subcategorias</h1>
     </div>
     <div class="row">
-        <a class="btn btn-primary" role="button" href="/admin/categories/new"  >
-            Nova categoria
+        <a class="btn btn-primary" role="button" href="/admin/subcategories/new"  >
+            Nova subcategoria
         </a>
     </div>
     <div class="row" >
@@ -31,17 +34,17 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${categories}" var="categoria">
+                <c:forEach items="${ subcategories }" var="subcategoria">
                     <tr>
-                        <td>${categoria.name}</td>
-                        <td>${categoria.code}</td>
-                        <td>${categoria.active == true ? "Ativa" : "Inativa"} </td>
+                        <td>${subcategoria.name}</td>
+                        <td>${subcategoria.code}</td>
+                        <td>${subcategoria.active == true ? "Ativa" : "Inativa"} </td>
                         <td class="text-center">
-                            <a role="button" href="/admin/subcategories/${categoria.id}">
-                                Subcategorias
+                            <a role="button" href="subcategories/${ subcategoria.code }">
+                                Courses
                             </a>
                         <td class="text-center">
-                            <a class="btn btn-default" role="button" href="/admin/categories/${ categoria.code }">
+                            <a class="btn btn-default" role="button" href="/admin/categories/${ subcategoria.code }">
                                 Editar
                             </a>
                         </td>
