@@ -31,7 +31,9 @@
                     <input type="checkbox" class="form-check-input" name="active" value="${ category.active }">
                     <label class="form-check-label" class="form-label">
                        Categoria Ativa?
-                       <span class="text-muted check-helper"> Mostra ou deixa de mostrar a categoria na listagem dos alunos, de formações. etc </span>
+                       <span class="text-muted check-helper">
+                           Mostra ou deixa de mostrar a categoria na listagem dos alunos, de formações. etc
+                       </span>
                     </label>
             </div>
             <div class="row">

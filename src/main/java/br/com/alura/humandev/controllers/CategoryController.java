@@ -30,12 +30,12 @@ public class CategoryController {
         List<Category> categories = categoryRepository.findAll();
         List<CategoryDto> categoryDto = categories.stream().map(CategoryDto::new).toList();
         model.addAttribute("categories", categories);
-        return "categoriesList";
+        return "categories/categoriesList";
     }
 
     @GetMapping("/new")
     public String getAddCategoryForm(CategoryFormDto categoryFormDto) {
-        return "postcategory";
+        return "categories/postcategory";
     }
 
     @PostMapping
@@ -51,7 +51,7 @@ public class CategoryController {
     public String showCategoryToUpdate(@PathVariable String code, Model model) {
         Category category = categoryRepository.findByCode(code);
         model.addAttribute("category",CategoryFormDto.toDto(category));
-        return "putCategories";
+        return "categories/putCategories";
     }
 
     @PostMapping("/{code}")

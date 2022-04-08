@@ -24,20 +24,13 @@ public class SubcategoryFormDto {
 
     @Positive(message = "{number.invalid}")
     private Integer ordination;
-    private Category category;
+    private Long categoryId;
 
     @Deprecated
     public SubcategoryFormDto() {
     }
 
-    public SubcategoryFormDto(Long id,
-                              String name,
-                              String code,
-                              String categoryDescription,
-                              String studyGuide,
-                              boolean active,
-                              Integer ordination,
-                              Category category) {
+    public SubcategoryFormDto(Long id, String name, String code, String categoryDescription, String studyGuide, boolean active, Integer ordination, Long categoryId) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -45,7 +38,15 @@ public class SubcategoryFormDto {
         this.studyGuide = studyGuide;
         this.active = active;
         this.ordination = ordination;
-        this.category = category;
+        this.categoryId = categoryId;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public void setId(Long id) {

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin/subcategories")
@@ -32,27 +34,30 @@ public class SubcategoryController {
     }
 
     @GetMapping("/{code}")
-    public String getAllSubcategoriesByOrder(@PathVariable Long code, Model model) {
-        List<Subcategory> subcategories = subcategoryRepository.findByCategory_idOrderByOrdination(code);
+    public String getAllSubcategoriesByOrder(@PathVariable String code, Model model) {
+        Category category = categoryRepository.findByCode(code);
+        List<Subcategory> subcategories = category.getSubcategories().stream().
+                sorted(Comparator.comparingInt(Subcategory::getOrdination)).collect(Collectors.toList());
         model.addAttribute("subcategories", subcategories);
-        return "subcategoriesList";
+        return "subcategories/subcategoriesList";
     }
 
     @GetMapping("/new")
     public String addSubcategoryFormWithCategory(SubcategoryFormDto subcategoryFormDto, Model model) {
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("categories", categories);
-        return "postsubcategory";
+        return "subcategories/postsubcategory";
     }
 
-//    @PostMapping
-//    public String addNewCategory(@Valid SubcategoryFormDto subcategoryFormDto, BindingResult result, Model model) {
-//        if (result.hasErrors()) {
-//            return addSubcategoryFormWithCategory(subcategoryFormDto);
-//        }
-//        subcategoryRepository.save(subcategoryFormDto.toEntity());
-//        return "redirect:/admin/subcategories";
-//    }
+    @PostMapping
+    public String addNewCategory(@Valid SubcategoryFormDto subcategoryFormDto, BindingResult result, Model model) {
+       Category category = categoryRepository.findById(subcategoryFormDto.getCategoryId()).orElseThrow(RuntimeException::new);
+        if (result.hasErrors()) {
+            return addSubcategoryFormWithCategory(subcategoryFormDto, model);
+        }
+        subcategoryRepository.save(subcategoryFormDto.toEntity(category));
+        return getAllSubcategoriesByOrder(category.getCode(), model) ;
+    }
 
 }
 

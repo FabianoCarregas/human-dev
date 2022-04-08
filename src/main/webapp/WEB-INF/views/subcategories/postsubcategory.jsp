@@ -20,12 +20,12 @@
             <div class="row">
                 <label class="form-label">Nome</label>
                 <input name="name" type="text" class="form-control" placeholder="Digite aqui o nome da categoria">
-                <form:errors path="categoryFormDto.name" cssClass="alert-danger"/>
+                <form:errors path="subcategoryFormDto.name" cssClass="alert-danger"/>
             </div>
             <div class="row">
                 <label class="form-label" >Código</label>
                 <input name="code" type="text" class="form-control" placeholder="por exemplo: desenvolvimento, mobile(não use letras maiúsculas ou acentos...">
-                <form:errors path="categoryFormDto.code" cssClass="alert-danger"/>
+                <form:errors path="subcategoryFormDto.code" cssClass="alert-danger"/>
             </div>
             <div class="form-group row ">
                 <input type="checkbox" class="form-check-input" name="active">
@@ -37,7 +37,7 @@
             <div class="row">
                 <label class="form-label">Ordem da subcategoria</label>
                 <input name="ordination" type="text" class="form-control" placeholder="por exemplo: categoria de ordem 1 aparece antes da subcategoria 2">
-                <form:errors path="categoryFormDto.ordination" cssClass="alert-danger"/>
+                <form:errors path="subcategoryFormDto.ordination" cssClass="alert-danger"/>
             </div>
             <div class="row">
                 <label>Guia de estudos</label>
@@ -48,17 +48,14 @@
                 <label class="form-label">Descrição</label>
                 <input name="categoryDescription" type="text" class="form-control" placeholder="por exemplo:IOS, Android, PhoneGap e mais...">
             </div>
-
             <div class="row">
                 <label class="form-label">Categorias</label>
-                <c:forEach items="${categories}" var="categoria">
-                    <select class="form-control" name="category" >
-                        <option>${categoria.name}</option>
-
-                    </select>
-                </c:forEach>
+                <select class="form-control" name="categoryId" >
+                    <c:forEach items="${categories}" var="categoria">
+                        <option value="${categoria.id}">${categoria.name}</option>
+                    </c:forEach>
+                </select>
             </div>
-
             <div class="row">
                 <button type="submit" class="btn btn-success">Enviar</button>
             </div>

@@ -37,7 +37,7 @@
                         <td>${categoria.code}</td>
                         <td>${categoria.active == true ? "Ativa" : "Inativa"} </td>
                         <td class="text-center">
-                            <a role="button" href="/admin/subcategories/${categoria.id}">
+                            <a role="button" href="/admin/subcategories/${categoria.code}">
                                 Subcategorias
                             </a>
                         <td class="text-center">
