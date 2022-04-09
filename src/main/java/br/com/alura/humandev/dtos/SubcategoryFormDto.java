@@ -18,7 +18,7 @@ public class SubcategoryFormDto {
     @NotBlank
     @Pattern(regexp = "^[a-z0-9-]+$", message = "{code.invalid}")
     private String code;
-    private String categoryDescription;
+    private String subcategoryDescription;
     private String studyGuide;
     private boolean active;
 
@@ -34,11 +34,15 @@ public class SubcategoryFormDto {
         this.id = id;
         this.name = name;
         this.code = code;
-        this.categoryDescription = categoryDescription;
+        this.subcategoryDescription = subcategoryDescription;
         this.studyGuide = studyGuide;
         this.active = active;
         this.ordination = ordination;
         this.categoryId = categoryId;
+    }
+
+    public SubcategoryFormDto(Long id, String name, String code, String subcategoryDescription, String studyGuide, boolean active, Integer ordination) {
+
     }
 
     public Long getCategoryId() {
@@ -61,8 +65,8 @@ public class SubcategoryFormDto {
         this.code = code;
     }
 
-    public void setCategoryDescription(String categoryDescription) {
-        this.categoryDescription = categoryDescription;
+    public void setSubcategoryDescription(String subcategoryDescription) {
+        this.subcategoryDescription = subcategoryDescription;
     }
 
     public void setStudyGuide(String studyGuide) {
@@ -89,8 +93,8 @@ public class SubcategoryFormDto {
         return code;
     }
 
-    public String getCategoryDescription() {
-        return categoryDescription;
+    public String getSubcategoryDescription() {
+        return subcategoryDescription;
     }
 
     public String getStudyGuide() {
@@ -105,22 +109,22 @@ public class SubcategoryFormDto {
         return ordination;
     }
 
-    public static List<SubcategoryDto> toDto(List<Subcategory> subcategories) {
+    public static List<SubcategoryDto> toDtoList(List<Subcategory> subcategories) {
         return subcategories.stream().map(SubcategoryDto::new).toList();
     }
     public Subcategory toEntity(Category category) {
-        return new Subcategory(id, name , code, categoryDescription, studyGuide, active, ordination, category);
+        return new Subcategory(id, name , code, subcategoryDescription, studyGuide, active, ordination, category);
     }
 
-//    public static SubcategoryFormDto toDto(Category category) {
-//        return new SubcategoryFormDto(
-//            category.getId(),
-//            category.getName(),
-//            category.getCode(),
-//            category.getCategoryDescription(),
-//            category.getStudyGuide(),
-//            category.isActive(),
-//            category.getOrdination())
-//    }
+    public static SubcategoryFormDto toDto(Subcategory subcategory) {
+        return new SubcategoryFormDto(
+            subcategory.getId(),
+            subcategory.getName(),
+            subcategory.getCode(),
+            subcategory.getSubcategoryDescription(),
+            subcategory.getStudyGuide(),
+            subcategory.isActive(),
+            subcategory.getOrdination());
+    }
 
 }

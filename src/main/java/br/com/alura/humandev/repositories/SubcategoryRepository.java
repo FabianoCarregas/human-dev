@@ -9,11 +9,6 @@ import java.util.List;
 @Repository
 public interface SubcategoryRepository extends JpaRepository<Subcategory, Long> {
 
-    List<Subcategory> findByCodeOrderByOrdination(String code);
-
-
-    List<Subcategory> findByCategory_idOrderByOrdination(Long code);
-
-
+   Subcategory findByCode(String code);
 
 }

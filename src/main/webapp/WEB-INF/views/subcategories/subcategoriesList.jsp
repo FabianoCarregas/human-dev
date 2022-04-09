@@ -44,7 +44,7 @@
                                 Courses
                             </a>
                         <td class="text-center">
-                            <a class="btn btn-default" role="button" href="/admin/categories/${ subcategoria.code }">
+                            <a class="btn btn-default" role="button" href="/admin/subcategories/${category.code}/${subcategoria.code}">
                                 Editar
                             </a>
                         </td>

@@ -72,9 +72,12 @@ public class Subcategory {
         this.category = category;
     }
 
+    public Long getId() {
+        return id;
+    }
 
-    public List<Course> getCourses() {
-        return courses;
+    public String getStudyGuide() {
+        return studyGuide;
     }
 
     public String getCode() {
@@ -99,6 +102,10 @@ public class Subcategory {
 
     public Category getCategory() {
         return category;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
     }
 
 }

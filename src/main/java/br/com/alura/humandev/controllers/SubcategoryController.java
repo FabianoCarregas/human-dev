@@ -1,5 +1,6 @@
 package br.com.alura.humandev.controllers;
 
+import br.com.alura.humandev.dtos.CategoryFormDto;
 import br.com.alura.humandev.dtos.SubcategoryFormDto;
 import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.entities.Subcategory;
@@ -38,7 +39,8 @@ public class SubcategoryController {
         Category category = categoryRepository.findByCode(code);
         List<Subcategory> subcategories = category.getSubcategories().stream().
                 sorted(Comparator.comparingInt(Subcategory::getOrdination)).collect(Collectors.toList());
-        model.addAttribute("subcategories", subcategories);
+        model.addAttribute("category", CategoryFormDto.toDto(category));
+        model.addAttribute("subcategories", SubcategoryFormDto.toDtoList(subcategories));
         return "subcategories/subcategoriesList";
     }
 
@@ -59,5 +61,24 @@ public class SubcategoryController {
         return getAllSubcategoriesByOrder(category.getCode(), model) ;
     }
 
+    @GetMapping("/{categoryCode}/{subcategoryCode}")
+    public String showEditSubcategory(@PathVariable String categoryCode,@PathVariable String subcategoryCode, Model model) {
+        List<Category> categories = categoryRepository.findAll();
+        Subcategory subcategory = subcategoryRepository.findByCode(subcategoryCode);
+        model.addAttribute("subcategory", subcategory);
+        model.addAttribute("categories", categories);
+        return "subcategories/putSubcategories";
+    }
+
+    @PostMapping("/{categoryCode}/{subcategoryCode}")
+    public String editSubcategoryByCode(@PathVariable String categoryCode,@PathVariable String subcategoryCode,
+                                        SubcategoryFormDto subcategoryFormDto, BindingResult result, Model model) {
+        Category category = categoryRepository.findById(subcategoryFormDto.getCategoryId()).orElseThrow(RuntimeException::new);
+        if (result.hasErrors()) {
+            return showEditSubcategory(categoryCode, subcategoryCode, model);
+        }
+        subcategoryRepository.save(subcategoryFormDto.toEntity(category));
+        return "redirect:/admin/subcategories";
+    }
 }
 
