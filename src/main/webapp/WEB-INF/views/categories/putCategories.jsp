@@ -28,11 +28,7 @@
                 <form:errors path="categoryFormDto.code" cssClass="alert-danger"/>
             </div>
             <div class="form-group row">
-                <c:if test="${category.active}">
-                    <input type="checkbox" class="form-check-input" name="active" ${category.active ? 'checked' : ''}
-                           checked value="${ category.active }">
-                </c:if>
-                <input type="checkbox" class="form-check-input" name="active" value="${ category.active }">
+                    <input type="checkbox" class="form-check-input" name="active" ${category.active ? 'checked' : ''}>
                     <label class="form-check-label" class="form-label">
                        Categoria Ativa?
                        <span class="text-muted check-helper">

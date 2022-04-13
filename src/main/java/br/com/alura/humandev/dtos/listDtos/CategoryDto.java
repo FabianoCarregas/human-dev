@@ -47,4 +47,5 @@ public class CategoryDto {
     public void setActive(boolean active) {
         this.active = active;
     }
+
 }

@@ -22,7 +22,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             LEFT JOIN subcategory su ON ca.id = su.category_id
             LEFT JOIN course co ON su.id = co.subcategory_id
             GROUP BY ca.name
-            Order by coursesQuantity;
+            Order by coursesQuantity DESC ;
             """, nativeQuery = true)
     List<CategoryProjection> findCategoryWithNumberOfCourses();
 }

@@ -19,12 +19,12 @@
         <form action="/admin/subcategories" method="post" class="form-post">
             <div class="row">
                 <label class="form-label">Nome</label>
-                <input name="name" type="text" class="form-control" placeholder="Digite aqui o nome da categoria">
+                <input name="name" type="text" class="form-control" value="${subcategoryFormDto.name}" placeholder="Digite aqui o nome da categoria">
                 <form:errors path="subcategoryFormDto.name" cssClass="alert-danger"/>
             </div>
             <div class="row">
                 <label class="form-label" >Código</label>
-                <input name="code" type="text" class="form-control" placeholder="por exemplo: desenvolvimento, mobile(não use letras maiúsculas ou acentos...">
+                <input name="code" type="text" class="form-control" value="${subcategoryFormDto.code}" placeholder="por exemplo: desenvolvimento, mobile(não use letras maiúsculas ou acentos...">
                 <form:errors path="subcategoryFormDto.code" cssClass="alert-danger"/>
             </div>
             <div class="form-group row ">
@@ -36,7 +36,7 @@
             </div>
             <div class="row">
                 <label class="form-label">Ordem da subcategoria</label>
-                <input name="ordination" type="text" class="form-control" placeholder="por exemplo: categoria de ordem 1 aparece antes da subcategoria 2">
+                <input name="ordination" type="text" class="form-control" value="${subcategoryFormDto.ordination}" placeholder="por exemplo: categoria de ordem 1 aparece antes da subcategoria 2">
                 <form:errors path="subcategoryFormDto.ordination" cssClass="alert-danger"/>
             </div>
             <div class="row">
@@ -46,7 +46,7 @@
             </div>
             <div class="row">
                 <label class="form-label">Descrição</label>
-                <input name="categoryDescription" type="text" class="form-control" placeholder="por exemplo:IOS, Android, PhoneGap e mais...">
+                <input name="categoryDescription" type="text" class="form-control" value="${subcategoryFormDto.subcategoryDescription}" placeholder="por exemplo:IOS, Android, PhoneGap e mais...">
             </div>
             <div class="row">
                 <label class="form-label">Categorias</label>

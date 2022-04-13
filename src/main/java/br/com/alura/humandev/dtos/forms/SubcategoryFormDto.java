@@ -27,24 +27,17 @@ public class SubcategoryFormDto {
     private Integer ordination;
     private Long categoryId;
 
-    @Deprecated
     public SubcategoryFormDto() {
     }
 
-    public SubcategoryFormDto(Long id,
-                              String name,
-                              String code,
-                              String categoryDescription,
-                              String studyGuide,
-                              boolean active,
-                              Integer ordination) {
-        this.id = id;
-        this.name = name;
-        this.code = code;
-        this.subcategoryDescription = subcategoryDescription;
-        this.studyGuide = studyGuide;
-        this.active = active;
-        this.ordination = ordination;
+    public SubcategoryFormDto(Subcategory subcategory) {
+        this.id = subcategory.getId();
+        this.name = subcategory.getName();
+        this.code = subcategory.getCode();
+        this.subcategoryDescription = subcategory.getSubcategoryDescription();
+        this.studyGuide = subcategory.getStudyGuide();
+        this.active = subcategory.isActive();
+        this.ordination = subcategory.getOrdination();
     }
 
     public Long getCategoryId() {
@@ -114,19 +107,13 @@ public class SubcategoryFormDto {
     public static List<SubcategoryDto> toDtoList(List<Subcategory> subcategories) {
         return subcategories.stream().map(SubcategoryDto::new).toList();
     }
+
     public Subcategory toEntity(Category category) {
         return new Subcategory(id, name , code, subcategoryDescription, studyGuide, active, ordination, category);
     }
 
     public static SubcategoryFormDto toDto(Subcategory subcategory) {
-        return new SubcategoryFormDto(
-            subcategory.getId(),
-            subcategory.getName(),
-            subcategory.getCode(),
-            subcategory.getSubcategoryDescription(),
-            subcategory.getStudyGuide(),
-            subcategory.isActive(),
-            subcategory.getOrdination());
+        return new SubcategoryFormDto(subcategory);
     }
 
 }

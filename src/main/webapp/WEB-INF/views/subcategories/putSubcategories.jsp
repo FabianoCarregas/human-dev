@@ -15,21 +15,20 @@
         <div class="row">
             <h1>Editar subcategoria</h1>
         </div>
-        <form action="/admin/subcategories/${code}/${code}" method="post" class="form-post">
+        <form action="/admin/subcategories/${subcategory.category.code}/${subcategory.code}" method="post" class="form-post">
             <input type="hidden" name="id" value="${subcategory.id}">
             <div class="row">
                 <label class="form-label">Nome</label>
-                <input name="name" type="text" class="form-control" value="${ subcategory.name }">
-                <form:errors path="categoryFormDto.name" cssClass="alert-danger"/>
+                <input name="name" type="text" class="form-control" value="${subcategoryFormDto.name }">
+                <form:errors path="subcategoryFormDto.name" cssClass="alert-danger"/>
             </div>
             <div class="row">
                 <label class="form-label" >Código</label>
-                <input name="code" type="text" class="form-control" value="${ subcategory.code }">
-                <form:errors path="categoryFormDto.code" cssClass="alert-danger"/>
+                <input name="code" type="text" class="form-control" value="${ subcategoryFormDto.code }">
+                <form:errors path="subcategoryFormDto.code" cssClass="alert-danger"/>
             </div>
             <div class="form-group row">
-                <input type="checkbox" class="form-check-input" name="active" ${subcategory.active ? 'checked' : ''}
-                       value="${ subcategory.active }">
+                <input type="checkbox" class="form-check-input" name="active" ${subcategoryFormDto.active ? 'checked' : ''}>
                     <label class="form-check-label" class="form-label">
                        Categoria Ativa?
                        <span class="text-muted check-helper">
@@ -39,21 +38,21 @@
             </div>
             <div class="row">
                 <label class="form-label">Ordem da categoria</label>
-                <input name="ordination" type="text" class="form-control" value="${ subcategory.ordination }">
-                <form:errors path="categoryFormDto.ordination" cssClass="alert-danger"/>
+                <input name="ordination" type="text" class="form-control" value="${ subcategoryFormDto.ordination }">
+                <form:errors path="subcategoryFormDto.ordination" cssClass="alert-danger"/>
             </div>
             <div class="row" >
                 <label>Guia de estudos</label>
-                <textarea class="form-control" name="studyGuide" rows="6" value="${ subcategory.studyGuide }"></textarea>
+                <textarea class="form-control" name="studyGuide" rows="6" value="${ subcategoryFormDto.studyGuide }"></textarea>
             </div>
             <div class="row">
                 <label class="form-label">Descrição</label>
-                <input name="categoryDescription" type="text" class="form-control" ${ subcategory.subcategoryDescription }>
+                <input name="subcategoryDescription" type="text" class="form-control" value="${ subcategoryFormDto.subcategoryDescription }">
             </div>
             <div class="row">
                 <label class="form-label">Categorias</label>
                 <select class="form-control" name="categoryId" >
-                    <c:forEach items="${categories}" var="categoria">
+                    <c:forEach items="${category}" var="categoria">
                         <option value="${categoria.id}">${categoria.name}</option>
                     </c:forEach>
                 </select>
