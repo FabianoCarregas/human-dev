@@ -1,5 +1,6 @@
-package br.com.alura.humandev.dtos;
+package br.com.alura.humandev.dtos.forms;
 
+import br.com.alura.humandev.dtos.listDtos.SubcategoryDto;
 import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.entities.Subcategory;
 
@@ -30,7 +31,13 @@ public class SubcategoryFormDto {
     public SubcategoryFormDto() {
     }
 
-    public SubcategoryFormDto(Long id, String name, String code, String categoryDescription, String studyGuide, boolean active, Integer ordination, Long categoryId) {
+    public SubcategoryFormDto(Long id,
+                              String name,
+                              String code,
+                              String categoryDescription,
+                              String studyGuide,
+                              boolean active,
+                              Integer ordination) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -38,11 +45,6 @@ public class SubcategoryFormDto {
         this.studyGuide = studyGuide;
         this.active = active;
         this.ordination = ordination;
-        this.categoryId = categoryId;
-    }
-
-    public SubcategoryFormDto(Long id, String name, String code, String subcategoryDescription, String studyGuide, boolean active, Integer ordination) {
-
     }
 
     public Long getCategoryId() {

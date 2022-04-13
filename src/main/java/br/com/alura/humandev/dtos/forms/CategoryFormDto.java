@@ -1,12 +1,10 @@
-package br.com.alura.humandev.dtos;
+package br.com.alura.humandev.dtos.forms;
 
 import br.com.alura.humandev.entities.Category;
-import br.com.alura.humandev.entities.Subcategory;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
-import java.util.List;
 
 public class CategoryFormDto {
 
@@ -53,10 +51,6 @@ public class CategoryFormDto {
         this.icon = icon;
         this.hexaColor = hexaColor;
     }
-
-    public CategoryFormDto(Category category) {
-    }
-
 
     public void setId(Long id) {
         this.id = id;
@@ -133,13 +127,6 @@ public class CategoryFormDto {
     public Category toEntity() {
         return new Category(id, name , code, categoryDescription, studyGuide,active,ordination , icon, hexaColor);
     }
-
-    public static List<CategoryFormDto> toDtoList(List<Category> categories) {
-        return categories.stream().map(CategoryFormDto::new).toList();
-    }
-//    public static List<SubcategoryDto> toDtoList(List<Subcategory> subcategories) {
-//        return subcategories.stream().map(SubcategoryDto::new).toList();
-//    }
 
     public static CategoryFormDto toDto(Category category) {
         return new CategoryFormDto(

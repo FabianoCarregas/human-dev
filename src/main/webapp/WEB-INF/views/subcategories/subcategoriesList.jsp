@@ -11,10 +11,8 @@
 </head>
 <body>
 <div class="container">
-<%--    <div class="row">--%>
-<%--        <h1>${subcategories.code}</h1>--%>
-<%--    </div>--%>
     <div class="row">
+        <h3>${category.name}</h3>
         <h1>Subcategorias</h1>
     </div>
     <div class="row">
@@ -38,9 +36,16 @@
                     <tr>
                         <td>${subcategoria.name}</td>
                         <td>${subcategoria.code}</td>
-                        <td>${subcategoria.active == true ? "Ativa" : "Inativa"} </td>
+                        <td class="active${subcategoria.id}">${subcategoria.active == true ? "Ativa" : "Inativa"} </td>
                         <td class="text-center">
-                            <a role="button" href="subcategories/${ subcategoria.code }">
+                            <c:if test="${subcategoria.active}">
+                                <button class="btn btn-default change-subcategoryStatus" data-subcategory-id="${subcategoria.id}">
+                                    Desativar
+                                </button>
+                            </c:if >
+                        </td>
+                        <td class="text-center">
+                            <a role="button" href="/admin/courses/${ category.code }/${ subcategoria.code }">
                                 Courses
                             </a>
                         <td class="text-center">
@@ -54,5 +59,7 @@
         </table>
     </div>
 </div>
+<script src="../../../assets/js/jquery.js"></script>
+<script src="../../../assets/js/scripts.js"></script>
 </body>
 </html>

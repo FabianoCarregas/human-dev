@@ -28,7 +28,8 @@
                 <form:errors path="categoryFormDto.code" cssClass="alert-danger"/>
             </div>
             <div class="form-group row">
-                    <input type="checkbox" class="form-check-input" name="active" value="${ subcategory.active }">
+                <input type="checkbox" class="form-check-input" name="active" ${subcategory.active ? 'checked' : ''}
+                       value="${ subcategory.active }">
                     <label class="form-check-label" class="form-label">
                        Categoria Ativa?
                        <span class="text-muted check-helper">

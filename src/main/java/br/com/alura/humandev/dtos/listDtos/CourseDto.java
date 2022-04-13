@@ -1,21 +1,27 @@
-package br.com.alura.humandev.dtos;
+package br.com.alura.humandev.dtos.listDtos;
 
-import br.com.alura.humandev.entities.Category;
+import br.com.alura.humandev.entities.Course;
 
-public class CategoryDto {
+public class CourseDto {
 
+    private Long id;
     private String name;
     private String code;
     private boolean active;
 
     @Deprecated
-    public CategoryDto() {
+    public CourseDto() {
     }
 
-    public CategoryDto(Category category) {
-        this.name = category.getName();
-        this.code = category.getCode();
-        this.active = category.isActive();
+    public CourseDto(Course course) {
+        this.id = course.getId();
+        this.name = course.getName();
+        this.code = course.getCode();
+        this.active = course.isActive();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

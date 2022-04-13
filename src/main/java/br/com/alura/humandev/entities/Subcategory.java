@@ -1,7 +1,5 @@
 package br.com.alura.humandev.entities;
 
-import br.com.alura.humandev.dtos.CategoryFormDto;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -70,6 +68,10 @@ public class Subcategory {
         this.active = active;
         this.ordination = ordination;
         this.category = category;
+    }
+
+    public void toggleStatus() {
+        this.active = false;
     }
 
     public Long getId() {

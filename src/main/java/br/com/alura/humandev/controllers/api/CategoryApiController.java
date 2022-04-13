@@ -1,4 +1,4 @@
-package br.com.alura.humandev.controllers;
+package br.com.alura.humandev.controllers.api;
 
 import br.com.alura.humandev.dtos.api.CategoryDtoApi;
 import br.com.alura.humandev.entities.Category;

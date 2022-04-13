@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,6 +75,9 @@ public class Category {
         this.ordination = ordination;
         this.icon = icon;
         this.hexaColor = hexaColor;
+    }
+    public void toggleStatus() {
+        this.active = false;
     }
 
     public void addSubcategory(Subcategory subcategory) {
