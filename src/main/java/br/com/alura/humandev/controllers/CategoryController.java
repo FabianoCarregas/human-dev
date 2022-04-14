@@ -73,7 +73,7 @@ public class CategoryController {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         category.deactivate();
-        categoryRepository.save(category);
+        categoryRepository.save(category); 
     }
 
 }
