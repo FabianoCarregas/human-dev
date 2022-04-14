@@ -33,22 +33,22 @@ public class CategoryController {
     }
 
     @GetMapping("/new")
-    public String getAddCategoryForm(CategoryFormDto categoryFormDto) {
+    public String create(CategoryFormDto categoryFormDto) {
         return "categories/postcategory";
     }
 
     @PostMapping
-    public String addCategory(@Valid CategoryFormDto categoryFormDto,
-                              BindingResult result) {
+    public String save(@Valid CategoryFormDto categoryFormDto,
+                       BindingResult result) {
         if (result.hasErrors()) {
-            return getAddCategoryForm(categoryFormDto);
+            return create(categoryFormDto);
         }
         categoryRepository.save(categoryFormDto.toEntity());
         return "redirect:/admin/categories";
     }
 
     @GetMapping("/{code}")
-    public String showCategoryToUpdate(@PathVariable String code, Model model) {
+    public String edit(@PathVariable String code, Model model) {
         Category category = categoryRepository.findByCode(code)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         model.addAttribute("category",CategoryFormDto.toDto(category));
@@ -56,11 +56,11 @@ public class CategoryController {
     }
 
     @PostMapping("/{code}")
-    public String editCategoryByCode(@PathVariable String code,
-                                     @Valid CategoryFormDto categoryFormDto,
-                                     BindingResult result, Model model) {
+    public String update(@PathVariable String code,
+                         @Valid CategoryFormDto categoryFormDto,
+                         BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return showCategoryToUpdate(code, model);
+            return edit(code, model);
         }
         Category category = categoryFormDto.toEntity();
         categoryRepository.save(category);
@@ -72,7 +72,7 @@ public class CategoryController {
     public void changeStatus(@PathVariable Long id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        category.toggleStatus();
+        category.deactivate();
         categoryRepository.save(category);
     }
 

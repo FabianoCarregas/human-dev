@@ -23,24 +23,6 @@ public class CourseFormDto {
     public CourseFormDto() {
     }
 
-    public CourseFormDto(Long id,
-                         String name,
-                         String code,
-                         String courseDescription,
-                         boolean active,
-                         String targetAudience,
-                         String developedSkills,
-                         Long subcategoryId) {
-        this.id = id;
-        this.name = name;
-        this.code = code;
-        this.courseDescription = courseDescription;
-        this.active = active;
-        this.targetAudience = targetAudience;
-        this.developedSkills = developedSkills;
-        this.subcategoryId = subcategoryId;
-    }
-
     public Long getId() {
         return id;
     }

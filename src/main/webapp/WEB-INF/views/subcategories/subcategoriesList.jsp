@@ -36,7 +36,7 @@
                     <tr>
                         <td>${subcategoria.name}</td>
                         <td>${subcategoria.code}</td>
-                        <td class="active${subcategoria.id}">${subcategoria.active == true ? "Ativa" : "Inativa"} </td>
+                        <td>${subcategoria.active == true ? "Ativa" : "Inativa"} </td>
                         <td class="text-center">
                             <c:if test="${subcategoria.active}">
                                 <button class="btn btn-default change-subcategoryStatus" data-subcategory-id="${subcategoria.id}">

@@ -46,8 +46,8 @@ public class SubcategoryController {
     }
 
     @GetMapping("/new")
-    public String addSubcategoryFormWithCategory(SubcategoryFormDto subcategoryFormDto,
-                                                 BindingResult result, Model model) {
+    public String create(SubcategoryFormDto subcategoryFormDto,
+                         BindingResult result, Model model) {
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("subcategories", subcategoryFormDto);
         model.addAttribute("categories", categories.stream().map(CategoryDto::new).toList());
@@ -55,10 +55,10 @@ public class SubcategoryController {
     }
 
     @PostMapping
-    public String addNewSubcategory(@Valid SubcategoryFormDto subcategoryFormDto,
-                                 BindingResult result, Model model) {
+    public String save(@Valid SubcategoryFormDto subcategoryFormDto,
+                       BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return addSubcategoryFormWithCategory(subcategoryFormDto, result, model);
+            return create(subcategoryFormDto, result, model);
         }
         Category category = categoryRepository.findById(subcategoryFormDto.getCategoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -67,11 +67,11 @@ public class SubcategoryController {
     }
 
     @GetMapping("/{categoryCode}/{subcategoryCode}")
-    public String showEditSubcategory(@PathVariable String categoryCode,
-                                      @PathVariable String subcategoryCode,
-                                      SubcategoryFormDto subcategoryFormDto,
-                                      BindingResult result,
-                                      Model model) {
+    public String edit(@PathVariable String categoryCode,
+                       @PathVariable String subcategoryCode,
+                       SubcategoryFormDto subcategoryFormDto,
+                       BindingResult result,
+                       Model model) {
         Subcategory subcategory = subcategoryRepository.findByCode(subcategoryCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         List<Category> category = categoryRepository.findAll();
@@ -83,12 +83,12 @@ public class SubcategoryController {
     }
 
     @PostMapping("/{categoryCode}/{subcategoryCode}")
-    public String editSubcategoryByCode(@PathVariable String categoryCode,
-                                        @PathVariable String subcategoryCode,
-                                        @Valid SubcategoryFormDto subcategoryFormDto,
-                                        BindingResult result, Model model) {
+    public String update(@PathVariable String categoryCode,
+                         @PathVariable String subcategoryCode,
+                         @Valid SubcategoryFormDto subcategoryFormDto,
+                         BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return showEditSubcategory(categoryCode, subcategoryCode, subcategoryFormDto, result, model);
+            return edit(categoryCode, subcategoryCode, subcategoryFormDto, result, model);
         }
         Category category = categoryRepository.findById(subcategoryFormDto.getCategoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -101,7 +101,7 @@ public class SubcategoryController {
     public void changeSubcategoryStatus(@PathVariable Long id) {
         Subcategory subcategory = subcategoryRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        subcategory.toggleStatus();
+        subcategory.deactivate();
         subcategoryRepository.save(subcategory);
     }
 }

@@ -70,7 +70,7 @@ public class Subcategory {
         this.category = category;
     }
 
-    public void toggleStatus() {
+    public void deactivate() {
         this.active = false;
     }
 

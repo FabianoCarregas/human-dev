@@ -76,7 +76,7 @@ public class Category {
         this.icon = icon;
         this.hexaColor = hexaColor;
     }
-    public void toggleStatus() {
+    public void deactivate() {
         this.active = false;
     }
 
