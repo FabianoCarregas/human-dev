@@ -1,9 +1,7 @@
 package br.com.alura.humandev.entities;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.*;
 
 @Entity
 public class Course {
@@ -15,6 +13,8 @@ public class Course {
     @NotBlank(message = "{name.invalid}")
     private String name;
 
+    @Min(1)
+    @Max(value = 20, message = "{number.max}")
     @Positive(message = "{number.invalid}")
     private Integer courseTimeHours;
 
@@ -23,6 +23,8 @@ public class Course {
     private String code;
     private boolean active;
     private String targetAudience;
+
+    @NotBlank(message = "{name.invalid}")
     private String instructor;
     private String courseDescription;
     private String developedSkills;
@@ -46,6 +48,28 @@ public class Course {
         this.name = name;
         this.code = code;
         this.courseTimeHours = courseTimeHours;
+        this.active = active;
+        this.targetAudience = targetAudience;
+        this.instructor = instructor;
+        this.courseDescription = courseDescription;
+        this.developedSkills = developedSkills;
+        this.subcategory = subcategory;
+    }
+
+    public Course(Long id,
+                  String name,
+                  Integer courseTimeHours,
+                  String code,
+                  boolean active,
+                  String targetAudience,
+                  String instructor,
+                  String courseDescription,
+                  String developedSkills,
+                  Subcategory subcategory) {
+        this.id = id;
+        this.name = name;
+        this.courseTimeHours = courseTimeHours;
+        this.code = code;
         this.active = active;
         this.targetAudience = targetAudience;
         this.instructor = instructor;

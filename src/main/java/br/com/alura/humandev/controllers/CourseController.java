@@ -1,6 +1,9 @@
 package br.com.alura.humandev.controllers;
 
+import br.com.alura.humandev.dtos.forms.CourseFormDto;
 import br.com.alura.humandev.dtos.listDtos.CourseDto;
+import br.com.alura.humandev.entities.Category;
+import br.com.alura.humandev.entities.Course;
 import br.com.alura.humandev.entities.Subcategory;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import br.com.alura.humandev.repositories.CourseRepository;
@@ -11,12 +14,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -50,6 +53,60 @@ public class CourseController {
         model.addAttribute("coursesPage", courses);
         model.addAttribute("categorycode", categoryCode);
         return "courses/coursesList";
+    }
+
+    @GetMapping("/new")
+    public String create(CourseFormDto courseFormDto,
+                         BindingResult result, Model model) {
+        List<Subcategory> subcategories = subcategoryRepository.findAll();
+        model.addAttribute("subcategories", subcategories);
+        model.addAttribute("courseDto", courseFormDto);
+        return "courses/postcourse";
+    }
+
+    @PostMapping
+    public String save(@Valid CourseFormDto courseFormDto,
+                       BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return create(courseFormDto, result, model);
+        }
+        Subcategory subcategory = subcategoryRepository.findById(courseFormDto.getSubcategoryId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Course course = courseFormDto.toEntity(subcategory);
+        courseRepository.save(course);
+        return "redirect:/admin/courses/" + subcategory.getCategory().getCode() +"/"+ subcategory.getCode() ;
+    }
+
+    @GetMapping("/{categoryCode}/{subcategoryCode}/{courseCode}")
+    public String edit(@PathVariable String categoryCode,
+                       @PathVariable String subcategoryCode,
+                       @PathVariable String courseCode,
+                       CourseFormDto courseFormDto,
+                       BindingResult result,
+                       Model model) {
+        Course course = courseRepository.findByCode(courseCode)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        List<Subcategory> subcategories = subcategoryRepository.findAll();
+        model.addAttribute("course", course);
+        model.addAttribute("subcategories", subcategories);
+        model.addAttribute("courseDto",
+                result.hasErrors() ? courseFormDto :  new CourseFormDto(course));
+        return "courses/putcourses";
+    }
+
+    @PostMapping("/{categoryCode}/{subcategoryCode}/{courseCode}")
+    public String update(@PathVariable String categoryCode,
+                        @PathVariable String subcategoryCode,
+                        @PathVariable String courseCode,
+                        @Valid CourseFormDto courseFormDto,
+                         BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return edit(categoryCode, subcategoryCode, courseCode, courseFormDto, result, model);
+        }
+        Subcategory subcategory = subcategoryRepository.findByCode(subcategoryCode)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        courseRepository.save(courseFormDto.toEntity(subcategory));
+        return "redirect:/admin/courses/" + subcategory.getCategory().getCode() +"/"+ subcategory.getCode();
     }
 
 }
