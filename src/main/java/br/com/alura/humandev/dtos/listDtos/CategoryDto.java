@@ -1,9 +1,10 @@
-package br.com.alura.humandev.dtos;
+package br.com.alura.humandev.dtos.listDtos;
 
 import br.com.alura.humandev.entities.Category;
 
 public class CategoryDto {
 
+    private Long id;
     private String name;
     private String code;
     private boolean active;
@@ -13,9 +14,14 @@ public class CategoryDto {
     }
 
     public CategoryDto(Category category) {
+        this.id =  category.getId();
         this.name = category.getName();
         this.code = category.getCode();
         this.active = category.isActive();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -28,6 +34,18 @@ public class CategoryDto {
 
     public boolean isActive() {
         return active;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
 }

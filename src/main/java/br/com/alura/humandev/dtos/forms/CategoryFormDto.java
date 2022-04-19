@@ -1,13 +1,12 @@
-package br.com.alura.humandev.dtos;
+package br.com.alura.humandev.dtos.forms;
 
 import br.com.alura.humandev.entities.Category;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
-import java.io.Serializable;
 
-public class CategoryFormDto implements Serializable {
+public class CategoryFormDto {
 
     private Long id;
 

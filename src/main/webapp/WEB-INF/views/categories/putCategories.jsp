@@ -28,10 +28,12 @@
                 <form:errors path="categoryFormDto.code" cssClass="alert-danger"/>
             </div>
             <div class="form-group row">
-                    <input type="checkbox" class="form-check-input" name="active" value="${ category.active }">
+                    <input type="checkbox" class="form-check-input" name="active" ${category.active ? 'checked' : ''}>
                     <label class="form-check-label" class="form-label">
                        Categoria Ativa?
-                       <span class="text-muted check-helper"> Mostra ou deixa de mostrar a categoria na listagem dos alunos, de formações. etc </span>
+                       <span class="text-muted check-helper">
+                           Mostra ou deixa de mostrar a categoria na listagem dos alunos, de formações. etc
+                       </span>
                     </label>
             </div>
             <div class="row">

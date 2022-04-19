@@ -4,10 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
-import java.io.Serializable;
 
 @Entity
-public class Course implements Serializable {
+public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +21,7 @@ public class Course implements Serializable {
     @NotBlank
     @Pattern(regexp = "^[a-z0-9-]+$", message = "{code.invalid}")
     private String code;
-    private boolean status;
+    private boolean active;
     private String targetAudience;
     private String instructor;
     private String courseDescription;
@@ -38,7 +37,7 @@ public class Course implements Serializable {
     public Course(String name,
                   String code,
                   Integer courseTimeHours,
-                  boolean status,
+                  boolean active,
                   String targetAudience,
                   String instructor,
                   String courseDescription,
@@ -47,12 +46,20 @@ public class Course implements Serializable {
         this.name = name;
         this.code = code;
         this.courseTimeHours = courseTimeHours;
-        this.status = status;
+        this.active = active;
         this.targetAudience = targetAudience;
         this.instructor = instructor;
         this.courseDescription = courseDescription;
         this.developedSkills = developedSkills;
         this.subcategory = subcategory;
+    }
+
+    public String getCourseDescription() {
+        return courseDescription;
+    }
+
+    public String getTargetAudience() {
+        return targetAudience;
     }
 
     public String getDevelopedSkills() {
@@ -83,8 +90,8 @@ public class Course implements Serializable {
         return code;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isActive() {
+        return active;
     }
 
     public String getInstructor() {

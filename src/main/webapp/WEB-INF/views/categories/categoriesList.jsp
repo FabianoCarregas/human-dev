@@ -37,7 +37,14 @@
                         <td>${categoria.code}</td>
                         <td>${categoria.active == true ? "Ativa" : "Inativa"} </td>
                         <td class="text-center">
-                            <a role="button" href="subcategories/${categoria.code}">
+                            <c:if test="${categoria.active}">
+                                <button class="btn btn-default change-status " data-category-id="${categoria.id}">
+                                    Desativar
+                                </button>
+                            </c:if >
+                        </td>
+                        <td class="text-center">
+                            <a role="button" href="/admin/subcategories/${categoria.code}">
                                 Subcategorias
                             </a>
                         <td class="text-center">
@@ -51,5 +58,7 @@
         </table>
     </div>
 </div>
+<script src="../../../assets/js/jquery.js"></script>
+<script src="../../../assets/js/scripts.js"></script>
 </body>
 </html>

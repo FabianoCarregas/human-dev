@@ -51,7 +51,6 @@
             <div class="row">
                 <label class="form-label">cor</label>
                 <input name="hexaColor" type="text" class="form-control" placeholder="por exemplo: #fcc14a">
-                <form:errors path="categoryFormDto.hexaColor" cssClass="alert-danger"/>
             </div>
             <div class="row">
                 <label class="form-label">Descrição</label>
