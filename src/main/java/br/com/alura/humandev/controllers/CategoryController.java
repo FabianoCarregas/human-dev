@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin/categories")
+
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
@@ -24,7 +24,7 @@ public class CategoryController {
         this.categoryRepository = categoryRepository;
     }
 
-    @GetMapping
+    @GetMapping("/admin/categories")
     public String listAll(Model model) {
         List<Category> categories = categoryRepository.findAll();
         List<CategoryDto> categoryDto = categories.stream().map(CategoryDto::new).toList();
@@ -32,12 +32,12 @@ public class CategoryController {
         return "categories/categoriesList";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/admin/categories/new")
     public String create(CategoryFormDto categoryFormDto) {
         return "categories/postcategory";
     }
 
-    @PostMapping
+    @PostMapping("/admin/categories")
     public String save(@Valid CategoryFormDto categoryFormDto,
                        BindingResult result) {
         if (result.hasErrors()) {
@@ -47,7 +47,7 @@ public class CategoryController {
         return "redirect:/admin/categories";
     }
 
-    @GetMapping("/{code}")
+    @GetMapping("/admin/categories/{code}")
     public String edit(@PathVariable String code, Model model) {
         Category category = categoryRepository.findByCode(code)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -55,7 +55,7 @@ public class CategoryController {
         return "categories/putCategories";
     }
 
-    @PostMapping("/{code}")
+    @PostMapping("/admin/categories/{code}")
     public String update(@PathVariable String code,
                          @Valid CategoryFormDto categoryFormDto,
                          BindingResult result, Model model) {
@@ -67,7 +67,7 @@ public class CategoryController {
         return "redirect:/admin/categories";
      }
 
-    @PostMapping("/changeStatusCourse/{id}")
+    @PostMapping("/admin/categories/changeStatusCourse/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void changeStatus(@PathVariable Long id) {
         Category category = categoryRepository.findById(id)
@@ -75,5 +75,11 @@ public class CategoryController {
         category.deactivate();
         categoryRepository.save(category);
     }
+
+//    @GetMapping("/category/${categoryCode}")
+//    public String getById(@PathVariable Long id, Model model) {
+//        List<CategoryDto> categories = categoryRepository.find;
+//
+//    }
 
 }

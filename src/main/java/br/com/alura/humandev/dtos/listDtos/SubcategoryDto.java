@@ -1,6 +1,7 @@
 package br.com.alura.humandev.dtos.listDtos;
-
 import br.com.alura.humandev.entities.Subcategory;
+
+import java.util.List;
 
 public class SubcategoryDto {
 
@@ -18,6 +19,14 @@ public class SubcategoryDto {
         this.name = subcategory.getName();
         this.code = subcategory.getCode();
         this.active = subcategory.isActive();
+    }
+
+    public static List<SubcategoryDto> toDto(List<Subcategory> subcategories) {
+        return subcategories.stream().map(SubcategoryDto::new).toList();
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

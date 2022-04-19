@@ -4,7 +4,6 @@ import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.projections.CategoryProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,4 +24,18 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             Order by coursesQuantity DESC ;
             """, nativeQuery = true)
     List<CategoryProjection> findCategoryWithNumberOfCourses();
+
+    @Query(value = """
+            SELECT ca.id, ca.active, ca.category_description, ca.code, ca.hexa_color, ca.icon, ca.name, ca.ordination, ca.study_guide
+            FROM category ca
+            Inner join subcategory su ON ca.id = su.category_id
+            Inner join course co ON su.id = co.subcategory_id
+            WHERE (ca.`active` AND co.`active`)
+            GROUP BY ca.id, ca.active, ca.category_description, ca.code, ca.hexa_color, ca.icon, ca.name, ca.ordination, ca.study_guide;
+            """, nativeQuery = true)
+    List<Category> findAllCategoriesbyActiveCourses();
+
+//    List<Category> findCategoriesByCode
+
+
 }

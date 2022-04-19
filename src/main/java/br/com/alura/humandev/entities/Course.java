@@ -21,7 +21,7 @@ public class Course {
     @NotBlank
     @Pattern(regexp = "^[a-z0-9-]+$", message = "{code.invalid}")
     private String code;
-    private boolean active;
+    private boolean active = true;
     private String targetAudience;
 
     @NotBlank(message = "{name.invalid}")

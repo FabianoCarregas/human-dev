@@ -35,10 +35,10 @@
                     <tr>
                         <td>${categoria.name}</td>
                         <td>${categoria.code}</td>
-                        <td>${categoria.active == true ? "Ativa" : "Inativa"} </td>
+                        <td class="active${categoria.id}">${categoria.active == true ? "Ativa" : "Inativa"} </td>
                         <td class="text-center">
                             <c:if test="${categoria.active}">
-                                <button class="btn btn-default change-status " data-category-id="${categoria.id}">
+                                <button class="btn btn-default change-status" data-category-id="${categoria.id}">
                                     Desativar
                                 </button>
                             </c:if >

@@ -72,8 +72,7 @@ public class CourseController {
         }
         Subcategory subcategory = subcategoryRepository.findById(courseFormDto.getSubcategoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        Course course = courseFormDto.toEntity(subcategory);
-        courseRepository.save(course);
+        courseRepository.save(courseFormDto.toEntity(subcategory));
         return "redirect:/admin/courses/" + subcategory.getCategory().getCode() +"/"+ subcategory.getCode() ;
     }
 

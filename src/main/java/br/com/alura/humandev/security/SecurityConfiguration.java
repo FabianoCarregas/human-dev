@@ -1,7 +1,6 @@
 package br.com.alura.humandev.security;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -30,12 +29,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/api/categories").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin()
+                .and().formLogin().loginPage("/login").permitAll()
                 .and().csrf().disable();
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/assets/**");
     }
 
 }
