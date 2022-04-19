@@ -2,9 +2,12 @@ package br.com.alura.humandev.controllers;
 
 import br.com.alura.humandev.dtos.forms.CategoryFormDto;
 import br.com.alura.humandev.dtos.listDtos.CategoryDto;
-import br.com.alura.humandev.dtos.publucLink.CategoryLinkDto;
+import br.com.alura.humandev.dtos.publicLink.CategoryLinkDto;
+import br.com.alura.humandev.dtos.publicLink.SubcategoryLinkDto;
 import br.com.alura.humandev.entities.Category;
+import br.com.alura.humandev.entities.Subcategory;
 import br.com.alura.humandev.repositories.CategoryRepository;
+import br.com.alura.humandev.repositories.SubcategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +23,12 @@ import java.util.List;
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
+    private final SubcategoryRepository subcategoryRepository;
 
-    public CategoryController(CategoryRepository categoryRepository) {
+    public CategoryController(CategoryRepository categoryRepository,
+                              SubcategoryRepository subcategoryRepository) {
         this.categoryRepository = categoryRepository;
+        this.subcategoryRepository = subcategoryRepository;
     }
 
     @GetMapping("/admin/categories")
@@ -81,7 +87,9 @@ public class CategoryController {
     public String getByActiveSubcategories(@PathVariable String categoryCode, Model model) {
         Category category = categoryRepository.findByCode(categoryCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        List<Subcategory> subcategories = subcategoryRepository.findActiveSubcategoryByCategoryCode(categoryCode);
         model.addAttribute("category", new CategoryLinkDto(category));
+        model.addAttribute("subcategories", subcategories.stream().map(SubcategoryLinkDto::new).toList());
         return "categories/linkCategory";
     }
 

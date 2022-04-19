@@ -30,12 +30,9 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             FROM category ca
             Inner join subcategory su ON ca.id = su.category_id
             Inner join course co ON su.id = co.subcategory_id
-            WHERE (ca.`active` AND co.`active`)
+            WHERE (ca.`active` AND su.`active` AND co.`active`)
             GROUP BY ca.id, ca.active, ca.category_description, ca.code, ca.hexa_color, ca.icon, ca.name, ca.ordination, ca.study_guide;
             """, nativeQuery = true)
     List<Category> findAllCategoriesbyActiveCourses();
-
-//    List<Category> findCategoriesByCode
-
 
 }

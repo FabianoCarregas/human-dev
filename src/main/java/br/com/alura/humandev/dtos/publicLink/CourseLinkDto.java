@@ -1,4 +1,4 @@
-package br.com.alura.humandev.dtos.publucLink;
+package br.com.alura.humandev.dtos.publicLink;
 
 import br.com.alura.humandev.entities.Course;
 

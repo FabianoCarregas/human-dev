@@ -30,16 +30,16 @@
             <ul class="categories">
                 <c:forEach items="${ categories }" var="category">
                     <li class="category-card">
-                        <a href="" class="category-card__link" href="/front-end">
+                        <a href="/category/${category.code}" class="category-card__link" href="/front-end">
                                 <span class="category-card__icon">
                                     <img src=${category.icon}>
                                 </span>
                             <h3 class="category-card__title">${category.name}</h3>
                             <p class="category-card__details">
-                                <c:forEach begin="0" end="2" items="${category.subcategoriesDto}" var="subcategory">
+                                <c:forEach begin="0" end="2" varStatus="loop" items="${category.subcategoryLinkDtos}" var="subcategory">
                                     ${subcategory.name}<c:if test="${!loop.last}">, </c:if>
                                 </c:forEach>
-                                <c:if test="${category.subcategoriesDto.size() > 3}">
+                                <c:if test="${category.subcategoryLinkDtos.size() > 3}">
                                     e mais...
                                 </c:if>
                             </p>

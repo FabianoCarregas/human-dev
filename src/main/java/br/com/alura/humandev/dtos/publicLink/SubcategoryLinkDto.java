@@ -1,4 +1,4 @@
-package br.com.alura.humandev.dtos.publucLink;
+package br.com.alura.humandev.dtos.publicLink;
 
 import br.com.alura.humandev.entities.Subcategory;
 
@@ -16,7 +16,7 @@ public class SubcategoryLinkDto {
     public SubcategoryLinkDto(Subcategory subcategory) {
         this.name = subcategory.getName();
         this.code = subcategory.getCode();
-        this.courseLinkDtos = subcategory.getCourses().stream().map(CourseLinkDto::new).toList();
+        this.courseLinkDtos = subcategory.getCourses().stream().filter(a -> a.isActive()).map(CourseLinkDto::new).toList();
     }
 
     public String getName() {
