@@ -1,6 +1,5 @@
 package br.com.alura.humandev.dtos.forms;
 
-import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.entities.Course;
 import br.com.alura.humandev.entities.Subcategory;
 

@@ -2,6 +2,7 @@ package br.com.alura.humandev.controllers;
 
 import br.com.alura.humandev.dtos.forms.CategoryFormDto;
 import br.com.alura.humandev.dtos.listDtos.CategoryDto;
+import br.com.alura.humandev.dtos.publucLink.CategoryLinkDto;
 import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import org.springframework.http.HttpStatus;
@@ -76,10 +77,12 @@ public class CategoryController {
         categoryRepository.save(category);
     }
 
-//    @GetMapping("/category/${categoryCode}")
-//    public String getById(@PathVariable Long id, Model model) {
-//        List<CategoryDto> categories = categoryRepository.find;
-//
-//    }
+    @GetMapping("/category/{categoryCode}")
+    public String getByActiveSubcategories(@PathVariable String categoryCode, Model model) {
+        Category category = categoryRepository.findByCode(categoryCode)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        model.addAttribute("category", new CategoryLinkDto(category));
+        return "categories/linkCategory";
+    }
 
 }
