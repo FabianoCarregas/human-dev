@@ -23,30 +23,31 @@
     <div class="subcategories">
         <p class="subcategories__label">O que você quer aprender?</p>
         <ul class="subcategories__list">
-
-            <c:forEach items="${subcategories}" var="subcategory">
-                <li class="subcategories__item">
-                    <a href="${subcategory.code}" class="subcategories__link">
-                        <span class="subcategories__name">${subcategory.name}</span>
-                    </a>
-                </li>
-            </c:forEach>
+                <c:forEach items="${subcategories}" var="subcategory">
+                    <li class="subcategories__item">
+                        <a href="#${subcategory.code}" class="subcategories__link">
+                            <span class="subcategories__name">${subcategory.name}</span>
+                        </a>
+                    </li>
+                </c:forEach>
         </ul>
     </div>
-    <c:forEach items="${subcategories}" var="subcategory">
-        <div class="subcategory">
-                <h2 id="logica-de-programacao" class="subcategory__name">${subcategory.name}</h2>
-                <ul class="courses__list">
-                    <c:forEach items="${subcategory.courseLinkDtos}" var="course">
-                        <li class="course-card">
-                            <h3 class="course-card__name">${course.name}</h3>
-                            <p class="course-card__hours">${course.courseTimeHours}h</p>
+    <div class="subcategory">
+        <c:forEach items="${subcategories}" var="subcategory">
+            <div class="subcategory" id="${subcategory.code}">
+                    <h2 id="logica-de-programacao" class="subcategory__name">${subcategory.name}</h2>
+                    <ul class="courses__list">
+                        <c:forEach items="${subcategory.courseLinkDtos}" var="course">
+                            <li class="course-card">
+                                <h3 class="course-card__name">${course.name}</h3>
+                                <p class="course-card__hours">${course.courseTimeHours}h</p>
+                            </li>
+                        </c:forEach>
                         </li>
-                    </c:forEach>
-                    </li>
-                </ul>
-        </div>
-    </c:forEach>
+                    </ul>
+            </div>
+        </c:forEach>
+    </div>
 </main>
 </body>
 </html>
