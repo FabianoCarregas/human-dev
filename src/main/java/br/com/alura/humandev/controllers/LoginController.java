@@ -2,6 +2,7 @@ package br.com.alura.humandev.controllers;
 
 import br.com.alura.humandev.dtos.LoginForm;
 import br.com.alura.humandev.dtos.publicLink.CategoryLinkDto;
+import br.com.alura.humandev.projections.CategoryLinkProjection;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import br.com.alura.humandev.security.AuthenticationService;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login(Model model) {
-        List<CategoryLinkDto> categories = categoryRepository.findAllCategoriesbyActiveCourses()
-                .stream().map(CategoryLinkDto::new).toList();
+        List<CategoryLinkProjection> categories = categoryRepository.findAllCategoriesbyActiveCourses();
         model.addAttribute("categories", categories);
         return "config/login";
     }

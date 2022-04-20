@@ -36,10 +36,10 @@
                                 </span>
                             <h3 class="category-card__title">${category.name}</h3>
                             <p class="category-card__details">
-                                <c:forEach begin="0" end="2" varStatus="loop" items="${category.subcategoryLinkDtos}" var="subcategory">
+                                <c:forEach begin="0" end="2" varStatus="loop" items="${category.getSubcategories()}" var="subcategory">
                                     ${subcategory.name}<c:if test="${!loop.last}">, </c:if>
                                 </c:forEach>
-                                <c:if test="${category.subcategoryLinkDtos.size() > 3}">
+                                <c:if test="${category.getSubcategories().size() > 3}">
                                     e mais...
                                 </c:if>
                             </p>

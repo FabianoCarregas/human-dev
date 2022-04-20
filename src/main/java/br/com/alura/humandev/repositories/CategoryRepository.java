@@ -1,6 +1,7 @@
 package br.com.alura.humandev.repositories;
 
 import br.com.alura.humandev.entities.Category;
+import br.com.alura.humandev.projections.CategoryLinkProjection;
 import br.com.alura.humandev.projections.CategoryProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,11 +28,10 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     @Query(value = """
             SELECT DISTINCT c FROM Category c
-            Inner join Subcategory s ON c.id = s.category.id
-            Inner join Course co ON s.id = co.subcategory.id
-            WHERE c.active = true AND s.active = true
-            ORDER BY c.ordination
+            left join c.subcategories s
+            left join s.courses co
+            WHERE c.active = true AND s.active = true AND co.active = true
             """)
-    List<Category> findAllCategoriesbyActiveCourses();
+    List<CategoryLinkProjection> findAllCategoriesbyActiveCourses();
 
 }
