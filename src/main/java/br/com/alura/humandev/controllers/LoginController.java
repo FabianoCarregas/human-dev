@@ -1,7 +1,6 @@
 package br.com.alura.humandev.controllers;
 
 import br.com.alura.humandev.dtos.LoginForm;
-import br.com.alura.humandev.dtos.listDtos.CategoryDto;
 import br.com.alura.humandev.dtos.publicLink.CategoryLinkDto;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import br.com.alura.humandev.security.AuthenticationService;

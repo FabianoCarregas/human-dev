@@ -57,7 +57,7 @@
                 <input class="form-control" name="developdSkills" value="${courseDto.developedSkills}" placeholder="Um texto apontando para formações para ajudar pessoas perdidas">
             </div>
             <div class="row">
-                <label class="form-label">Categorias</label>
+                <label class="form-label">Subcategorias</label>
                 <select class="form-control" name="subcategoryId" >
                     <c:forEach items="${subcategories}" var="subcategoria">
                         <option value="${subcategoria.id}">${subcategoria.name}</option>

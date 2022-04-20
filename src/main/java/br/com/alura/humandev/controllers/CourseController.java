@@ -2,7 +2,6 @@ package br.com.alura.humandev.controllers;
 
 import br.com.alura.humandev.dtos.forms.CourseFormDto;
 import br.com.alura.humandev.dtos.listDtos.CourseDto;
-import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.entities.Course;
 import br.com.alura.humandev.entities.Subcategory;
 import br.com.alura.humandev.repositories.CategoryRepository;
@@ -102,10 +101,10 @@ public class CourseController {
         if (result.hasErrors()) {
             return edit(categoryCode, subcategoryCode, courseCode, courseFormDto, result, model);
         }
-        Subcategory subcategory = subcategoryRepository.findByCode(subcategoryCode)
+        Subcategory subcategory = subcategoryRepository.findById(courseFormDto.getSubcategoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         courseRepository.save(courseFormDto.toEntity(subcategory));
-        return "redirect:/admin/courses/" + subcategory.getCategory().getCode() +"/"+ subcategory.getCode();
+        return "redirect:/admin/courses/" + subcategory.getCategory().getCode() + "/" + subcategory.getCode();
     }
 
 }
