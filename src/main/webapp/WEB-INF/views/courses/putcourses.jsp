@@ -60,7 +60,7 @@
                 <label class="form-label">Subcategorias</label>
                 <select class="form-control" name="subcategoryId" >
                     <c:forEach items="${subcategories}" var="subcategoria">
-                        <option value="${subcategoria.id}" ${subcategoria.name == course.subcategory.name ? 'selected' : ''}>${subcategoria.name}</option>
+                        <option value="${subcategoria.id}" ${subcategoria.code == course.subcategory.code ? 'selected' : ''}>${subcategoria.name}</option>
                     </c:forEach>
                 </select>
             </div>
