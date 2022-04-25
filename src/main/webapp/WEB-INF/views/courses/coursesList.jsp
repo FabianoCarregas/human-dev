@@ -16,8 +16,8 @@
         <h1>Cursos</h1>
     </div>
     <div class="row">
-        <a class="btn btn-primary" role="button"   >
-            Novo curso
+        <a class="btn btn-primary" role="button" href="/admin/courses/new"  >
+            Novo Curso
         </a>
     </div>
     <div class="row" >
@@ -35,11 +35,11 @@
                 <tr>
                     <td>${curso.name}</td>
                     <td>${curso.code}</td>
-                    <td>${curso.active == true ? "Ativa" : "Inativa"} </td>
+                    <td>${curso.active == true ? "Público" : "Privado"} </td>
                     <td class="text-center">
-                        <button class="btn btn-default">
+                        <a class="btn btn-default" role="button" href="/admin/courses/${subcategory.category.code}/${subcategory.code}/${curso.code}">
                             Editar
-                        </button>
+                        </a>
                     </td>
                 </tr>
             </c:forEach>

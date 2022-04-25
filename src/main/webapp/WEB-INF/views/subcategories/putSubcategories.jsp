@@ -53,7 +53,7 @@
                 <label class="form-label">Categorias</label>
                 <select class="form-control" name="categoryId" >
                     <c:forEach items="${category}" var="categoria">
-                        <option value="${categoria.id}">${categoria.name}</option>
+                        <option value="${categoria.id}" ${categoria.code == subcategory.category.code ? 'selected' : ''}>${categoria.name}</option>
                     </c:forEach>
                 </select>
             </div>
