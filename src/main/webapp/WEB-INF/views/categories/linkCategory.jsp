@@ -23,7 +23,7 @@
     <div class="subcategories">
         <p class="subcategories__label">O que você quer aprender?</p>
         <ul class="subcategories__list">
-                <c:forEach items="${subcategories}" var="subcategory">
+                <c:forEach items="${category.getSubcategories()}" var="subcategory">
                     <li class="subcategories__item">
                         <a href="#${subcategory.code}" class="subcategories__link">
                             <span class="subcategories__name">${subcategory.name}</span>
@@ -37,7 +37,7 @@
             <div class="subcategory" id="${subcategory.code}">
                     <h2 id="logica-de-programacao" class="subcategory__name">${subcategory.name}</h2>
                     <ul class="courses__list">
-                        <c:forEach items="${subcategory.courseLinkDtos}" var="course">
+                        <c:forEach items="${subcategory.getCourses()}" var="course">
                             <li class="course-card">
                                 <h3 class="course-card__name">${course.name}</h3>
                                 <p class="course-card__hours">${course.courseTimeHours}h</p>

@@ -34,4 +34,11 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             """)
     List<CategoryLinkProjection> findAllCategoriesbyActiveCourses();
 
+    @Query(value = """
+            SELECT DISTINCT c FROM Category c
+            left join c.subcategories s
+            left join s.courses co
+            WHERE c.active = true AND s.active = true AND co.active = true AND c.code = :code
+            """)
+    CategoryLinkProjection findCategoryByCodeAndActiveCourses(String code);
 }

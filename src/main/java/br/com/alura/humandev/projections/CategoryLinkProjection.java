@@ -8,4 +8,5 @@ public interface CategoryLinkProjection {
     String getCode();
     String getIcon();
     List<SubcategoryLinkProjection> getSubcategories();
+
 }

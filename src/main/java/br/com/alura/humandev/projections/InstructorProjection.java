@@ -4,4 +4,5 @@ public interface InstructorProjection {
 
     String getInstructor();
     Integer getCoursesNumber();
+
 }
