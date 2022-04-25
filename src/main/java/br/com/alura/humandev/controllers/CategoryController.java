@@ -87,7 +87,8 @@ public class CategoryController {
 
     @GetMapping("/category/{categoryCode}")
     public String getByActiveSubcategories(@PathVariable String categoryCode, Model model) {
-        CategoryLinkProjection category = categoryRepository.findCategoryByCodeAndActiveCourses(categoryCode);
+        CategoryLinkProjection category = categoryRepository.findCategoryByCodeAndActiveCourses(categoryCode)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         List<SubcategoryLinkProjection> subcategories = subcategoryRepository.findActiveSubcategoryByCategoryCode(categoryCode);
         model.addAttribute("category", category);
         model.addAttribute("subcategories", subcategories);

@@ -16,10 +16,8 @@ public interface SubcategoryRepository extends JpaRepository<Subcategory, Long> 
 
    @Query(value = """
          SELECT distinct s FROM Subcategory s
-         INNER JOIN Category c 
-         ON c.id = s.category.id
-         INNER JOIN Course co 
-         ON s.id = co.subcategory.id
+         left join s.category c
+         left join s.courses co
          WHERE c.active = true and s.active = true and co.active = true AND c.code = :code
          """)
    List<SubcategoryLinkProjection> findActiveSubcategoryByCategoryCode(String code);
