@@ -41,4 +41,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             WHERE c.active = true AND s.active = true AND co.active = true AND c.code = :code
             """)
     Optional<CategoryLinkProjection> findCategoryByCodeAndActiveCourses(String code);
+
 }
