@@ -44,6 +44,7 @@ public class CourseRepositoryTest {
         Page<Course> coursesFound = repository.findAllBySubcategory(subcategory, Pageable.unpaged());
         assertEquals(1, coursesFound.getSize());
         assertEquals("course", coursesFound.get().findFirst().get().getCode());
+        assertNotEquals("cours", coursesFound.get().findFirst().get().getCode());
     }
 
     @Test

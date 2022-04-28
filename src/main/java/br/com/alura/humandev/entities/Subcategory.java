@@ -31,7 +31,7 @@ public class Subcategory {
     @ManyToOne
     private Category category;
 
-    @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Course> courses = new ArrayList<>();
 
     @Deprecated
