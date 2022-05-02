@@ -84,12 +84,11 @@ public class CategoryApiControllerTest {
     @Test
     @Transactional
     public void shouldCleanCash() throws Exception {
-
-        URI uri = new URI("api/bGltcGEtby1jYWNoZS1kYS1hcGktYWU");
+        URI uri = new URI("/api/bGltcGEtby1jYWNoZS1kYS1hcGktYWU");
         mockMvc.perform(MockMvcRequestBuilders
                         .get(uri)
                         .accept(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(MockMvcResultMatchers.status().is(200));
     }
 
     private Category createCategory(String code, String name) {
