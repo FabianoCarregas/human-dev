@@ -31,7 +31,7 @@ public class Subcategory {
     @ManyToOne
     private Category category;
 
-    @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
     List<Course> courses = new ArrayList<>();
 
     @Deprecated
@@ -109,5 +109,7 @@ public class Subcategory {
     public List<Course> getCourses() {
         return courses;
     }
-
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
 }

@@ -7,7 +7,6 @@ import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.entities.Course;
 import br.com.alura.humandev.entities.Subcategory;
 import br.com.alura.humandev.projections.SubcategoryLinkProjection;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -38,14 +38,39 @@ public class SubcategoryRepositoryTest {
         Subcategory subcategory = createSubcategory(category, true, "sub");
         Course course = createCourse(subcategory, true, "course");
 
-        Category category1 = createCategory("code-test", true);
-        Subcategory subcategory1 = createSubcategory(category1, true, "sub1");
-        Course course1 = createCourse(subcategory1, false, "cours");
+        List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode("code");
+        assertEquals("sub", subcategoriesFound.get(0).getCode());
+        assertEquals(1, subcategoriesFound.size());
+    }
+
+    @Test
+    public void findActiveSubcategoryByCategoryCode__should_not_return_if_category_is_deactivated() {
+        Category category = createCategory("code", false);
+        Subcategory subcategory = createSubcategory(category, true, "sub");
+        Course course = createCourse(subcategory, true, "course");
 
         List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode("code");
-        assertEquals(1, subcategoriesFound.size());
-        assertEquals("sub", subcategoriesFound.get(0).getCode());
-        assertNotEquals("sub1", subcategoriesFound.get(0).getCode());
+        assertEquals(0, subcategoriesFound.size());
+    }
+
+    @Test
+    public void findActiveSubcategoryByCategoryCode__should_not_return_if_subcategory_is_deactivated() {
+        Category category = createCategory("code", true);
+        Subcategory subcategory = createSubcategory(category, false, "sub");
+        Course course = createCourse(subcategory, true, "course");
+
+        List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode("code");
+        assertEquals(0, subcategoriesFound.size());
+    }
+
+    @Test
+    public void findActiveSubcategoryByCategoryCode__should_not_return_if_course_is_deactivated() {
+        Category category = createCategory("code", true);
+        Subcategory subcategory = createSubcategory(category, true, "sub");
+        Course course = createCourse(subcategory, false, "course");
+
+        List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode("code");
+        assertEquals(0, subcategoriesFound.size());
     }
 
     private Category createCategory(String code, boolean active) {

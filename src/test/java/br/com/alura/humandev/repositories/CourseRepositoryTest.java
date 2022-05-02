@@ -6,20 +6,19 @@ import br.com.alura.humandev.builders.SubcategoryBuilder;
 import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.entities.Course;
 import br.com.alura.humandev.entities.Subcategory;
-
 import br.com.alura.humandev.projections.InstructorProjection;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
+@RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @ActiveProfiles("test")
@@ -32,19 +31,14 @@ public class CourseRepositoryTest {
     private  CourseRepository repository;
 
     @Test
-    public void findAllBySubcategory__should_return_all_courses_by_subcategory() {
+    public void findInstructor__should_return_instructor_with_number_of_courses() {
         Category category = createCategory("code", true);
         Subcategory subcategory = createSubcategory(category, true, "sub");
-        Course course = createCourse(subcategory, true, "course", "Fabs");
+        Course course = createCourse(subcategory, true, "cours", "Bia");
 
-        Category category1 = createCategory("code", true);
-        Subcategory subcategory1 = createSubcategory(category1, true, "sub");
-        Course course1 = createCourse(subcategory1, true, "cours", "Fabs");
-
-        Page<Course> coursesFound = repository.findAllBySubcategory(subcategory, Pageable.unpaged());
-        assertEquals(1, coursesFound.getSize());
-        assertEquals("course", coursesFound.get().findFirst().get().getCode());
-        assertNotEquals("cours", coursesFound.get().findFirst().get().getCode());
+        InstructorProjection instructorFound = repository.findInstructor();
+        assertEquals(1, instructorFound.getCoursesNumber());
+        assertEquals("Bia", instructorFound.getInstructor());
     }
 
     @Test
@@ -55,7 +49,7 @@ public class CourseRepositoryTest {
         Course course1 = createCourse(subcategory, true, "cours1", "Bia");
 
         Category category1 = createCategory("code", true);
-        Subcategory subcategory1 = createSubcategory(category1, true, "sub");
+        Subcategory subcategory1 = createSubcategory(category1, true, "sub2");
         Course course2 = createCourse(subcategory1, true, "cours", "Fabs");
 
         InstructorProjection instructorFound = repository.findInstructor();
@@ -106,5 +100,4 @@ public class CourseRepositoryTest {
         em.persist(course);
         return course;
     }
-
 }
