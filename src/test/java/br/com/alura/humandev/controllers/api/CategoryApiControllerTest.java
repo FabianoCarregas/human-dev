@@ -9,14 +9,12 @@ import br.com.alura.humandev.entities.Subcategory;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import br.com.alura.humandev.repositories.CourseRepository;
 import br.com.alura.humandev.repositories.SubcategoryRepository;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -25,10 +23,10 @@ import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.List;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
+@Transactional
 public class CategoryApiControllerTest {
 
     @Autowired
@@ -44,20 +42,6 @@ public class CategoryApiControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    @Transactional
-    public void should_retrieve_status_200() throws Exception {
-        URI uri = new URI("/api/categories");
-
-        Category category = createCategory("java", "Java");
-
-        mockMvc.perform(MockMvcRequestBuilders
-                .get(uri)
-                .accept(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(MockMvcResultMatchers.status().is(200));
-    }
-
-    @Test
-    @Transactional
     public void should_retrieve_category_subcatgory_course() throws Exception {
         URI uri = new URI("/api/categories");
 
@@ -65,6 +49,7 @@ public class CategoryApiControllerTest {
         Subcategory subcategory = createSubcategory(category,"Subcategory", "subcategory");
         Course course = createCourse(subcategory, "Course", "course");
         subcategory.setCourses(List.of(course));
+        category.setSubcategories(List.of(subcategory));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get(uri)
@@ -82,7 +67,18 @@ public class CategoryApiControllerTest {
     }
 
     @Test
-    @Transactional
+    public void should_retrieve_status_200() throws Exception {
+        URI uri = new URI("/api/categories");
+
+        Category category = createCategory("java", "Java");
+
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get(uri)
+                        .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(MockMvcResultMatchers.status().is(200));
+    }
+
+    @Test
     public void shouldCleanCash() throws Exception {
         URI uri = new URI("/api/bGltcGEtby1jYWNoZS1kYS1hcGktYWU");
         mockMvc.perform(MockMvcRequestBuilders

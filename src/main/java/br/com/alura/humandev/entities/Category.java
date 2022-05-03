@@ -124,4 +124,7 @@ public class Category {
         return ordination;
     }
 
+    public void setSubcategories(List<Subcategory> subcategories) {
+        this.subcategories = subcategories;
+    }
 }
