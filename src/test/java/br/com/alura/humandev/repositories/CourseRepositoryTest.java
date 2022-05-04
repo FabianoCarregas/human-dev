@@ -7,16 +7,15 @@ import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.entities.Course;
 import br.com.alura.humandev.entities.Subcategory;
 import br.com.alura.humandev.projections.InstructorProjection;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -29,32 +28,41 @@ public class CourseRepositoryTest {
     @Autowired
     private  CourseRepository repository;
 
+    private final String cssCode = "css-code";
+    private final String javaCode = "java-code";
+    private final String awsCode = "aws-code";
+    private final String devopsCode = "devops-code";
+    private final String frontendCode = "frontend-code";
+    private final String githubCode = "github-code";
+    private final String instructorBack = "João";
+    private final String instructorFront = "Maria";
+
     @Test
-    public void findInstructor__should_return_instructor_with_number_of_courses() {
-        Category category = createCategory("code", true);
-        Subcategory subcategory = createSubcategory(category, true, "sub");
-        Course course = createCourse(subcategory, true, "cours", "Bia");
+    public void findInstructor__should_return_an_instructor_with_number_of_courses() {
+        Category categoryJava = createCategory(javaCode, true);
+        Subcategory subcategoryAws = createSubcategory(categoryJava, true, awsCode);
+        Course courseCss = createCourse(subcategoryAws, true, cssCode, instructorFront);
 
         InstructorProjection instructorFound = repository.findInstructor();
         assertEquals(1, instructorFound.getCoursesNumber());
-        assertEquals("Bia", instructorFound.getInstructor());
+        assertEquals(instructorFront, instructorFound.getInstructor());
     }
 
     @Test
-    public void findInstructor__should_return_instructor_whith_the_higher_number_of_courses() {
-        Category category = createCategory("code", true);
-        Subcategory subcategory = createSubcategory(category, true, "sub");
-        Course course = createCourse(subcategory, true, "cours", "Bia");
-        Course course1 = createCourse(subcategory, true, "cours1", "Bia");
+    public void findInstructor__should_return_an_instructor_whith_the_higher_number_of_courses() {
+        Category categoryJava = createCategory(javaCode, true);
+        Subcategory subcategoryCss = createSubcategory(categoryJava, true, cssCode);
+        Course courseAws = createCourse(subcategoryCss, true, awsCode, instructorBack);
+        Course courseFrontend = createCourse(subcategoryCss, true, frontendCode, instructorBack);
 
-        Category category1 = createCategory("code", true);
-        Subcategory subcategory1 = createSubcategory(category1, true, "sub2");
-        Course course2 = createCourse(subcategory1, true, "cours", "Fabs");
+        Category categoryCss = createCategory(cssCode, true);
+        Subcategory subcategoryDevops = createSubcategory(categoryCss, true, devopsCode);
+        Course courseGithub = createCourse(subcategoryDevops, true, githubCode, instructorFront);
 
         InstructorProjection instructorFound = repository.findInstructor();
         assertEquals(2, instructorFound.getCoursesNumber());
-        assertEquals("Bia", instructorFound.getInstructor());
-        assertNotEquals("fabs", instructorFound.getInstructor());
+        assertEquals(instructorBack, instructorFound.getInstructor());
+        assertNotEquals(instructorFront, instructorFound.getInstructor());
     }
 
     private Category createCategory(String code, boolean active) {

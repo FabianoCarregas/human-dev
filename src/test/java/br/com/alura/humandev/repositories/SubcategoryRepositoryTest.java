@@ -7,14 +7,12 @@ import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.entities.Course;
 import br.com.alura.humandev.entities.Subcategory;
 import br.com.alura.humandev.projections.SubcategoryLinkProjection;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
@@ -31,44 +29,49 @@ public class SubcategoryRepositoryTest {
     @Autowired
     private SubcategoryRepository repository;
 
-    @Test
-    public void findActiveSubcategoryByCategoryCode__should_return_active_subcategory_by_category_code() {
-        Category category = createCategory("code", true);
-        Subcategory subcategory = createSubcategory(category, true, "sub");
-        Course course = createCourse(subcategory, true, "course");
+    private final String cssCode = "css-code";
+    private final String javaCode = "java-code";
+    private final String awsCode = "aws-code";
+    private final String frontendCode = "frontend-code";
 
-        List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode("code");
-        assertEquals("sub", subcategoriesFound.get(0).getCode());
+    @Test
+    public void findActiveSubcategoryByCategoryCode__should_return_a_subcategory_list() {
+        Category categoryJava = createCategory(javaCode, true);
+        Subcategory subcategoryCss = createSubcategory(categoryJava, true, cssCode);
+        Course courseFrontend = createCourse(subcategoryCss, true, frontendCode);
+
+        List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode(javaCode);
+        assertEquals(cssCode, subcategoriesFound.get(0).getCode());
         assertEquals(1, subcategoriesFound.size());
     }
 
     @Test
-    public void findActiveSubcategoryByCategoryCode__should_not_return_if_category_is_deactivated() {
-        Category category = createCategory("code", false);
-        Subcategory subcategory = createSubcategory(category, true, "sub");
-        Course course = createCourse(subcategory, true, "course");
+    public void findActiveSubcategoryByCategoryCode__should_return_an_empty_category_list_if_status_false() {
+        Category categoryJava = createCategory(javaCode, false);
+        Subcategory subcategoryCss = createSubcategory(categoryJava, true, cssCode);
+        Course courseAws = createCourse(subcategoryCss, true, awsCode);
 
-        List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode("code");
+        List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode(javaCode);
         assertEquals(0, subcategoriesFound.size());
     }
 
     @Test
-    public void findActiveSubcategoryByCategoryCode__should_not_return_if_subcategory_is_deactivated() {
-        Category category = createCategory("code", true);
-        Subcategory subcategory = createSubcategory(category, false, "sub");
-        Course course = createCourse(subcategory, true, "course");
+    public void findActiveSubcategoryByCategoryCode__should_return_an_empty_subcategory_list_if_status_false() {
+        Category categoryJava = createCategory(javaCode, true);
+        Subcategory subcategoryCss = createSubcategory(categoryJava, false, cssCode);
+        Course courseAws = createCourse(subcategoryCss, true, awsCode);
 
-        List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode("code");
+        List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode(javaCode);
         assertEquals(0, subcategoriesFound.size());
     }
 
     @Test
-    public void findActiveSubcategoryByCategoryCode__should_not_return_if_course_is_deactivated() {
-        Category category = createCategory("code", true);
-        Subcategory subcategory = createSubcategory(category, true, "sub");
-        Course course = createCourse(subcategory, false, "course");
+    public void findActiveSubcategoryByCategoryCode__should_return_an_empty_course_list_if_status_is_false() {
+        Category categoryJava = createCategory(javaCode, true);
+        Subcategory subcategoryCss = createSubcategory(categoryJava, true, cssCode);
+        Course courseAws = createCourse(subcategoryCss, false, awsCode);
 
-        List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode("code");
+        List<SubcategoryLinkProjection> subcategoriesFound = repository.findActiveSubcategoryByCategoryCode(javaCode);
         assertEquals(0, subcategoriesFound.size());
     }
 

@@ -41,36 +41,44 @@ public class CategoryApiControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    private final String java = "Java";
+    private final String aws = "AWS";
+    private final String github = "GitHub";
+    private final String javaCode = "java-code";
+    private final String awsCode = "aws-code";
+    private final String githubCode = "github-code";
+
     @Test
     public void should_retrieve_category_subcatgory_course() throws Exception {
         URI uri = new URI("/api/categories");
 
-        Category category = createCategory("java", "Java");
-        Subcategory subcategory = createSubcategory(category,"Subcategory", "subcategory");
-        Course course = createCourse(subcategory, "Course", "course");
-        subcategory.setCourses(List.of(course));
-        category.setSubcategories(List.of(subcategory));
+        Category categoryJava = createCategory(javaCode, java);
+        Subcategory subcategoryGithub = createSubcategory(categoryJava,github, githubCode);
+        Course courseAws = createCourse(subcategoryGithub, aws, awsCode);
+        subcategoryGithub.setCourses(List.of(courseAws));
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get(uri)
                         .accept(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].code").value("java"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("Java"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].code")
+                        .value(javaCode))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name")
+                        .value(java))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryApis[0].code")
-                        .value("subcategory"))
+                        .value(githubCode))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryApis[0].name")
-                        .value("Subcategory"))
+                        .value(github))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryApis[0].courseDtoApi[0].code")
-                        .value("course"))
+                        .value(awsCode))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryApis[0].courseDtoApi[0].name")
-                        .value("Course"));
+                        .value(aws));
     }
 
     @Test
     public void should_retrieve_status_200() throws Exception {
         URI uri = new URI("/api/categories");
 
-        Category category = createCategory("java", "Java");
+        Category categoryAws = createCategory(awsCode, aws);
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get(uri)
