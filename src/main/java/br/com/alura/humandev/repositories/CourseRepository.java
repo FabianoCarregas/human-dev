@@ -25,7 +25,4 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     InstructorProjection findInstructor();
 
     Optional<Course> findByCode(String code);
-
-
-
 }
