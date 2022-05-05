@@ -7,6 +7,7 @@ import br.com.alura.humandev.entities.Subcategory;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import br.com.alura.humandev.repositories.CourseRepository;
 import br.com.alura.humandev.repositories.SubcategoryRepository;
+import br.com.alura.humandev.validators.CourseValidator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -28,13 +30,21 @@ public class CourseController {
     private final CourseRepository courseRepository;
     private final SubcategoryRepository subcategoryRepository;
     private final CategoryRepository categoryRepository ;
+    private final CourseValidator courseValidator;
 
     public CourseController(CourseRepository courseRepository,
                             SubcategoryRepository subcategoryRepository,
-                            CategoryRepository categoryRepository) {
+                            CategoryRepository categoryRepository,
+                            CourseValidator courseValidator) {
         this.courseRepository =  courseRepository;
         this.subcategoryRepository = subcategoryRepository;
         this.categoryRepository = categoryRepository;
+        this.courseValidator = courseValidator;
+    }
+
+    @InitBinder("courseFormDto")
+    void initBinder(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(courseValidator);
     }
 
     @GetMapping("/{categoryCode}/{subcategoryCode}")

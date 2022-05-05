@@ -25,4 +25,13 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     InstructorProjection findInstructor();
 
     Optional<Course> findByCode(String code);
+
+    boolean existsByCode(String code);
+
+    @Deprecated
+    boolean existsByCodeAndIdNot(String code, Long id);
+
+    default boolean existsByCodeWithDifferentId(String code, Long id) {
+        return existsByCodeAndIdNot(code, id);
+    }
 }
