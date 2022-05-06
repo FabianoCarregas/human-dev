@@ -29,7 +29,6 @@ public class CourseFormDto {
     private String developedSkills;
     private Long subcategoryId;
 
-    @Deprecated
     public CourseFormDto() {
     }
 

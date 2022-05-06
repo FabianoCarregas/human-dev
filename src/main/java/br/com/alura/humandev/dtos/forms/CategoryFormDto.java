@@ -28,7 +28,6 @@ public class CategoryFormDto {
     @Pattern(regexp = "^#([a-fA-F0-9]){3}(([a-fA-F0-9]){3})?$", message = "{color.invalid}")
     private String hexaColor;
 
-    @Deprecated
     public CategoryFormDto() {
     }
 
