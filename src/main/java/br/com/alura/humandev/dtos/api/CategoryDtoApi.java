@@ -1,9 +1,17 @@
 package br.com.alura.humandev.dtos.api;
 
 import br.com.alura.humandev.entities.Category;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class CategoryDtoApi {
 
     private String name;
@@ -25,34 +33,6 @@ public class CategoryDtoApi {
                 .map(SubcategoryDtoApi::getCourseDtoApi)
                 .mapToInt(List::size)
                 .sum();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public Integer getOrdination() {
-        return ordination;
-    }
-
-    public String getHexaColor() {
-        return hexaColor;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public List<SubcategoryDtoApi> getSubcategoryApis() {
-        return subcategoryDtoApi;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
 }

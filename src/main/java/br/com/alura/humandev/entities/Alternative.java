@@ -1,10 +1,16 @@
 package br.com.alura.humandev.entities;
 
 import br.com.alura.humandev.entities.activities.Question;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Alternative {
 
     @Id
@@ -18,30 +24,5 @@ public class Alternative {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Question question;
-
-    public Alternative() {
-    }
-
-    public Alternative(String questionExplanation,
-                       String answer,
-                       boolean answerCheck,
-                       Question question) {
-        this.questionExplanation = questionExplanation;
-        this.answer = answer;
-        this.answerCheck = answerCheck;
-        this.question = question;
-    }
-
-    @Override
-    public String toString() {
-        return "Alternative{" +
-                "questionExplanation='" + questionExplanation + '\'' +
-                ", ordination=" + ordination +
-                ", answer='" + answer + '\'' +
-                ", answerCheck=" + answerCheck +
-                ", answerJustification='" + answerJustification + '\'' +
-                ", rightAnswer='" + answerCheck + '\'' +
-                '}';
-    }
 
 }

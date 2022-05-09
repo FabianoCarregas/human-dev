@@ -1,5 +1,9 @@
 package br.com.alura.humandev.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -8,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Subcategory {
 
     @Id
@@ -33,10 +40,6 @@ public class Subcategory {
 
     @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
     List<Course> courses = new ArrayList<>();
-
-    @Deprecated
-    public Subcategory() {
-    }
 
     public Subcategory(String name,
                        String code,
@@ -74,41 +77,6 @@ public class Subcategory {
         this.active = false;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSubcategoryDescription() {
-        return subcategoryDescription;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public Integer getOrdination() {
-        return ordination;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }

@@ -1,9 +1,16 @@
 package br.com.alura.humandev.entities.activities;
 import br.com.alura.humandev.entities.Section;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 import javax.persistence.*;
 
 
 @Entity
+@Getter
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Activity {
 
@@ -16,27 +23,5 @@ public abstract class Activity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Section section;
-
-    public Activity() {
-    }
-
-    public Activity(String title,
-                    String code,
-                    Section section) {
-        this.title = title;
-        this.code = code;
-        this.section = section;
-    }
-
-    @Override
-    public String toString() {
-        return "Activity{" +
-                "title='" + title + '\'' +
-                ", code='" + code + '\'' +
-                ", activityStatus=" + status +
-                ", ordination=" + ordination +
-                ", section=" + section +
-                '}';
-    }
 
 }

@@ -14,81 +14,73 @@ class CourseValidatorTest {
     private CourseRepository repository;
     private CourseValidator validator;
     private Errors errors;
+    private CourseFormDto form;
+    private String aws = "aws";
+    private String java = "java";
 
     @BeforeEach
     void setUp() {
         repository = mock(CourseRepository.class);
         validator = new CourseValidator(repository);
         errors = mock(Errors.class);
+        form = new CourseFormDto();
     }
 
     @Test
     void when_course_has_an_existent_code_should_not_add() {
-        when(repository.existsByCode("aws")).thenReturn(true);
+        when(repository.existsByCode(aws)).thenReturn(true);
+        form.setCode(aws);
 
-        CourseFormDto courseFormDto = new CourseFormDto();
-        courseFormDto.setCode("aws");
-
-        validator.validate(courseFormDto, errors);
+        validator.validate(form, errors);
         verify(errors).rejectValue("code", "code.already.exists");
     }
 
     @Test
     void when_course_has_a_nonexistent_code_should_add() {
-        when(repository.existsByCode("aws")).thenReturn(false);
+        when(repository.existsByCode(aws)).thenReturn(false);
+        form.setCode(aws);
 
-        CourseFormDto courseFormDto = new CourseFormDto();
-        courseFormDto.setCode("aws");
-
-        validator.validate(courseFormDto, errors);
+        validator.validate(form, errors);
         verify(errors, never()).rejectValue(anyString(), anyString());
     }
 
     @Test
     void when_course_has_an_existent_code_and_an_existent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq("aws"), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeWithDifferentId(eq(aws), not(eq(1L)))).thenReturn(true);
+        form.setCode(aws);
+        form.setId(1L);
 
-        CourseFormDto courseFormDto = new CourseFormDto();
-        courseFormDto.setCode("aws");
-        courseFormDto.setId(1L);
-
-        validator.validate(courseFormDto, errors);
+        validator.validate(form, errors);
         verify(errors, never()).rejectValue(anyString(), anyString());
     }
 
     @Test
     void when_course_has_a_nonexistent_code_and_an_existent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq("aws"), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeWithDifferentId(eq(aws), not(eq(1L)))).thenReturn(true);
+        form.setCode(aws);
+        form.setId(1L);
 
-        CourseFormDto courseFormDto = new CourseFormDto();
-        courseFormDto.setCode("java");
-        courseFormDto.setId(1L);
-
-        validator.validate(courseFormDto, errors);
+        validator.validate(form, errors);
         verify(errors, never()).rejectValue(anyString(), anyString());
     }
 
     @Test
     void when_course_has_a_nonexistent_code_and_a_nonexistent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq("aws"), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeWithDifferentId(eq(aws), not(eq(1L)))).thenReturn(true);
+        form.setCode(java);
+        form.setId(2L);
 
-        CourseFormDto courseFormDto = new CourseFormDto();
-        courseFormDto.setCode("java");
-        courseFormDto.setId(2L);
-
-        validator.validate(courseFormDto, errors);
+        validator.validate(form, errors);
         verify(errors, never()).rejectValue(anyString(), anyString());
     }
 
     @Test
     void when_course_has_an_existent_code_and_a_nonexistent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq("aws"), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeWithDifferentId(eq(aws), not(eq(1L)))).thenReturn(true);
+        form.setCode(aws);
+        form.setId(2L);
 
-        CourseFormDto courseFormDto = new CourseFormDto();
-        courseFormDto.setCode("aws");
-        courseFormDto.setId(2L);
-
-        validator.validate(courseFormDto, errors);
+        validator.validate(form, errors);
         verify(errors).rejectValue("code", "code.already.exists");
     }
 }

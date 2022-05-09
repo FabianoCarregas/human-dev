@@ -14,81 +14,73 @@ class SubcategoryValidatorTest {
     private SubcategoryRepository repository;
     private SubcategoryValidator validator;
     private Errors errors;
+    private SubcategoryFormDto form;
+    private String github = "github";
+    private String frontend = "frontend";
 
     @BeforeEach
     void setUp() {
         repository = mock(SubcategoryRepository.class);
         validator = new SubcategoryValidator(repository);
         errors = mock(Errors.class);
+        form = new SubcategoryFormDto();
     }
 
     @Test
     void when_subcategory_has_an_existent_code_should_not_add() {
-        when(repository.existsByCode("github")).thenReturn(true);
+        when(repository.existsByCode(github)).thenReturn(true);
+        form.setCode(github);
 
-        SubcategoryFormDto subcategoryFormDto = new SubcategoryFormDto();
-        subcategoryFormDto.setCode("github");
-
-        validator.validate(subcategoryFormDto, errors);
+        validator.validate(form, errors);
         verify(errors).rejectValue("code", "code.already.exists");
     }
 
     @Test
     void when_subcategory_has_a_nonexistent_code_should_add() {
-        when(repository.existsByCode("github")).thenReturn(false);
+        when(repository.existsByCode(github)).thenReturn(false);
+        form.setCode(github);
 
-        SubcategoryFormDto subcategoryFormDto = new SubcategoryFormDto();
-        subcategoryFormDto.setCode("github");
-
-        validator.validate(subcategoryFormDto, errors);
+        validator.validate(form, errors);
         verify(errors, never()).rejectValue(anyString(), anyString());
     }
 
     @Test
     void when_subcategory_has_an_existent_code_and_an_existent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq("github"), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeWithDifferentId(eq(github), not(eq(1L)))).thenReturn(true);
+        form.setId(1L);
+        form.setCode(github);
 
-        SubcategoryFormDto subcategoryFormDto = new SubcategoryFormDto();
-        subcategoryFormDto.setId(1L);
-        subcategoryFormDto.setCode("github");
-
-        validator.validate(subcategoryFormDto, errors);
+        validator.validate(form, errors);
         verify(errors, never()).rejectValue(anyString(), anyString());
     }
 
     @Test
     void when_subcategory_has_a_nonexistent_code_and_an_existent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq("github"), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeWithDifferentId(eq(github), not(eq(1L)))).thenReturn(true);
+        form.setId(1L);
+        form.setCode(frontend);
 
-        SubcategoryFormDto subcategoryFormDto = new SubcategoryFormDto();
-        subcategoryFormDto.setId(1L);
-        subcategoryFormDto.setCode("git");
-
-        validator.validate(subcategoryFormDto, errors);
+        validator.validate(form, errors);
         verify(errors, never()).rejectValue(anyString(), anyString());
     }
 
     @Test
     void when_subcategory_has_a_nonexistent_code_and_a_nonexistent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq("github"), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeWithDifferentId(eq(github), not(eq(1L)))).thenReturn(true);
+        form.setId(2L);
+        form.setCode(frontend);
 
-        SubcategoryFormDto subcategoryFormDto = new SubcategoryFormDto();
-        subcategoryFormDto.setId(2L);
-        subcategoryFormDto.setCode("git");
-
-        validator.validate(subcategoryFormDto, errors);
+        validator.validate(form, errors);
         verify(errors, never()).rejectValue(anyString(), anyString());
     }
 
     @Test
     void when_subcategory_has_an_existent_code_and_a_nonexistent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq("github"), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeWithDifferentId(eq(github), not(eq(1L)))).thenReturn(true);
+        form.setId(2L);
+        form.setCode(github);
 
-        SubcategoryFormDto subcategoryFormDto = new SubcategoryFormDto();
-        subcategoryFormDto.setId(2L);
-        subcategoryFormDto.setCode("github");
-
-        validator.validate(subcategoryFormDto, errors);
+        validator.validate(form, errors);
         verify(errors).rejectValue("code", "code.already.exists");
     }
 

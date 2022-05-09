@@ -171,7 +171,7 @@ public class CategoryRepositoryTest {
 
     private Category createCategory(String code, boolean active, String name) {
         Category category = new CategoryBuilder()
-                .withName(name)
+                .withName("java")
                 .withCode(code)
                 .withOrdination(4)
                 .withCategoryDescription("course")
