@@ -2,15 +2,14 @@ package br.com.alura.humandev.dtos.listDtos;
 import br.com.alura.humandev.entities.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class CategoryDto {
 
     private Long id;
@@ -19,7 +18,6 @@ public class CategoryDto {
     private boolean active;
     private String icon;
     private List<SubcategoryDto> subcategoriesDto;
-
 
     public CategoryDto(Category category) {
         this.id =  category.getId();

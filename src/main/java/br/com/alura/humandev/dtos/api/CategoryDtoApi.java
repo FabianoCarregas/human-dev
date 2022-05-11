@@ -6,8 +6,6 @@ import lombok.*;
 import java.util.List;
 
 @Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class CategoryDtoApi {
 
@@ -30,6 +28,18 @@ public class CategoryDtoApi {
                 .map(SubcategoryDtoApi::getCourseDtoApi)
                 .mapToInt(List::size)
                 .sum();
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setOrdination(Integer ordination) {
+        this.ordination = ordination;
     }
 
 }

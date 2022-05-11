@@ -10,7 +10,6 @@ import javax.validation.constraints.Positive;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class SubcategoryFormDto {
 

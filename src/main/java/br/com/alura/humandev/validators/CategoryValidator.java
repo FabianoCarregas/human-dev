@@ -27,7 +27,7 @@ public class CategoryValidator implements Validator {
         String formCode = categoryForm.getCode();
 
         if (formId == null && categoryRepository.existsByCode(formCode)) {
-                errors.rejectValue("code", "code.already.exists");
+            errors.rejectValue("code", "code.already.exists");
         }
 
         if (formId != null && categoryRepository.existsByCodeAndIdNot(formCode, formId)) {

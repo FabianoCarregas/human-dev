@@ -49,4 +49,5 @@ public class CategoryFormDto {
             category.getIcon(),
             category.getHexaColor());
     }
+
 }

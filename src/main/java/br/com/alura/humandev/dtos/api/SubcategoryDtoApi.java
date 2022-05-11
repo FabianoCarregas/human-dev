@@ -6,8 +6,6 @@ import lombok.*;
 import java.util.List;
 
 @Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class SubcategoryDtoApi {
 
@@ -25,6 +23,14 @@ public class SubcategoryDtoApi {
 
     public static List<SubcategoryDtoApi> toDto(List<Subcategory> subcategories) {
         return subcategories.stream().map(SubcategoryDtoApi::new).toList();
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
 }

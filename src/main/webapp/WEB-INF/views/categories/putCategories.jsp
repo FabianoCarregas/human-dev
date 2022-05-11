@@ -55,5 +55,4 @@
     <button type="submit" class="btn btn-success" >Salvar</button>
     </div>
 </form>
-<templates:template-pageEnd>
-</templates:template-pageEnd>
+<templates:template-pageEnd />

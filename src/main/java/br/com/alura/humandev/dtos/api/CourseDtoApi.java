@@ -6,8 +6,6 @@ import lombok.*;
 import java.util.List;
 
 @Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class CourseDtoApi {
 
@@ -25,6 +23,14 @@ public class CourseDtoApi {
 
     public static List<CourseDtoApi> toDto(List<Course> courses) {
         return courses.stream().map(CourseDtoApi::new).toList();
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
 }

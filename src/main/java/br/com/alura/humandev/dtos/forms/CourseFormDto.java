@@ -8,7 +8,6 @@ import javax.validation.constraints.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class CourseFormDto {
 

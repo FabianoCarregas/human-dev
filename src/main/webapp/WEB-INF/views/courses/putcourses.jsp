@@ -60,5 +60,4 @@
         <button type="submit" class="btn btn-success">Enviar</button>
     </div>
 </form>
-<templates:template-pageEnd>
-</templates:template-pageEnd>
+<templates:template-pageEnd />

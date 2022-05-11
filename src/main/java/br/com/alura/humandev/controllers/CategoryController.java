@@ -8,6 +8,7 @@ import br.com.alura.humandev.projections.SubcategoryLinkProjection;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import br.com.alura.humandev.repositories.SubcategoryRepository;
 import br.com.alura.humandev.validators.CategoryValidator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,20 +21,12 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-
+@RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
     private final SubcategoryRepository subcategoryRepository;
     private final CategoryValidator categoryValidator;
-
-    public CategoryController(CategoryRepository categoryRepository,
-                              SubcategoryRepository subcategoryRepository,
-                              CategoryValidator categoryValidator) {
-        this.categoryRepository = categoryRepository;
-        this.subcategoryRepository = subcategoryRepository;
-        this.categoryValidator = categoryValidator;
-    }
 
     @InitBinder("categoryFormDto")
     void initBinder(WebDataBinder webDataBinder) {

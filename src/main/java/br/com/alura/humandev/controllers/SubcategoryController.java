@@ -8,6 +8,7 @@ import br.com.alura.humandev.entities.Subcategory;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import br.com.alura.humandev.repositories.SubcategoryRepository;
 import br.com.alura.humandev.validators.SubcategoryValidator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,21 +24,12 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/admin/subcategories")
+@RequiredArgsConstructor
 public class SubcategoryController {
 
     private final SubcategoryRepository subcategoryRepository;
     private final CategoryRepository categoryRepository;
     private final SubcategoryValidator subcategoryValidator;
-
-
-    public SubcategoryController(
-            SubcategoryRepository subcategoryRepository,
-            CategoryRepository categoryRepository,
-            SubcategoryValidator subcategoryValidator) {
-        this.subcategoryRepository = subcategoryRepository;
-        this.categoryRepository = categoryRepository;
-        this.subcategoryValidator = subcategoryValidator;
-    }
 
     @InitBinder("subcategoryFormDto")
     void iniBinder(WebDataBinder webDataBinder) {
@@ -115,4 +107,5 @@ public class SubcategoryController {
         subcategory.deactivate();
         subcategoryRepository.save(subcategory);
     }
+
 }

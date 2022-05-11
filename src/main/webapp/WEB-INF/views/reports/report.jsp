@@ -45,5 +45,4 @@
             </c:forEach>
         </tbody>
     </table>
-<templates:template-pageEnd>
-</templates:template-pageEnd>
+    <templates:template-pageEnd />

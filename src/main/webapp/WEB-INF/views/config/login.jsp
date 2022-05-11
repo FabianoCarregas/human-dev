@@ -40,5 +40,4 @@
         </ul>
     </section>
 </section>
-<templates:template-pageEnd>
-</templates:template-pageEnd>
+<templates:template-pageEnd />

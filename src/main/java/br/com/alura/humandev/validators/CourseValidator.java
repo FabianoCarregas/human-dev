@@ -28,7 +28,7 @@ public class CourseValidator implements Validator {
 
         if (formId == null && courseRepository.existsByCode(formCode)) {
             errors.rejectValue("code", "code.already.exists");
-            }
+        }
 
         if (formId != null && courseRepository.existsByCodeAndIdNot(formCode, formId)) {
             errors.rejectValue("code", "code.already.exists");

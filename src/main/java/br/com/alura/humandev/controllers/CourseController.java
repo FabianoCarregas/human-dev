@@ -8,6 +8,7 @@ import br.com.alura.humandev.repositories.CategoryRepository;
 import br.com.alura.humandev.repositories.CourseRepository;
 import br.com.alura.humandev.repositories.SubcategoryRepository;
 import br.com.alura.humandev.validators.CourseValidator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,22 +26,13 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/courses")
+@RequiredArgsConstructor
 public class CourseController {
 
     private final CourseRepository courseRepository;
     private final SubcategoryRepository subcategoryRepository;
     private final CategoryRepository categoryRepository ;
     private final CourseValidator courseValidator;
-
-    public CourseController(CourseRepository courseRepository,
-                            SubcategoryRepository subcategoryRepository,
-                            CategoryRepository categoryRepository,
-                            CourseValidator courseValidator) {
-        this.courseRepository =  courseRepository;
-        this.subcategoryRepository = subcategoryRepository;
-        this.categoryRepository = categoryRepository;
-        this.courseValidator = courseValidator;
-    }
 
     @InitBinder("courseFormDto")
     void initBinder(WebDataBinder webDataBinder) {
