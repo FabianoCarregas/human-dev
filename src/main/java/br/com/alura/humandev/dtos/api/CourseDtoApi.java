@@ -1,17 +1,14 @@
 package br.com.alura.humandev.dtos.api;
 
 import br.com.alura.humandev.entities.Course;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class CourseDtoApi {
 
     private String name;

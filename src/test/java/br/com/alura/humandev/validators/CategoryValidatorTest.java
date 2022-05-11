@@ -46,7 +46,7 @@ class CategoryValidatorTest {
 
     @Test
     void when_category_has_an_existent_code_and_an_existent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq(java), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeAndIdNot(eq(java), not(eq(1L)))).thenReturn(true);
         form.setCode(java);
         form.setId(1L);
 
@@ -56,7 +56,7 @@ class CategoryValidatorTest {
 
     @Test
     void when_category_has_an_existent_id_and_a_nonexistent_code_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq(java), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeAndIdNot(eq(java), not(eq(1L)))).thenReturn(true);
         form.setCode(java);
         form.setId(1L);
 
@@ -66,7 +66,7 @@ class CategoryValidatorTest {
 
     @Test
     void when_category_has_a_nonexistent_id_and_a_nonexistent_code_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq(java), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeAndIdNot(eq(java), not(eq(1L)))).thenReturn(true);
         form.setCode(aws);
         form.setId(2L);
 
@@ -76,7 +76,7 @@ class CategoryValidatorTest {
 
     @Test
     void when_category_has_a_nonexistent_id_and_an_existent_code_should_Not_edit() {
-        when(repository.existsByCodeWithDifferentId(eq(java), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeAndIdNot(eq(java), not(eq(1L)))).thenReturn(true);
         form.setCode(java);
         form.setId(2L);
 

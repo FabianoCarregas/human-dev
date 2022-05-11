@@ -46,7 +46,7 @@ class SubcategoryValidatorTest {
 
     @Test
     void when_subcategory_has_an_existent_code_and_an_existent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq(github), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeAndIdNot(eq(github), not(eq(1L)))).thenReturn(true);
         form.setId(1L);
         form.setCode(github);
 
@@ -56,7 +56,7 @@ class SubcategoryValidatorTest {
 
     @Test
     void when_subcategory_has_a_nonexistent_code_and_an_existent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq(github), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeAndIdNot(eq(github), not(eq(1L)))).thenReturn(true);
         form.setId(1L);
         form.setCode(frontend);
 
@@ -66,7 +66,7 @@ class SubcategoryValidatorTest {
 
     @Test
     void when_subcategory_has_a_nonexistent_code_and_a_nonexistent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq(github), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeAndIdNot(eq(github), not(eq(1L)))).thenReturn(true);
         form.setId(2L);
         form.setCode(frontend);
 
@@ -76,12 +76,11 @@ class SubcategoryValidatorTest {
 
     @Test
     void when_subcategory_has_an_existent_code_and_a_nonexistent_id_should_edit() {
-        when(repository.existsByCodeWithDifferentId(eq(github), not(eq(1L)))).thenReturn(true);
+        when(repository.existsByCodeAndIdNot(eq(github), not(eq(1L)))).thenReturn(true);
         form.setId(2L);
         form.setCode(github);
 
         validator.validate(form, errors);
         verify(errors).rejectValue("code", "code.already.exists");
     }
-
 }

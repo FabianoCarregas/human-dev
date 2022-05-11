@@ -44,11 +44,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     boolean existsByCode(String code);
 
-    @Deprecated
     boolean existsByCodeAndIdNot(String code, Long id);
-
-    default boolean existsByCodeWithDifferentId(String code, Long id) {
-        return existsByCodeAndIdNot(code, id);
-    }
 
 }

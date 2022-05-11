@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 
-<templates:template>
+<templates:template-pageStart/>
 <div class="row">
     <h1>Editar Curso</h1>
 </div>
@@ -60,4 +60,5 @@
         <button type="submit" class="btn btn-success">Enviar</button>
     </div>
 </form>
-</templates:template>
+<templates:template-pageEnd>
+</templates:template-pageEnd>

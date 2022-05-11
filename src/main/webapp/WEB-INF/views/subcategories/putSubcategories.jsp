@@ -4,7 +4,7 @@
 
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 
-<templates:template>
+<templates:template-pageStart/>
 <div class="row">
     <h1>Editar subcategoria</h1>
 </div>
@@ -54,4 +54,5 @@
     <button type="submit" class="btn btn-success" >Salvar</button>
     </div>
 </form>
-</templates:template>
+<templates:template-pageEnd>
+</templates:template-pageEnd>

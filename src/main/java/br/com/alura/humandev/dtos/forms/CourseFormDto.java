@@ -2,17 +2,14 @@ package br.com.alura.humandev.dtos.forms;
 
 import br.com.alura.humandev.entities.Course;
 import br.com.alura.humandev.entities.Subcategory;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class CourseFormDto {
 
     private Long id;

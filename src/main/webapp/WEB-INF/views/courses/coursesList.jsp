@@ -3,7 +3,7 @@
 
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 
-<templates:template>
+<templates:template-pageStart/>
 <div class="row">
     <h3>${subcategory.name}</h3>
     <h1>Cursos</h1>
@@ -55,4 +55,6 @@
             </li>
         </ul>
     </nav>
-</templates:template>
+<templates:template-pageEnd>
+    <script src="../../../assets/js/scripts.js"></script>
+</templates:template-pageEnd>

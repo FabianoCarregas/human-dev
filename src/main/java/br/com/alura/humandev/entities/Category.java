@@ -9,11 +9,11 @@ import javax.validation.constraints.Positive;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Entity
 @Getter
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category {
 
     @Id
@@ -83,8 +83,7 @@ public class Category {
         this.active = false;
     }
 
-    public void addSubcategory(Subcategory subcategory) {
-        this.subcategories.add(subcategory);
+    public void setSubcategories(List<Subcategory> subcategories) {
+        this.subcategories = subcategories;
     }
-
 }

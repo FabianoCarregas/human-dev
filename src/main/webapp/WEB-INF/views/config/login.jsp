@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 
-<templates:template>
+<templates:template-pageStart/>
 <section class="auth">
     <section class="login">
         <h1 class="login__title">Já estuda com a gente?</h1>
@@ -40,4 +40,5 @@
         </ul>
     </section>
 </section>
-</templates:template>
+<templates:template-pageEnd>
+</templates:template-pageEnd>

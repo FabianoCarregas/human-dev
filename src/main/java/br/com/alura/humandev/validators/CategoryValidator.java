@@ -23,15 +23,15 @@ public class CategoryValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         CategoryFormDto categoryForm = (CategoryFormDto) target;
+        Long formId = categoryForm.getId();
+        String formCode = categoryForm.getCode();
 
-        if (categoryForm.getId() == null) {
-            if (categoryRepository.existsByCode(categoryForm.getCode())) {
+        if (formId == null && categoryRepository.existsByCode(formCode)) {
                 errors.rejectValue("code", "code.already.exists");
-            }
-        } else {
-            if (categoryRepository.existsByCodeWithDifferentId(categoryForm.getCode(), categoryForm.getId())) {
-                errors.rejectValue("code", "code.already.exists");
-            }
+        }
+
+        if (formId != null && categoryRepository.existsByCodeAndIdNot(formCode, formId)) {
+            errors.rejectValue("code", "code.already.exists");
         }
     }
 }

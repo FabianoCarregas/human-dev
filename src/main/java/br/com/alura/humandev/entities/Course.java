@@ -1,17 +1,15 @@
 package br.com.alura.humandev.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+@Builder
 @Entity
 @Getter
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class Course {
 
     @Id

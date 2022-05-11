@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 
-<templates:template-lists>
+<templates:template-pageStart/>
 <div class="row">
     <h1>Categorias</h1>
 </div>
@@ -48,4 +48,6 @@
             </c:forEach>
         </tbody>
     </table>
-</templates:template-lists>
+<templates:template-pageEnd>
+    <script src="../../../assets/js/scripts.js"></script>
+</templates:template-pageEnd>

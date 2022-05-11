@@ -1,8 +1,6 @@
 package br.com.alura.humandev.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -11,10 +9,11 @@ import javax.validation.constraints.Positive;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Entity
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class Subcategory {
 
     @Id
@@ -53,8 +52,8 @@ public class Subcategory {
         this.active = active;
         this.ordination = ordination;
         this.category = category;
-        this.category.addSubcategory(this);
     }
+
     public Subcategory(Long id,
                        String name,
                        String code,

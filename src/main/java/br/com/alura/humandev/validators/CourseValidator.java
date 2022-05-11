@@ -1,8 +1,6 @@
 package br.com.alura.humandev.validators;
 
-import br.com.alura.humandev.dtos.forms.CategoryFormDto;
 import br.com.alura.humandev.dtos.forms.CourseFormDto;
-import br.com.alura.humandev.repositories.CategoryRepository;
 import br.com.alura.humandev.repositories.CourseRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -25,15 +23,15 @@ public class CourseValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         CourseFormDto courseForm = (CourseFormDto) target;
+        Long formId = courseForm.getId();
+        String formCode = courseForm.getCode();
 
-        if (courseForm.getId() == null) {
-            if (courseRepository.existsByCode(courseForm.getCode())) {
-                errors.rejectValue("code", "code.already.exists");
+        if (formId == null && courseRepository.existsByCode(formCode)) {
+            errors.rejectValue("code", "code.already.exists");
             }
-        } else {
-            if (courseRepository.existsByCodeWithDifferentId(courseForm.getCode(), courseForm.getId())) {
-                errors.rejectValue("code", "code.already.exists");
-            }
+
+        if (formId != null && courseRepository.existsByCodeAndIdNot(formCode, formId)) {
+            errors.rejectValue("code", "code.already.exists");
         }
     }
 }

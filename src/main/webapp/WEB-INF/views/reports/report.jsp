@@ -3,7 +3,7 @@
 
 <%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
 
-<templates:template>
+<templates:template-pageStart/>
 <div class="row">
     <h1>Report</h1>
     <h3>Professores</h3>
@@ -45,4 +45,5 @@
             </c:forEach>
         </tbody>
     </table>
-</templates:template>
+<templates:template-pageEnd>
+</templates:template-pageEnd>

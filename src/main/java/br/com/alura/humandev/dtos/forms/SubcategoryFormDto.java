@@ -2,10 +2,7 @@ package br.com.alura.humandev.dtos.forms;
 
 import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.entities.Subcategory;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -14,7 +11,7 @@ import javax.validation.constraints.Positive;
 @Getter
 @Setter
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class SubcategoryFormDto {
 
     private Long id;

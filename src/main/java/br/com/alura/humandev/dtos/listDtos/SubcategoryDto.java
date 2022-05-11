@@ -1,16 +1,13 @@
 package br.com.alura.humandev.dtos.listDtos;
 import br.com.alura.humandev.entities.Subcategory;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class SubcategoryDto {
 
     private Long id;
