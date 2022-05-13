@@ -1,8 +1,5 @@
 package br.com.alura.humandev.repositories;
 
-import br.com.alura.humandev.builders.CategoryBuilder;
-import br.com.alura.humandev.builders.CourseBuilder;
-import br.com.alura.humandev.builders.SubcategoryBuilder;
 import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.entities.Course;
 import br.com.alura.humandev.entities.Subcategory;
@@ -66,44 +63,44 @@ public class CourseRepositoryTest {
     }
 
     private Category createCategory(String code, boolean active) {
-        Category category = new CategoryBuilder()
-                .withName("java")
-                .withCode(code)
-                .withOrdination(4)
-                .withCategoryDescription("course")
-                .withActive(active)
-                .withIcon("http")
-                .withHexaColor("#FFF")
-                .create();
+        Category category = Category.builder()
+                .name("name")
+                .code(code)
+                .ordination(4)
+                .categoryDescription("course")
+                .active(active)
+                .icon("http")
+                .hexaColor("#FFF")
+                .build();
         em.persist(category);
         return category;
     }
 
     private Subcategory createSubcategory(Category category, boolean active, String code) {
-        Subcategory subcategory = new SubcategoryBuilder()
-                .withName("java")
-                .withCode(code)
-                .withOrdination(1)
-                .withSubcategoryDescription("desc")
-                .withActive(active)
-                .withCategory(category)
-                .create();
+        Subcategory subcategory = Subcategory.builder()
+                .name("java")
+                .code(code)
+                .ordination(1)
+                .subcategoryDescription("desc")
+                .active(active)
+                .category(category)
+                .build();
         em.persist(subcategory);
         return subcategory;
     }
 
-    private Course createCourse(Subcategory subcategory, boolean active, String code, String name) {
-        Course course = new CourseBuilder()
-                .withName("java")
-                .withCode(code)
-                .withCourseTimeHours(1)
-                .withStatus(active)
-                .withTargetAudience("")
-                .withIntructor(name)
-                .withCourseDescription("")
-                .withDevelopedSkills("")
-                .withSubcategory(subcategory)
-                .create();
+    private Course createCourse(Subcategory subcategory, boolean active, String code, String instructor) {
+        Course course = Course.builder()
+                .name("java")
+                .code(code)
+                .courseTimeHours(1)
+                .active(active)
+                .targetAudience("")
+                .instructor(instructor)
+                .courseDescription("")
+                .developedSkills("")
+                .subcategory(subcategory)
+                .build();
         em.persist(course);
         return course;
     }

@@ -7,30 +7,30 @@ import br.com.alura.humandev.projections.CategoryLinkProjection;
 import br.com.alura.humandev.projections.SubcategoryLinkProjection;
 import br.com.alura.humandev.repositories.CategoryRepository;
 import br.com.alura.humandev.repositories.SubcategoryRepository;
+import br.com.alura.humandev.validators.CategoryValidator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-
+@RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
     private final SubcategoryRepository subcategoryRepository;
+    private final CategoryValidator categoryValidator;
 
-    public CategoryController(CategoryRepository categoryRepository,
-                              SubcategoryRepository subcategoryRepository) {
-        this.categoryRepository = categoryRepository;
-        this.subcategoryRepository = subcategoryRepository;
+    @InitBinder("categoryFormDto")
+    void initBinder(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(categoryValidator);
     }
 
     @GetMapping("/admin/categories")

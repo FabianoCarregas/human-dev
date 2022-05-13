@@ -22,4 +22,8 @@ public interface SubcategoryRepository extends JpaRepository<Subcategory, Long> 
          """)
    List<SubcategoryLinkProjection> findActiveSubcategoryByCategoryCode(String code);
 
+    boolean existsByCode(String code);
+
+    boolean existsByCodeAndIdNot(String code, Long is);
+
 }

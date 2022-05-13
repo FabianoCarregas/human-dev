@@ -1,8 +1,6 @@
 package br.com.alura.humandev.controllers.api;
 
-import br.com.alura.humandev.builders.CategoryBuilder;
-import br.com.alura.humandev.builders.CourseBuilder;
-import br.com.alura.humandev.builders.SubcategoryBuilder;
+
 import br.com.alura.humandev.entities.Category;
 import br.com.alura.humandev.entities.Course;
 import br.com.alura.humandev.entities.Subcategory;
@@ -55,6 +53,7 @@ public class CategoryApiControllerTest {
         Category categoryJava = createCategory(javaCode, java);
         Subcategory subcategoryGithub = createSubcategory(categoryJava,github, githubCode);
         Course courseAws = createCourse(subcategoryGithub, aws, awsCode);
+        categoryJava.setSubcategories(List.of(subcategoryGithub));
         subcategoryGithub.setCourses(List.of(courseAws));
 
         mockMvc.perform(MockMvcRequestBuilders
@@ -64,26 +63,14 @@ public class CategoryApiControllerTest {
                         .value(javaCode))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].name")
                         .value(java))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryApis[0].code")
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryDtoApi[0].code")
                         .value(githubCode))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryApis[0].name")
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryDtoApi[0].name")
                         .value(github))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryApis[0].courseDtoApi[0].code")
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryDtoApi[0].courseDtoApi[0].code")
                         .value(awsCode))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryApis[0].courseDtoApi[0].name")
-                        .value(aws));
-    }
-
-    @Test
-    public void should_retrieve_status_200() throws Exception {
-        URI uri = new URI("/api/categories");
-
-        Category categoryAws = createCategory(awsCode, aws);
-
-        mockMvc.perform(MockMvcRequestBuilders
-                        .get(uri)
-                        .accept(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(MockMvcResultMatchers.status().is(200));
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].subcategoryDtoApi[0].courseDtoApi[0].name")
+                        .value(aws)).andExpect(MockMvcResultMatchers.status().is(200));
     }
 
     @Test
@@ -96,42 +83,44 @@ public class CategoryApiControllerTest {
     }
 
     private Category createCategory(String code, String name) {
-        Category category = new CategoryBuilder()
-                .withName(name)
-                .withCode(code)
-                .withOrdination(4)
-                .withCategoryDescription("course")
-                .withActive(true)
-                .withIcon("http")
-                .withHexaColor("#FFF")
-                .create();
-                return categoryRepository.save(category);
+        Category category = Category.builder()
+                .name(name)
+                .code(code)
+                .ordination(4)
+                .categoryDescription("course")
+                .active(true)
+                .icon("http")
+                .hexaColor("#FFF")
+                .build();
+        return categoryRepository.save(category);
     }
 
     private Subcategory createSubcategory(Category category, String name, String code) {
-        Subcategory subcategory = new SubcategoryBuilder()
-                .withName(name)
-                .withCode(code)
-                .withOrdination(1)
-                .withSubcategoryDescription("desc")
-                .withActive(true)
-                .withCategory(category)
-                .create();
+        Subcategory subcategory = Subcategory.builder()
+                .name(name)
+                .code(code)
+                .ordination(1)
+                .subcategoryDescription("desc")
+                .active(true)
+                .category(category)
+                .build();
         return subcategoryRepository.save(subcategory);
     }
 
-    private Course createCourse(Subcategory subcategory,String name, String code) {
-        Course course = new CourseBuilder()
-                .withName(name)
-                .withCode(code)
-                .withCourseTimeHours(1)
-                .withStatus(true)
-                .withTargetAudience("")
-                .withIntructor("Bia")
-                .withCourseDescription("")
-                .withDevelopedSkills("")
-                .withSubcategory(subcategory)
-                .create();
-                return courseRepository.save(course);
+    private Course createCourse(Subcategory subcategory, String name, String code) {
+        Course course = Course.builder()
+                .name(name)
+                .code(code)
+                .courseTimeHours(1)
+                .active(true)
+                .targetAudience("")
+                .instructor("Bia")
+                .courseDescription("")
+                .developedSkills("")
+                .subcategory(subcategory)
+                .build();
+        return courseRepository.save(course);
     }
+
+
 }

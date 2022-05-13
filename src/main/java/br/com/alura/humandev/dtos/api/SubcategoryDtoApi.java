@@ -1,9 +1,12 @@
 package br.com.alura.humandev.dtos.api;
 
 import br.com.alura.humandev.entities.Subcategory;
+import lombok.*;
 
 import java.util.List;
 
+@Getter
+@NoArgsConstructor
 public class SubcategoryDtoApi {
 
     private String name;
@@ -22,20 +25,12 @@ public class SubcategoryDtoApi {
         return subcategories.stream().map(SubcategoryDtoApi::new).toList();
     }
 
-    public String getName() {
-        return name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public String getSubcategoryDescription() {
-        return subcategoryDescription;
-    }
-
-    public List<CourseDtoApi> getCourseDtoApi() {
-        return courseDtoApi;
+    public void setCode(String code) {
+        this.code = code;
     }
 
 }

@@ -1,5 +1,7 @@
 package br.com.alura.humandev.entities;
 
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -7,7 +9,11 @@ import javax.validation.constraints.Positive;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Entity
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Subcategory {
 
     @Id
@@ -34,10 +40,6 @@ public class Subcategory {
     @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
     List<Course> courses = new ArrayList<>();
 
-    @Deprecated
-    public Subcategory() {
-    }
-
     public Subcategory(String name,
                        String code,
                        Integer ordination,
@@ -50,8 +52,8 @@ public class Subcategory {
         this.active = active;
         this.ordination = ordination;
         this.category = category;
-        this.category.addSubcategory(this);
     }
+
     public Subcategory(Long id,
                        String name,
                        String code,
@@ -74,41 +76,6 @@ public class Subcategory {
         this.active = false;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSubcategoryDescription() {
-        return subcategoryDescription;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public Integer getOrdination() {
-        return ordination;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }

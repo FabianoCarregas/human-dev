@@ -1,17 +1,20 @@
 package br.com.alura.humandev.dtos.listDtos;
 
 import br.com.alura.humandev.entities.Course;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class CourseDto {
 
     private Long id;
     private String name;
     private String code;
     private boolean active;
-
-    @Deprecated
-    public CourseDto() {
-    }
 
     public CourseDto(Course course) {
         this.id = course.getId();
@@ -20,31 +23,4 @@ public class CourseDto {
         this.active = course.isActive();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 }

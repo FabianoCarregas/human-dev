@@ -1,5 +1,7 @@
 package br.com.alura.humandev.entities;
 
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -7,7 +9,11 @@ import javax.validation.constraints.Positive;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Entity
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category {
 
     @Id
@@ -34,10 +40,6 @@ public class Category {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Subcategory> subcategories = new ArrayList<>();
-
-    @Deprecated
-    public Category() {
-    }
 
     public Category(String name,
                     String code,
@@ -76,52 +78,12 @@ public class Category {
         this.icon = icon;
         this.hexaColor = hexaColor;
     }
+
     public void deactivate() {
         this.active = false;
     }
 
-    public void addSubcategory(Subcategory subcategory) {
-        this.subcategories.add(subcategory);
+    public void setSubcategories(List<Subcategory> subcategories) {
+        this.subcategories = subcategories;
     }
-
-    public List<Subcategory> getSubcategories() {
-        return subcategories;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public String getCategoryDescription() {
-        return categoryDescription;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public String getHexaColor() {
-        return hexaColor;
-    }
-
-    public Integer getOrdination() {
-        return ordination;
-    }
-
 }

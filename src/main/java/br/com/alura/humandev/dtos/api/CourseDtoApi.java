@@ -1,9 +1,12 @@
 package br.com.alura.humandev.dtos.api;
 
 import br.com.alura.humandev.entities.Course;
+import lombok.*;
 
 import java.util.List;
 
+@Getter
+@NoArgsConstructor
 public class CourseDtoApi {
 
     private String name;
@@ -22,20 +25,12 @@ public class CourseDtoApi {
         return courses.stream().map(CourseDtoApi::new).toList();
     }
 
-    public String getName() {
-        return name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public int getCourseTimeHours() {
-        return courseTimeHours;
-    }
-
-    public String getDevelopedSkills() {
-        return developedSkills;
+    public void setCode(String code) {
+        this.code = code;
     }
 
 }

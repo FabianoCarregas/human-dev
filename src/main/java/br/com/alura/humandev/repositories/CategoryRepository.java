@@ -42,4 +42,8 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             """)
     Optional<CategoryLinkProjection> findCategoryByCodeAndActiveCourses(String code);
 
+    boolean existsByCode(String code);
+
+    boolean existsByCodeAndIdNot(String code, Long id);
+
 }
