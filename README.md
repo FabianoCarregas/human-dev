@@ -4,10 +4,10 @@ A Java jsp plataform that create an EduTech environment, on that is possible to 
 create, edit and remove; categories, subcategories and courses matters. you can also login as an student where you can check the categories with courses, 
 and your information.
 
-## requirement to run the project, follow the steps below
+## requirements to run the project, follow the steps below
 
-HumanDev it's using by java 17, so the first step that you take is verify if you have a java 17 or superior in your computer
-you can check in your terminal by the command below
+HumanDev it's running by java 17, so the first step that you take is verify if you have a java 17 or superior in your computer
+you can check it in your terminal by the command below
 ```
 java -version
 ```
@@ -96,8 +96,10 @@ to access the admin panel log-in as an admin and go to ```http://localhost:8080/
 
 here you can see all categories, edit or deactivate then or go to 'Subcategories' & 'Courses'
 ![alt text](./src/main/resources/assets/admCategories.png)
+
 ![alt text](./src/main/resources/assets/admEditCategories.png)
 
 Back to mainPage ```http://localhost:8080/login``` on the right side, you can see all categories with more than one course and their information.
 ![alt text](./src/main/resources/assets/landingPageRight.png)
+
 ![alt text](./src/main/resources/assets/knowMore.png)
