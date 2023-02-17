@@ -29,7 +29,6 @@ public class Category {
     private String categoryDescription;
     private String studyGuide;
     private boolean active;
-
     @Positive(message = "{number.invalid}")
     private Integer ordination;
     private String icon;
